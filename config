@@ -1,4 +1,4 @@
-BASE=/home/andre/work/source_builder
+BASE=/home/andre/work/package_builder
 PACKAGE_DIR=${BASE}/packages
 STAGING=${BASE}/staging
 
