@@ -13,12 +13,17 @@ if [ ! -f "scripts/$PACKAGE" ] ; then
     exit 1
 fi
 
+# Ensure all of the directories are in place
 if [ ! -d "${PACKAGE_DIR}" ] ; then
     mkdir ${PACKAGE_DIR}
 fi
 
 if [ ! -d "${BUILD_DIR}" ] ; then
     mkdir ${BUILD_DIR}
+fi
+
+if [ ! -d "${STAGING}" ] ; then
+    mkdir ${STAGING}
 fi
 
 TMPDIR=/tmp/$PACKAGE.$$
