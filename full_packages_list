@@ -1,15 +1,15 @@
 busybox
 ipkg
 libjpeg
+zlib
 libpng
 tslib
 sdl-framebuffer
+freetype
 sdl-ttf
 sdl-image
 sdl-gfx
 sdl-mixer
-freetype
-zlib
 ncurses
 gdb
 i2c-tools

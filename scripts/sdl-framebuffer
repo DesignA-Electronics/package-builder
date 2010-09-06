@@ -9,5 +9,9 @@ CONFIGURE_PARAMS="--disable-video-x11 --enable-video-fbcon \
         --disable-dga"
 BUILD_LIBRARY=1
 
+post_install() {
+    sed -i "s#/usr/local/lib/libts.la#${STAGING}/lib/libts.la#" "$1"/lib/libSDL.la
+}
+
 do_generic "$1"
 

@@ -112,6 +112,10 @@ do_make() {
 
 do_install() {
     make install prefix=$1 $INSTALL_PARAMS
+
+    if type post_install > /dev/null 2>&1 ; then
+        post_install "$1"
+    fi
 }
 
 do_generic() {

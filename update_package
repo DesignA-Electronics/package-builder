@@ -26,6 +26,7 @@ if [ ! -d "${STAGING}" ] ; then
     mkdir ${STAGING}
 fi
 
+# Make a temporary build directory, and do the build in there
 TMPDIR=/tmp/$PACKAGE.$$
 mkdir $TMPDIR
 pushd build
