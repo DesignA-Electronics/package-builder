@@ -8,5 +8,5 @@ BUILD_LIBRARY=1
 export LIBPNG_CFLAGS=-I${STAGING}/include/libpng14
 export LIBPNG_LIBS=-lpng14
 
-. $BASE/scripts/generic
+do_generic "$1"
 

@@ -5,5 +5,11 @@ VERSION=1.4.3
 SOURCE=ftp://ftp.simplesystems.org/pub/libpng/png/src/libpng-${VERSION}.tar.gz
 BUILD_LIBRARY=1
 
-. $BASE/scripts/generic
+post_unpack() {
+    sed -i 's/^.*-Wl,--version-script=libpng.vers.*$//g' Makefile.am
+    sed -i 's/^.*-Wl,--version-script=libpng.vers.*$//g' Makefile.in
+    #rm Makefile.in
+}
+
+do_generic "$1"
 

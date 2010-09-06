@@ -1,65 +1,12 @@
 #!/bin/bash
+# Overall package builder script. This is the one to run when you're
+# doing a build
 
 set -e
 
 PACKAGE=$1
 . ./config
-
-##
-# Builds a package split into two files, the -dev one contains everything
-# that ends in .a, .h, .la or is a manpage
-# The normal one contains everything else
-##
-build_lib_package() {
-    TMPIPKG=/tmp/ipkg-lib.tmpbuild.$$
-    mkdir $TMPIPKG
-    pushd $3
-    FILES=`find . \( -type f -o -type l \) -a \( -name "*.h" -o -name "*.a" -o -name "*.la" -o -wholename "*/man/*" -o -wholename "*/pkgconfig/*" \) `
-    tar cfz $TMPIPKG/data.tar.gz ${FILES}
-    popd
-    pushd $TMPIPKG
-    cat > control << EOF
-Package: $1-dev
-Version: $2
-Architecture: $ARCH
-Arch: $ARCH
-EOF
-    tar cfz control.tar.gz control
-    rm control
-    echo 2.0 > debian-binary
-    ar crs "${PACKAGE_DIR}/$1-dev_$2.ipk" debian-binary data.tar.gz control.tar.gz
-    popd
-    rm -rf $TMPIPKG
-    pushd $3
-    rm ${FILES}
-    # Remove any empty directories,
-    find . -depth -type d -empty -exec rmdir {} \;
-    popd
-
-    # Just go build the normal packages
-    build_package $1 $2 $3
-}
-
-build_package() {
-    TMPIPKG=/tmp/ipkg.tmpbuild.$$
-    mkdir $TMPIPKG
-    pushd $TMPIPKG
-    pushd $3
-    tar cfz $TMPIPKG/data.tar.gz .
-    popd
-    cat > control << EOF
-Package: $1
-Version: $2
-Architecture: $ARCH
-Arch: $ARCH
-EOF
-    tar cfz control.tar.gz control
-    rm control
-    echo 2.0 > debian-binary
-    ar crs "${PACKAGE_DIR}/$1_$2.ipk" debian-binary data.tar.gz control.tar.gz
-    popd
-    rm -rf $TMPIPKG
-}
+. ./helper_functions.sh
 
 if [ ! -f "scripts/$PACKAGE" ] ; then
     echo "Package not found" 2>&1
@@ -71,7 +18,6 @@ mkdir $TMPDIR
 pushd build
 . ../scripts/$PACKAGE $TMPDIR
 popd
-cp -a $TMPDIR/* $STAGING/
 
 rm -rf $TMPDIR
 

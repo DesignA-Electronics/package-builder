@@ -9,5 +9,5 @@ CONFIGURE_PARAMS="--disable-video-x11 --enable-video-fbcon \
         --disable-dga"
 BUILD_LIBRARY=1
 
-. $BASE/scripts/generic
+do_generic "$1"
 

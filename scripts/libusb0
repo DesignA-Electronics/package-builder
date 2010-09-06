@@ -1,0 +1,10 @@
+#!/bin/sh
+
+NAME=libusb0
+VERSION=0.1.12
+SOURCE="http://downloads.sourceforge.net/project/libusb/libusb-0.1 (LEGACY)/${VERSION}/libusb-${VERSION}.tar.gz"
+CONFIGURE_PARAMS="--prefix=$STAGING"
+BUILD_LIBRARY=1
+
+do_generic "$1"
+

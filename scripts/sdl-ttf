@@ -6,5 +6,5 @@ SOURCE=http://www.libsdl.org/projects/SDL_ttf/release/SDL_ttf-${VERSION}.tar.gz
 CONFIGURE_PARAMS="--without-x --disable-gl"
 BUILD_LIBRARY=1
 
-. $BASE/scripts/generic
+do_generic "$1"
 

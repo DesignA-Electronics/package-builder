@@ -8,5 +8,5 @@ FORCE_DIRNAME=tslib-1.0
 # To work around some weird rpl_malloc oddity in the configure script
 export ac_cv_func_malloc_0_nonnull=yes
 
-. $BASE/scripts/generic
+do_generic "$1"
 
