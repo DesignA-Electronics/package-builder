@@ -1,0 +1,8 @@
+#!/bin/sh
+
+NAME=libpng
+VERSION=1.4.3
+SOURCE=ftp://ftp.simplesystems.org/pub/libpng/png/src/libpng-${VERSION}.tar.gz
+
+. $BASE/scripts/generic
+

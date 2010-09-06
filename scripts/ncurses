@@ -1,0 +1,9 @@
+#!/bin/bash
+
+NAME=ncurses
+VERSION=5.7
+SOURCE=http://ftp.gnu.org/pub/gnu/ncurses/ncurses-${VERSION}.tar.gz
+
+. $BASE/scripts/generic
+
+

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+NAME=sdl_gfx
+VERSION=2.0.21
+SOURCE=http://www.ferzkopp.net/Software/SDL_gfx-2.0/SDL_gfx-${VERSION}.tar.gz
+CONFIGURE_PARAMS="--disable-mmx"
+
+. $BASE/scripts/generic
+

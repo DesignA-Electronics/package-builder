@@ -1,0 +1,8 @@
+#!/bin/bash
+
+NAME=gdb
+VERSION=7.2
+SOURCE=http://ftp.gnu.org/gnu/gdb/gdb-${VERSION}.tar.bz2
+
+. $BASE/scripts/generic
+

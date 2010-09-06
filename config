@@ -1,0 +1,12 @@
+BASE=/home/andre/work/source_builder
+PACKAGE_DIR=${BASE}/packages
+STAGING=${BASE}/staging
+
+TOOLCHAIN_DIR=/tools/arm/arm-2010q1
+CROSS=arm-none-linux-gnueabi-
+HOST=arm-none-linux-gnueabi
+ARCH=arm
+CFLAGS="-march=armv4t -I${STAGING}/include"
+LDFLAGS="-L${STAGING}/lib"
+
+export PATH=${TOOLCHAIN_DIR}/bin:$PATH

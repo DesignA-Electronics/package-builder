@@ -1,0 +1,42 @@
+#!/bin/bash
+
+set -e
+
+PACKAGE=$1
+. ./config
+
+build_package() {
+    TMPIPKG=/tmp/ipkg.tmpbuild.$$
+    mkdir $TMPIPKG
+    pushd $TMPIPKG
+    pushd $3
+    tar cfz $TMPIPKG/data.tar.gz .
+    popd
+    cat > control << EOF
+Package: $1
+Version: $2
+Architecture: $ARCH
+Arch: $ARCH
+EOF
+    tar cfz control.tar.gz control
+    rm control
+    echo 2.0 > debian-binary
+    ar crs "${PACKAGE_DIR}/$1-$2.ipk" debian-binary data.tar.gz control.tar.gz
+    popd
+    rm -rf $TMPIPKG
+}
+
+if [ ! -f "scripts/$PACKAGE" ] ; then
+    echo "Package not found" 2>&1
+    exit 1
+fi
+
+TMPDIR=/tmp/$PACKAGE.$$
+mkdir $TMPDIR
+pushd build
+. ../scripts/$PACKAGE $TMPDIR
+popd
+cp -a $TMPDIR/* $STAGING/
+
+rm -rf $TMPDIR
+

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+NAME=sdl_mixer
+VERSION=1.2.11
+SOURCE=http://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-${VERSION}.tar.gz
+CONFIGURE_PARAMS="--with-sdl-prefix=${STAGING} --disable-music-mod --disable-music-mp3 --prefix=${STAGING}"
+
+. $BASE/scripts/generic
+

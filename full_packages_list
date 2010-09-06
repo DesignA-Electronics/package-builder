@@ -1,0 +1,13 @@
+busybox
+ipkg
+libjpeg
+libpng
+sdl_framebuffer
+sdl_ttf
+sdl_image
+sdl_gfx
+sdl_mixer
+freetype
+zlib
+ncurses
+gdb

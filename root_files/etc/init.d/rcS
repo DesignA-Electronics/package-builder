@@ -1,0 +1,15 @@
+#!/bin/sh
+echo "Mounting system filesystems..."
+mount -a
+echo "Starting local networking..."
+ifconfig lo up
+hostname snapper
+telnetd
+
+CONSOLE=`sed 's/.*console=\([^, ]*\).*/\1/' /proc/cmdline`
+if [ -z "$CONSOLE" ] ; then
+        CONSOLE=ttyS0
+fi
+echo "Setting up console $CONSOLE..."
+ln -sf $CONSOLE /dev/tty_console
+

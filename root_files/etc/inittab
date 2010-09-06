@@ -1,0 +1,4 @@
+::sysinit:/etc/init.d/rcS
+::respawn:/sbin/getty -t 0 -L -n tty_console 115200 xterm
+::shutdown:/bin/umount -a -r
+

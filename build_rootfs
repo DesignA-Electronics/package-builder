@@ -1,0 +1,99 @@
+#!/bin/bash
+
+set -e
+. ./config
+
+PACKAGES_LIST=$1
+DEST=$2
+
+BINARY_BASE=${TOOLCHAIN_DIR}/arm-none-linux-gnueabi/libc/armv4t
+
+if [ -z "$PACKAGES_LIST" -o -z "$DEST" -o ! -f "$PACKAGES_LIST" ] ; then
+    echo "Usage: $0 packages_list_file output_directory"
+    exit 1
+fi
+
+## Helper functions
+copy_lib () {
+    base=$1
+    shift
+    for f in $* ; do
+        cp -a "$BINARY_BASE"/$base/$f "$DEST"/$base
+    done
+}
+
+install_package() {
+    package=$1
+    ar p ${PACKAGE_DIR}/${package}-*.ipk data.tar.gz | (cd $DEST ; tar xz)
+}
+
+make_device () {
+    device="$DEST"/$1
+    type=$2
+    mode=$3
+    uid=$4
+    gid=$5
+    major=$6
+    minor=$7
+    start=$8
+    inc=$9
+    count=${10}
+
+    dir=`dirname $device`
+
+    if [ -n "$dir" -a ! -d "$dir" ] ; then
+        mkdir -p "$dir"
+    fi
+
+    if [ "$type" == "d" ] ; then
+        mkdir "$device"
+    elif [ "$type" == "c" -o "$type" == "b" ] ; then
+        if [ "$count" == "-" -o -z "$count" ] ; then
+            sudo mknod "$device" $type $major $minor
+        else
+            i=$start
+            pos=$(( $minor ))
+            while [ "$i" -le "$count" ] ; do
+                sudo mknod "$device$i" $type $major $pos
+                pos=$(( $pos + $inc ))
+                i=$(( $i + 1 ))
+        done
+        fi
+    fi
+}
+
+make_devices () {
+    FILE=$1
+    cat $1 | while read line ; do
+        if [ "${line:0:1}" != "#" ] ; then
+            make_device $line
+        fi
+    done
+}
+
+
+# Build directory structure
+echo "  Copying Libraries..."
+mkdir -p "$DEST/lib" "$DEST/dev" "$DEST/proc" "$DEST/sys" "$DEST/etc/init.d" "$DEST/var/tmp" "$DEST/home" "$DEST/mnt" "$DEST/var/run" "$DEST/usr/local/bin" "$DEST/usr/lib"
+ln -s /var/tmp "$DEST/tmp"
+
+# Copy toolchain libraries
+copy_lib lib ld-*.so libc-*.so libm-*.so libcrypt-*.so libnss_files-*.so libnss_dns-*.so libresolv-*.so libgcc_s.so.* libpthread-*.so librt-*.so libdl-*.so libnsl-*.so libutil-*.so libthread_db-*.so
+copy_lib usr/lib libstdc++.so*
+
+# Install packages
+echo "  Installing Packages..."
+cat $PACKAGES_LIST | while read p ; do
+    install_package $p
+done
+
+# Copy default root files
+cp -a ${BASE}/root_files/* "${DEST}/"
+
+# Build device files
+echo "  Building Device Files..."
+make_devices ${BASE}/device_table
+
+# Finalise
+/sbin/ldconfig -r "$DEST"
+

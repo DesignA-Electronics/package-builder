@@ -1,0 +1,8 @@
+#!/bin/sh
+
+NAME=freetype
+VERSION=2.4.2
+SOURCE=http://download.savannah.gnu.org/releases/freetype/freetype-${VERSION}.tar.bz2
+
+. $BASE/scripts/generic
+

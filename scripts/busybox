@@ -1,0 +1,38 @@
+#!/bin/bash
+
+set_config() {
+    config=$1
+    option=$2
+    value=$3
+    if [ -z "$value" ] ; then
+        value="y"
+    fi
+    sed -i "s/^# $option .*$/$option=$value/" $config
+}
+
+
+VERSION=1.13.3
+SOURCE=http://busybox.net/downloads/busybox-${VERSION}.tar.bz2
+
+if [ ! -f busybox-${VERSION}.tar.bz2 ] ; then
+    wget $SOURCE
+fi
+
+if [ ! -d busybox-${VERSION} ] ; then
+    tar xfj busybox-${VERSION}.tar.bz2
+fi
+
+pushd busybox-${VERSION}
+make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS=${CFLAGS} defconfig
+# Turn on some options that we like
+set_config .config CONFIG_FEATURE_EDITING_FANCY_PROMPT
+set_config .config CONFIG_ASH_EXPAND_PRMT
+
+make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS=${CFLAGS} oldconfig
+make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS=${CFLAGS} -j4
+make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS=${CFLAGS} busybox.links
+./applets/install.sh "$1" --symlinks
+popd
+
+build_package busybox ${VERSION} $1
+

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+NAME=sdl_image
+VERSION=1.2.10
+SOURCE=http://www.libsdl.org/projects/SDL_image/release/SDL_image-${VERSION}.tar.gz
+
+export LIBPNG_CFLAGS=-I${STAGING}/include/libpng14
+export LIBPNG_LIBS=-lpng14
+
+. $BASE/scripts/generic
+

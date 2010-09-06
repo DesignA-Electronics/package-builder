@@ -1,0 +1,19 @@
+#!/bin/bash
+
+NAME=zlib
+VERSION=1.2.5
+SOURCE=http://zlib.net/zlib-${VERSION}.tar.gz
+
+if [ ! -f zlib-${VERSION}.tar.gz ] ; then
+    wget $SOURCE
+fi
+if [ ! -d zlib-${VERSION} ] ; then
+    tar xfz zlib-${VERSION}.tar.gz
+fi
+pushd zlib-${VERSION}
+CC=${CROSS}gcc ./configure
+make -j4
+make install prefix=$1
+popd
+
+build_package ${NAME} ${VERSION} "$1"
