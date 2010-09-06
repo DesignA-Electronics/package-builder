@@ -1,0 +1,10 @@
+#!/bin/bash
+
+NAME=readline
+VERSION=6.1
+SOURCE=ftp://ftp.cwru.edu/pub/bash/readline-${VERSION}.tar.gz
+BUILD_LIBRARY=1
+
+do_generic "$1"
+
+

@@ -13,6 +13,14 @@ if [ ! -f "scripts/$PACKAGE" ] ; then
     exit 1
 fi
 
+if [ ! -d "${PACKAGE_DIR}" ] ; then
+    mkdir ${PACKAGE_DIR}
+fi
+
+if [ ! -d "${BUILD_DIR}" ] ; then
+    mkdir ${BUILD_DIR}
+fi
+
 TMPDIR=/tmp/$PACKAGE.$$
 mkdir $TMPDIR
 pushd build

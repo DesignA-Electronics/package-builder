@@ -1,0 +1,18 @@
+#!/bin/bash
+
+NAME=wpa-supplicant
+VERSION=0.6.10
+SOURCE=http://hostap.epitest.fi/releases/wpa_supplicant-${VERSION}.tar.gz
+
+download_unpack ${SOURCE}
+cd wpa_supplicant
+cp defconfig .config
+echo "CFLAGS+=-I${STAGING}/include" >> .config
+echo "LIBS+=-L${STAGING}/lib" >> .config
+echo "LIBS_p+=-L${STAGING}/lib -ldl" >> .config
+make CC=${CROSS}gcc
+make CC=${CROSS}gcc install DESTDIR=${1} BINDIR=/usr/bin LIBDIR=/usr/lib
+
+build_package ${NAME} ${VERSION} $1
+
+

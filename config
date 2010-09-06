@@ -1,6 +1,7 @@
 BASE=/home/andre/work/package_builder
 PACKAGE_DIR=${BASE}/packages
 STAGING=${BASE}/staging
+BUILD_DIR=${BASE}/build
 
 TOOLCHAIN_DIR=/tools/arm/arm-2010q1
 CROSS=arm-none-linux-gnueabi-

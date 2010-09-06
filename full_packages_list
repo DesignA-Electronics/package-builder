@@ -2,6 +2,7 @@ busybox
 ipkg
 libjpeg
 libpng
+tslib
 sdl-framebuffer
 sdl-ttf
 sdl-image
@@ -11,3 +12,14 @@ freetype
 zlib
 ncurses
 gdb
+i2c-tools
+openssl
+wireless-tools
+wpa-supplican
+alsa-lib
+alsa-utils
+libusb1
+sqlite3
+readline
+uucp
+lrzsz
