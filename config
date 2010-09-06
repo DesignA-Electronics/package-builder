@@ -1,4 +1,4 @@
-BASE=/home/andre/work/package_builder
+BASE=`pwd`
 PACKAGE_DIR=${BASE}/packages
 STAGING=${BASE}/staging
 BUILD_DIR=${BASE}/build
