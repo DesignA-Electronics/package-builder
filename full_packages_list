@@ -2,11 +2,11 @@ busybox
 ipkg
 libjpeg
 libpng
-sdl_framebuffer
-sdl_ttf
-sdl_image
-sdl_gfx
-sdl_mixer
+sdl-framebuffer
+sdl-ttf
+sdl-image
+sdl-gfx
+sdl-mixer
 freetype
 zlib
 ncurses

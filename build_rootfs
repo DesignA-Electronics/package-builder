@@ -25,6 +25,7 @@ copy_lib () {
 install_package() {
     package=$1
     ar p ${PACKAGE_DIR}/${package}_*.ipk data.tar.gz | (cd $DEST ; tar xz)
+    echo -n "."
 }
 
 make_device () {
@@ -60,6 +61,7 @@ make_device () {
         done
         fi
     fi
+    echo -n "."
 }
 
 make_devices () {
@@ -82,17 +84,19 @@ copy_lib lib ld-*.so libc-*.so libm-*.so libcrypt-*.so libnss_files-*.so libnss_
 copy_lib usr/lib libstdc++.so*
 
 # Install packages
-echo "  Installing Packages..."
+echo -n "  Installing Packages..."
 cat $PACKAGES_LIST | while read p ; do
     install_package $p
 done
+echo
 
 # Copy default root files
 cp -a ${BASE}/root_files/* "${DEST}/"
 
 # Build device files
-echo "  Building Device Files..."
+echo -n "  Building Device Files..."
 make_devices ${BASE}/device_table
+echo
 
 # Finalise
 /sbin/ldconfig -r "$DEST"
