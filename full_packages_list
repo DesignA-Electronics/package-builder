@@ -19,6 +19,7 @@ wpa-supplicant
 alsa-lib
 alsa-utils
 libusb1
+libusb0
 sqlite3
 readline
 uucp

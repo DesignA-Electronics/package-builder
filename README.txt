@@ -1,9 +1,16 @@
 To build a package:
 ./update_package <package_name>
+This is done as a normal user - builds don't require root access generally, 
+only the final assembly of the root filesystem requires this (as /dev 
+files & mknod require it)
+If the package is already partially built, this will still run the configure, make & make install processes
 
 To add a new package:
 Create a new file in the 'scripts' directory, with the name of the package.
-This script should download, unpack, compile & install the package as apporiate, and call the 'build_package' helper macro to build its final package output
+This script should download, unpack, compile & install the package as 
+apporiate, and call the 'build_package' helper macro to build its final 
+package output.
+Add the new package to the bottom of full_packages_list so that it will be automatically built by the update_all_packages script
 
 
 The following variables are used by the 'do_generic' function:
@@ -16,7 +23,7 @@ post_unpack - if this function is defined, it will be run after the archive is u
 post_install - if this function is defined, it will be run after the installation process to the temporary directory has completed. It will be passed the full directory path as its argument
 
 
-Build process:
+General Build process:
 1. Download archive
 2. Unpack archive to build/PACKAGENAME directory
 3. Build software
