@@ -4,6 +4,11 @@ set -e
 
 PACKAGE_NAME=$1
 
+# Create the build directory if it does not exist
+if [ ! -d "build" ]; then
+    mkdir build
+fi	
+
 if [ -z "$PACKAGE_NAME" ] ; then
     PACKAGE_NAME=full_packages_list
 fi
