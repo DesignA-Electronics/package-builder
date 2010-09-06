@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+PACKAGE_NAME=$1
+
+if [ -z "$PACKAGE_NAME" ] ; then
+    PACKAGE_NAME=full_packages_list
+fi
+
+cat full_packages_list | while read package ; do
+    ./update_package $package
+done
