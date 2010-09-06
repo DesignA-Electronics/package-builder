@@ -15,3 +15,13 @@ BUILD_LIBRARY - if set to 1, then a -dev version of the package will be built co
 post_unpack - if this function is defined, it will be run after the archive is unpacked from within the source directory
 post_install - if this function is defined, it will be run after the installation process to the temporary directory has completed. It will be passed the full directory path as its argument
 
+
+Build process:
+1. Download archive
+2. Unpack archive to build/PACKAGENAME directory
+3. Build software
+4. Install software to temporary directory
+5. Package temporary installation directory into one (or more) .ipk files
+6. Install .ipk files into staging directory
+7. Delete temporary installation directory
+
