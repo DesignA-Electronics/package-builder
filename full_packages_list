@@ -15,7 +15,7 @@ gdb
 i2c-tools
 openssl
 wireless-tools
-wpa-supplican
+wpa-supplicant
 alsa-lib
 alsa-utils
 libusb1
