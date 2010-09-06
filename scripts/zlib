@@ -16,4 +16,4 @@ make -j4
 make install prefix=$1
 popd
 
-build_package ${NAME} ${VERSION} "$1"
+build_lib_package ${NAME} ${VERSION} "$1"

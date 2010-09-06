@@ -4,6 +4,7 @@ NAME=libjpeg
 VERSION=8b
 SOURCE=http://www.ijg.org/files/jpegsr8b.zip
 FORCE_DIRNAME=jpeg-8b
+BUILD_LIBRARY=1
 
 . $BASE/scripts/generic
 

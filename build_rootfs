@@ -24,7 +24,7 @@ copy_lib () {
 
 install_package() {
     package=$1
-    ar p ${PACKAGE_DIR}/${package}-*.ipk data.tar.gz | (cd $DEST ; tar xz)
+    ar p ${PACKAGE_DIR}/${package}_*.ipk data.tar.gz | (cd $DEST ; tar xz)
 }
 
 make_device () {

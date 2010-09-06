@@ -17,5 +17,5 @@ CC=${CROSS}gcc ./Configure --prefix=$1 linux-armv4
 make install
 popd
 
-build_package ${NAME} ${VERSION} "$1"
+build_lib_package ${NAME} ${VERSION} "$1"
 

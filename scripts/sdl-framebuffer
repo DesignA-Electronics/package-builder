@@ -1,12 +1,13 @@
 #!/bin/sh
 
-NAME=sdl_framebuffer
+NAME=sdl-framebuffer
 VERSION=1.2.14
 SOURCE=http://www.libsdl.org/release/SDL-$VERSION.tar.gz
 CONFIGURE_PARAMS="--disable-video-x11 --enable-video-fbcon \
         --enable-pthreads --enable-alsa --enable-input-tslib \
         --disable-pulseaudio --disable-esd --disable-video-directfb \
         --disable-dga"
+BUILD_LIBRARY=1
 
 . $BASE/scripts/generic
 

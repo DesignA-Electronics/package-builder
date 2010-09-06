@@ -38,4 +38,8 @@ make -j4
 make install prefix=$1
 popd
 
-build_package ${NAME} ${VERSION} "$1"
+if [ "$BUILD_LIBRARY" == "1" ] ; then
+    build_lib_package ${NAME} ${VERSION} "$1"
+else
+    build_package ${NAME} ${VERSION} "$1"
+fi
