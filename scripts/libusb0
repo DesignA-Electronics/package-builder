@@ -3,8 +3,13 @@
 NAME=libusb0
 VERSION=0.1.12
 SOURCE="http://downloads.sourceforge.net/project/libusb/libusb-0.1 (LEGACY)/${VERSION}/libusb-${VERSION}.tar.gz"
-CONFIGURE_PARAMS="--prefix=$STAGING"
+CONFIGURE_PARAMS="--prefix=$1"
 BUILD_LIBRARY=1
 
-do_generic "$1"
-
+# Almost the same as the generic version except that libusb0 takes no arguments
+# to 'make install'
+download_unpack "$SOURCE" "$FILENAME" "$FORCE_DIRNAME"
+do_configure
+do_make
+make install
+build_lib_package ${NAME} ${VERSION} "$1"
