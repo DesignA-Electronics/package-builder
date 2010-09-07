@@ -26,3 +26,6 @@ uucp
 lrzsz
 libpcap
 tcpdump
+usbutils
+libelf
+dosfstools
