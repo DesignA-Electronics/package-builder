@@ -1,0 +1,9 @@
+#!/bin/bash
+
+NAME=usbutils
+VERSION=0.86
+SOURCE=http://downloads.sourceforge.net/project/linux-usb/usbutils/usbutils-${VERSION}.tar.gz
+BUILD_LIBRARY=1
+
+do_generic "$1"
+
