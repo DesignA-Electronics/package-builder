@@ -1,0 +1,18 @@
+#!/bin/sh
+
+NAME=glib
+VERSION=2.24.2
+SOURCE=http://ftp.gnome.org/pub/gnome/sources/glib/2.24/glib-${VERSION}.tar.gz
+CONFIGURE_PARAMS="--prefix=$1"
+
+export glib_cv_stack_grows=yes
+export glib_cv_uscore=no
+export ac_cv_func_posix_getpwuid_r=yes
+export ac_cv_func_posix_getgrgid_r=yes
+
+download_unpack "$SOURCE"
+do_configure
+do_make
+make install
+build_lib_package ${NAME} ${VERSION} "$1"
+

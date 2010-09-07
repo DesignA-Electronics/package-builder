@@ -1,5 +1,8 @@
 busybox
 ipkg
+curl
+opkg
+openssl
 libjpeg
 zlib
 libpng
@@ -13,7 +16,6 @@ sdl-mixer
 ncurses
 gdb
 i2c-tools
-openssl
 wireless-tools
 wpa-supplicant
 alsa-lib
@@ -29,3 +31,8 @@ tcpdump
 usbutils
 libelf
 dosfstools
+strace
+glib
+libexpat
+dbus
+bluez

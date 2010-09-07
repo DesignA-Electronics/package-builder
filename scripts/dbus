@@ -1,0 +1,10 @@
+#!/bin/sh
+
+NAME=dbus
+VERSION=1.2.24
+SOURCE=http://dbus.freedesktop.org/releases/dbus/dbus-${VERSION}.tar.gz
+BUILD_LIBRARY=1
+CONFIGURE_PARAMS="--without-x --prefix=${1}"
+
+do_generic "$1"
+

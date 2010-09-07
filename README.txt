@@ -32,3 +32,10 @@ General Build process:
 6. Install .ipk files into staging directory
 7. Delete temporary installation directory
 
+
+To go back to a complete clean setup, erase the following directories:
+* build
+* staging
+* packages
+
+

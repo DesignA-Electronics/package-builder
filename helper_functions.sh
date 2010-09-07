@@ -10,7 +10,7 @@ build_lib_package() {
     TMPIPKG=/tmp/ipkg-lib.tmpbuild.$$
     mkdir $TMPIPKG
     pushd $3
-    FILES=`find . \( -type f -o -type l \) -a \( -name "*.h" -o -name "*.a" -o -name "*.la" -o -wholename "*/man/*" -o -wholename "*/pkgconfig/*" -o -wholename "*/info/*" -o -wholename "*/bin/*-config" -o -wholename "*/share/aclocal/*.m4" -o -wholename "*/share/doc/*" \) `
+    FILES=`find . \( -type f -o -type l \) -a \( -name "*.h" -o -name "*.a" -o -name "*.la" -o -wholename "*/man/*" -o -wholename "*/pkgconfig/*" -o -wholename "*/info/*" -o -wholename "*/bin/*-config" -o -wholename "*/share/aclocal/*.m4" -o -wholename "*/share/*doc/*" \) `
     tar cfz $TMPIPKG/data.tar.gz ${FILES}
     pushd $STAGING ; tar xfz $TMPIPKG/data.tar.gz ; popd
     popd

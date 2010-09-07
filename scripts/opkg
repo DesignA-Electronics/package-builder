@@ -1,0 +1,10 @@
+#!/bin/bash
+
+NAME=opkg
+VERSION=0.1.8
+SOURCE=http://opkg.googlecode.com/files/opkg-0.1.8.tar.gz
+BUILD_LIBRARY=1
+CONFIGURE_PARAMS="--disable-gpg LDFLAGS=-ldl"
+
+do_generic "$1"
+
