@@ -13,6 +13,11 @@ if [ -z "$PACKAGES_LIST" -o -z "$DEST" -o ! -f "$PACKAGES_LIST" ] ; then
     exit 1
 fi
 
+if [ -e "$DEST" ] ; then
+    echo "Output directory $DEST already exists"
+    exit 1
+fi
+
 ## Helper functions
 copy_lib () {
     base=$1
@@ -92,6 +97,7 @@ echo
 
 # Copy default root files
 cp -a ${BASE}/root_files/* "${DEST}/"
+find "${DEST}" -depth -name ".svn" -exec rm -rf {} \;
 
 # Build device files
 echo -n "  Building Device Files..."

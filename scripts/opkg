@@ -5,6 +5,10 @@ VERSION=0.1.8
 SOURCE=http://opkg.googlecode.com/files/opkg-0.1.8.tar.gz
 BUILD_LIBRARY=1
 CONFIGURE_PARAMS="--disable-gpg LDFLAGS=-ldl"
+pre_install() {
+    mkdir -p "$1"/usr/lib/opkg
+    touch "$1"/usr/lib/opkg/lock
+}
 
 do_generic "$1"
 
