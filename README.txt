@@ -38,4 +38,4 @@ To go back to a complete clean setup, erase the following directories:
 * staging
 * packages
 
-
+To build a root fs, use the build_rootfs script. Set STRIP_ROOTFS=1 if you want all of the binary files to be stripped of debugging symbols in the output
