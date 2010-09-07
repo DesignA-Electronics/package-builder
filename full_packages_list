@@ -24,3 +24,5 @@ sqlite3
 readline
 uucp
 lrzsz
+libpcap
+tcpdump

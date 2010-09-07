@@ -111,6 +111,9 @@ do_make() {
 }
 
 do_install() {
+    if type pre_install > /dev/null 2>&1 ; then
+        pre_install "$1"
+    fi
     make install prefix=$1 $INSTALL_PARAMS
 
     if type post_install > /dev/null 2>&1 ; then

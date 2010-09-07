@@ -1,0 +1,16 @@
+#!/bin/sh
+
+NAME=libpcap
+VERSION=1.0.0
+SOURCE=http://www.tcpdump.org/release/libpcap-${VERSION}.tar.gz
+BUILD_LIBRARY=1
+CONFIGURE_PARAMS="--with-pcap=linux"
+
+pre_install() {
+    mkdir "${1}/bin"
+}
+
+export ac_cv_linux_vers=2
+
+do_generic "$1"
+

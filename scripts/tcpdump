@@ -1,0 +1,12 @@
+#!/bin/bash
+
+NAME=tcpdump
+VERSION=4.0.0
+SOURCE=http://www.tcpdump.org/release/tcpdump-${VERSION}.tar.gz
+CONFIGURE_PARAMS="--with-crypto=${STAGING} --enable-ipv6"
+export LIBS="-ldl -lcrypto"
+export ac_cv_linux_vers=2
+export td_cv_buggygetaddrinfo=no
+
+do_generic "$1"
+
