@@ -1,0 +1,12 @@
+#!/bin/bash
+
+NAME=dosfstools
+VERSION=3.0.9
+SOURCE=http://www.daniel-baumann.ch/software/dosfstools/dosfstools-${VERSION}.tar.bz2
+
+download_unpack "$SOURCE"
+export CC=${CROSS}gcc
+do_make
+make install PREFIX="$1"
+build_lib_package ${NAME} ${VERSION} "$1"
+

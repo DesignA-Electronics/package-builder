@@ -7,7 +7,7 @@ CONFIGURE_PARAMS="--prefix=$1"
 
 # Almost the same as the generic version except that libusb0 takes no arguments
 # to 'make install'
-download_unpack "$SOURCE" "$FILENAME" "$FORCE_DIRNAME"
+download_unpack "$SOURCE"
 do_configure
 do_make
 make install
