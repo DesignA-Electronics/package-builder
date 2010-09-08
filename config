@@ -1,5 +1,5 @@
-BASE=`pwd`
-PACKAGE_DIR=${BASE}/packages
+BASE=$(pwd)
+PACKAGE_DIR=${PACKAGE_DIR:-${BASE}/packages}
 STAGING=${BASE}/staging
 BUILD_DIR=${BASE}/build
 

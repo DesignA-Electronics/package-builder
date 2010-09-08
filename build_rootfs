@@ -1,7 +1,9 @@
 #!/bin/bash
 
+ROOT=$(realpath $(dirname $0))
+
 set -e
-. ./config
+. ${ROOT}/config
 
 PACKAGES_LIST=$1
 DEST=$2
@@ -96,12 +98,12 @@ done
 echo
 
 # Copy default root files
-cp -a ${BASE}/root_files/* "${DEST}/"
+cp -a ${ROOT}/root_files/* "${DEST}/"
 find "${DEST}" -depth -name ".svn" -exec rm -rf {} \;
 
 # Build device files
 echo -n "  Building Device Files..."
-make_devices ${BASE}/device_table
+make_devices ${ROOT}/device_table
 echo
 
 if [ "$STRIP_ROOTFS" == "1" ] ; then
