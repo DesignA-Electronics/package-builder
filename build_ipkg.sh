@@ -31,15 +31,13 @@ mkdir $STAGING
 echo $STAGING
 
 while read source dest ; do
-    echo $source " - " $dest
     if [ ${dest: -1} == "/" ] ; then
         dir=${dest}
     else
         dir=$(dirname ${dest})
     fi
-    echo $dir
     mkdir -p "${STAGING}/${dir}"
-    cp -a "${source}" "${STAGING}/${dir}"
+    cp -a ${source} "${STAGING}/${dir}"
 done
 pushd ${STAGING} 
 mkdir ${PKGDIR}
