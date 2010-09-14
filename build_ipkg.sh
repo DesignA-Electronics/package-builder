@@ -38,6 +38,9 @@ while read source dest ; do
     fi
     mkdir -p "${STAGING}/${dir}"
     cp -a ${source} "${STAGING}/${dir}"
+
+    # Remove .svn directories that have been copied over
+    find ${STAGING}/${dir} -name "*\.svn" | xargs -r rm -Rf 
 done
 pushd ${STAGING} 
 mkdir ${PKGDIR}
