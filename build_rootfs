@@ -7,11 +7,12 @@ set -e
 
 PACKAGES_LIST=$1
 DEST=$2
+DEVICE_TABLE=${3:-${ROOT}/device_table}
 
 BINARY_BASE=${TOOLCHAIN_DIR}/arm-none-linux-gnueabi/libc/armv4t
 
 if [ -z "$PACKAGES_LIST" -o -z "$DEST" -o ! -f "$PACKAGES_LIST" ] ; then
-    echo "Usage: $0 packages_list_file output_directory"
+    echo "Usage: $0 packages_list_file output_directory [device_table]"
     exit 1
 fi
 
@@ -103,7 +104,7 @@ find "${DEST}" -depth -name ".svn" -exec rm -rf {} \;
 
 # Build device files
 echo -n "  Building Device Files..."
-make_devices ${ROOT}/device_table
+make_devices ${DEVICE_TABLE}
 echo
 
 if [ "$STRIP_ROOTFS" == "1" ] ; then
