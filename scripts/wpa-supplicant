@@ -13,6 +13,6 @@ echo "LIBS_p+=-L${STAGING}/lib -ldl" >> .config
 make CC=${CROSS}gcc
 make CC=${CROSS}gcc install DESTDIR=${1} BINDIR=/usr/bin LIBDIR=/usr/lib
 
-build_package ${NAME} ${VERSION} $1
+build_generic_package "$1"
 
 

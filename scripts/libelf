@@ -3,7 +3,6 @@
 NAME=libelf
 VERSION=0.8.13
 SOURCE=http://www.mr511.de/software/libelf-${VERSION}.tar.gz
-BUILD_LIBRARY=1
 export CC="${CROSS}gcc"
 
 do_generic "$1"

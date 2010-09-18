@@ -6,5 +6,7 @@ SOURCE=ftp://ftp.alsa-project.org/pub/utils/alsa-utils-${VERSION}.tar.bz2
 CONFIGURE_PARAMS="--prefix=$1 --with-curses=ncurses"
 #--with-alsa-prefix=$STAGING/lib --with-alsa-inc-prefix=$STAGING/include/alsa"
 
-do_generic "$1"
+do_build_install "$1"
+build_package "${NAME}"-wav "${VERSION}" "$1" ".*/sounds/.*wav"
+build_generic_package "$1"
 

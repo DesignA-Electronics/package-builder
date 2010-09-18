@@ -68,6 +68,8 @@ make_device () {
                 i=$(( $i + 1 ))
         done
         fi
+    elif [ "$type" == "l" ] ; then
+        ln -s "$mode" "$device"
     fi
     echo -n "."
 }

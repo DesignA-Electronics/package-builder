@@ -2,13 +2,13 @@
 
 NAME=zlib
 VERSION=1.2.5
-SOURCE=http://zlib.net/zlib-${VERSION}.tar.gz
+SOURCE=http://zlib.net/zlib-${VERSION}.tar.bz2
 
-if [ ! -f zlib-${VERSION}.tar.gz ] ; then
+if [ ! -f zlib-${VERSION}.tar.bz2 ] ; then
     wget $SOURCE
 fi
 if [ ! -d zlib-${VERSION} ] ; then
-    tar xfz zlib-${VERSION}.tar.gz
+    tar xfj zlib-${VERSION}.tar.bz2
 fi
 pushd zlib-${VERSION}
 CC=${CROSS}gcc ./configure
@@ -16,4 +16,4 @@ make -j4
 make install prefix=$1
 popd
 
-build_lib_package ${NAME} ${VERSION} "$1"
+build_generic_package "$1"

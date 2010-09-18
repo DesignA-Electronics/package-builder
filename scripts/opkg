@@ -3,7 +3,6 @@
 NAME=opkg
 VERSION=0.1.8
 SOURCE=http://opkg.googlecode.com/files/opkg-0.1.8.tar.gz
-BUILD_LIBRARY=1
 export CURL_CFLAGS=-I${STAGING}/include
 export CURL_LIBS="-L${STAGING}/lib -lcurl"
 CONFIGURE_PARAMS="--disable-openssl --disable-ssl-curl --disable-gpg LDFLAGS=-ldl"

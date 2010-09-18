@@ -14,5 +14,5 @@ download_unpack "$SOURCE"
 do_configure
 do_make
 make install
-build_lib_package ${NAME} ${VERSION} "$1"
+build_generic_package "$1"
 

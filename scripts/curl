@@ -3,7 +3,6 @@
 NAME=curl
 VERSION=7.21.1
 SOURCE=http://curl.haxx.se/download/curl-${VERSION}.tar.bz2
-BUILD_LIBRARY=1
 
 do_generic "$1"
 

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+NAME=ipkg
 VERSION=0.99.163
 SOURCE=http://www.handhelds.org/download/packages/ipkg/ipkg-${VERSION}.tar.gz
 
@@ -21,5 +22,5 @@ cp .libs/libipkg.so* $1/lib/
 touch $1/etc/ipkg.conf
 popd
 
-build_package ipkg ${VERSION} $1
+build_generic_package "$1"
 

@@ -4,7 +4,6 @@ NAME=sdl-gfx
 VERSION=2.0.21
 SOURCE=http://www.ferzkopp.net/Software/SDL_gfx-2.0/SDL_gfx-${VERSION}.tar.gz
 CONFIGURE_PARAMS="--disable-mmx"
-BUILD_LIBRARY=1
 
 post_install() {
   # libSDL_gfx apps often refer to libSDL_gfx.so.0, symlink it to the lib

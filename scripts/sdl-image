@@ -3,8 +3,10 @@
 NAME=sdl-image
 VERSION=1.2.10
 SOURCE=http://www.libsdl.org/projects/SDL_image/release/SDL_image-${VERSION}.tar.gz
-BUILD_LIBRARY=1
+CONFIGURE_PARAMS=
 
+export CPPFLAGS=-I${STAGING}/include
+export SDL_LIBS="-lSDL -lts"
 export LIBPNG_CFLAGS=-I${STAGING}/include/libpng14
 export LIBPNG_LIBS=-lpng14
 

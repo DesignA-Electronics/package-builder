@@ -2,6 +2,9 @@
 # Overall package builder script. This is the one to run when you're
 # doing a build
 
+# Should be ensuring we have the following tools installed: 
+# libtoolize autoconf m4 fromdos xmlto flex bison
+
 set -e
 
 PACKAGE=$1

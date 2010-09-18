@@ -9,5 +9,10 @@ if [ -z "$PACKAGE_NAME" ] ; then
 fi
 
 cat full_packages_list | while read package ; do
-    ./update_package $package
+    if [ "${SKIP_EXISTING}" == 1 -a -f packages/${package}_*.ipk ] ; then
+        echo "Skipping $package - its already built"
+    else
+        echo "Building $package..."
+        ./update_package $package
+    fi
 done

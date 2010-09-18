@@ -36,3 +36,4 @@ glib
 libexpat
 dbus
 bluez
+ffmpeg

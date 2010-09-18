@@ -19,8 +19,11 @@ VERSION - package version
 SOURCE - downloadable location of the source
 FORCE_DIRNAME - if the unpacked directory name is not the same as the filename (without suffix), then set this to the correct directory name
 BUILD_LIBRARY - if set to 1, then a -dev version of the package will be built containing all the .a, .h & man pages
-post_unpack - if this function is defined, it will be run after the archive is unpacked from within the source directory
-post_install - if this function is defined, it will be run after the installation process to the temporary directory has completed. It will be passed the full directory path as its argument
+The folloowing functions can be defined within a script to give finer control
+over the build process:
+post_unpack - This will be run after the archive is unpacked from within the source directory
+post_install - This will be run after the installation process to the temporary directory has completed. It will be passed the full directory path as its argument
+pre_install - This will be run after the project has been 'make install'd. It will be passed the temporary installation directory as its only argument
 
 
 General Build process:
@@ -38,4 +41,5 @@ To go back to a complete clean setup, erase the following directories:
 * staging
 * packages
 
-To build a root fs, use the build_rootfs script. Set STRIP_ROOTFS=1 if you want all of the binary files to be stripped of debugging symbols in the output
+To build a root fs, use the build_rootfs script. 
+Set STRIP_ROOTFS=1 if you want all of the binary files to be stripped of debugging symbols in the output

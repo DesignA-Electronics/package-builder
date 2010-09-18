@@ -3,7 +3,6 @@
 NAME=sqlite3
 VERSION=3.7.2
 SOURCE=http://www.sqlite.org/sqlite-amalgamation-${VERSION}.tar.gz
-BUILD_LIBRARY=1
 FORCE_DIRNAME=sqlite-${VERSION}
 
 do_generic "${1}"

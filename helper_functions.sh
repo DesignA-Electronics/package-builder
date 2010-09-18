@@ -1,60 +1,46 @@
 #!/bin/bash
 # Helper functions to make building easier
 
-##
-# Builds a package split into two files, the -dev one contains everything
-# that ends in .a, .h, .la or is a info/manpage
-# The normal one contains everything else
-##
-build_lib_package() {
-    TMPIPKG=/tmp/ipkg-lib.tmpbuild.$$
-    mkdir $TMPIPKG
-    pushd $3
-    FILES=`find . \( -type f -o -type l \) -a \( -name "*.h" -o -name "*.a" -o -name "*.la" -o -wholename "*/man/*" -o -wholename "*/pkgconfig/*" -o -wholename "*/info/*" -o -wholename "*/bin/*-config" -o -wholename "*/share/aclocal/*.m4" -o -wholename "*/share/*doc/*" \) `
-    tar cfz $TMPIPKG/data.tar.gz ${FILES}
-    pushd $STAGING ; tar xfz $TMPIPKG/data.tar.gz ; popd
-    popd
-    pushd $TMPIPKG
-    cat > control << EOF
-Package: $1-dev
-Version: $2
-Architecture: $ARCH
-Arch: $ARCH
-EOF
-    tar cfz control.tar.gz control
-    rm control
-    echo 2.0 > debian-binary
-    ar crs "${PACKAGE_DIR}/$1-dev_$2.ipk" debian-binary data.tar.gz control.tar.gz
-    popd
-    rm -rf $TMPIPKG
-    pushd $3
-    rm ${FILES}
-    # Remove any empty directories,
-    find . -depth -type d -empty -exec rmdir {} \;
-    popd
+# Regex for matching files that should go into development packages
+DOC_FILES=".*/man/.*|.*/info/.*|.*/share/.*doc/.*"
+DEV_FILES=".*\.h|.*\.a|.*\.la|.*/pkgconfig/.*|.*/bin/.*-config|.*/share/aclocal/.*\.m4"
+# Regex for matching LOCALE files
+LOCALE_FILES=".*/share/locale/.*"
 
-    # Just go build the normal packages
-    build_package $1 $2 $3
-}
-
+# Builds a .ipk
 build_package() {
     TMPIPKG=/tmp/ipkg.tmpbuild.$$
+    PKG_NAME="$1"
+    PKG_VERSION="$2"
+    PKG_DIR="$3"
+    pushd $PKG_DIR
+    if [ -z "$4" ] ; then
+        PKG_FILES=`echo *`
+    else
+        PKG_FILES=`find . -regextype posix-extended -regex "$4"`
+    fi
+    if [ -z "$PKG_FILES"  -o "$PKG_FILES" == "*" ] ; then
+        echo "Skipping creation of $PKG_NAME - no files"
+        return
+    fi
+    #echo PKG_NAME=${PKG_NAME} pkg_files= ${PKG_FILES}
     mkdir $TMPIPKG
-    pushd $TMPIPKG
-    pushd $3
-    tar cfz $TMPIPKG/data.tar.gz .
-    pushd $STAGING ; tar xfz $TMPIPKG/data.tar.gz ; popd
+    tar cfz $TMPIPKG/data.tar.gz ${PKG_FILES}
+    rm -rf ${PKG_FILES}
+    find . -depth -type d -empty ! -name "." -exec rmdir {} \;
     popd
+    pushd $STAGING ; tar xfz $TMPIPKG/data.tar.gz ; popd
+    pushd $TMPIPKG
     cat > control << EOF
-Package: $1
-Version: $2
+Package: $PKG_NAME
+Version: $PKG_VERSION
 Architecture: $ARCH
 Arch: $ARCH
 EOF
     tar cfz control.tar.gz control
     rm control
     echo 2.0 > debian-binary
-    ar crs "${PACKAGE_DIR}/$1_$2.ipk" debian-binary data.tar.gz control.tar.gz
+    ar crs "${PACKAGE_DIR}/${PKG_NAME}_${PKG_VERSION}_${ARCH}.ipk" debian-binary data.tar.gz control.tar.gz
     popd
     rm -rf $TMPIPKG
 }
@@ -121,16 +107,35 @@ do_install() {
     fi
 }
 
-do_generic() {
+# Performs a standard configure, make, make install build
+do_build_install() {
     download_unpack "$SOURCE" "$FILENAME" "$FORCE_DIRNAME"
     do_configure
     do_make
     do_install "$1"
-
-    if [ "$BUILD_LIBRARY" == "1" ] ; then
-        build_lib_package ${NAME} ${VERSION} "$1"
-    else
-        build_package ${NAME} ${VERSION} "$1"
-    fi
 }
+
+# Builds a package, and puts all of its installation into
+# a single archive
+do_simple() {
+    do_build_install "$1"
+
+    build_package ${NAME} ${VERSION} "$1"
+}
+
+build_generic_package() {
+    build_package "${NAME}"-doc "${VERSION}" "$1" "${DOC_FILES}"
+    build_package "${NAME}"-dev "${VERSION}" "$1" "${DEV_FILES}"
+    build_package "${NAME}"-locale "${VERSION}" "$1" "${LOCALE_FILES}"
+    build_package "${NAME}" "${VERSION}" "$1"
+}
+
+# Builds a package using the standard ./configure, make, make install
+# and then packages it up into 4 archives:
+# doc, dev, locale & what ever is left.
+do_generic() {
+    do_build_install "$1"
+    build_generic_package "$1"
+}
+
 
