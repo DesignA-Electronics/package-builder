@@ -8,11 +8,13 @@ download_unpack "$SOURCE"
 ./configure --cross-prefix=${CROSS} --target-os=linux --arch=${ARCH}
 make
 make install prefix="$1"
+build_package "ffmpeg-presets" "${VERSION}" "$1" ".*ffpreset"
 build_package "libavutil-dev" "${VERSION}" "$1" ".*avutil.*"
 build_package "libavcodec-dev" "${VERSION}" "$1" ".*avcodec.*"
 build_package "libavdevice-dev" "${VERSION}" "$1" ".*avdevice.*"
 build_package "libavformat-dev" "${VERSION}" "$1" ".*avformat.*"
 build_package "libswscale-dev" "${VERSION}" "$1" ".*swscale.*"
+build_package "ffmpeg-ffprobe" "${VERSION}" "$1" ".*bin/ffprobe"
+build_package "ffmpeg-ffserver" "${VERSION}" "$1" ".*bin/ffserver"
 build_package "ffmpeg" "${VERSION}" "$1"
-#build_generic_package "$1"
 

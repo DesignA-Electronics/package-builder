@@ -26,6 +26,7 @@ copy_lib () {
     base=$1
     shift
     for f in $* ; do
+        echo -n "."
         cp -a "$BINARY_BASE"/$base/$f "$DEST"/$base
     done
 }
@@ -85,13 +86,18 @@ make_devices () {
 
 
 # Build directory structure
-echo "  Copying Libraries..."
 mkdir -p "$DEST/lib" "$DEST/dev" "$DEST/proc" "$DEST/sys" "$DEST/etc/init.d" "$DEST/var/tmp" "$DEST/home" "$DEST/mnt" "$DEST/var/run" "$DEST/usr/local/bin" "$DEST/usr/lib"
-ln -s /var/tmp "$DEST/tmp"
 
-# Copy toolchain libraries
-copy_lib lib ld-*.so libc-*.so libm-*.so libcrypt-*.so libnss_files-*.so libnss_dns-*.so libresolv-*.so libgcc_s.so.* libpthread-*.so librt-*.so libdl-*.so libnsl-*.so libutil-*.so libthread_db-*.so
-copy_lib usr/lib libstdc++.so*
+# Copy libraries (ARM only)
+if [ "${ARCH}" == "arm" ] ; then
+    echo -n "  Copying Libraries..."
+    ln -s /var/tmp "$DEST/tmp"
+
+    # Copy toolchain libraries
+    copy_lib lib ld-*.so libc-*.so libm-*.so libcrypt-*.so libnss_files-*.so libnss_dns-*.so libresolv-*.so libgcc_s.so.* libpthread-*.so librt-*.so libdl-*.so libnsl-*.so libutil-*.so libthread_db-*.so
+    copy_lib usr/lib libstdc++.so*
+    echo
+fi
 
 # Install packages
 echo -n "  Installing Packages..."

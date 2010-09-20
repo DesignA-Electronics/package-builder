@@ -3,7 +3,12 @@
 NAME=alsa-lib
 VERSION=1.0.23
 SOURCE=ftp://ftp.alsa-project.org/pub/lib/alsa-lib-${VERSION}.tar.bz2
-CONFIGURE_PARAMS="--disable-python --prefix=$1"
+CONFIGURE_PARAMS="--disable-python"
 
-do_generic "$1"
+download_unpack "$SOURCE"
+do_configure
+do_make
+make install DESTDIR="$1"
+build_package "${NAME}"-cards "${VERSION}" "$1" ".*/alsa/cards/.*"
+build_generic_package "$1"
 
