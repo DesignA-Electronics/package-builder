@@ -1,8 +1,8 @@
 #!/bin/sh
 
 NAME=libpng
-VERSION=1.4.3
-SOURCE=ftp://ftp.simplesystems.org/pub/libpng/png/src/libpng-${VERSION}.tar.gz
+VERSION=1.4.4
+SOURCE=ftp://ftp.simplesystems.org/pub/libpng/png/src/libpng-${VERSION}.tar.bz2
 
 post_unpack() {
     sed -i 's/^.*-Wl,--version-script=libpng.vers.*$//g' Makefile.am

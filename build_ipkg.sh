@@ -29,6 +29,10 @@ PKGDIR=/tmp/`basename $0`.pkg.$$
 mkdir $STAGING
 
 while read source dest ; do
+    # Skip blank lines & lines starting with '#'
+    if [ -z "$source" -o "${source:0:1}" == "#" ] ; then
+        continue
+    fi
     # Do this so that variables defined in source/dest are expanded
     source=`eval echo $source`
     dest=`eval echo $dest`
