@@ -99,16 +99,16 @@ if [ "${ARCH}" == "arm" ] ; then
     echo
 fi
 
+# Copy default root files
+cp -a ${ROOT}/root_files/* "${DEST}/"
+find "${DEST}" -depth -name ".svn" -exec rm -rf {} \;
+
 # Install packages
 echo -n "  Installing Packages..."
 cat $PACKAGES_LIST | while read p ; do
     install_package $p
 done
 echo
-
-# Copy default root files
-cp -a ${ROOT}/root_files/* "${DEST}/"
-find "${DEST}" -depth -name ".svn" -exec rm -rf {} \;
 
 # Build device files
 echo -n "  Building Device Files..."
