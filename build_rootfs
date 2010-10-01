@@ -33,7 +33,12 @@ copy_lib () {
 
 install_package() {
     package=$1
-    ar p ${PACKAGE_DIR}/${package}_*.ipk data.tar.gz | (cd $DEST ; tar xz)
+    FILE="${PACKAGE_DIR}/${package}_*.ipk"
+    if [ ! -f ${FILE} ] ; then
+        echo "Cannot find package '${package}'" >&2
+        exit 1
+    fi
+    ar p ${FILE} data.tar.gz | (cd $DEST ; tar xmz)
     echo -n "."
 }
 

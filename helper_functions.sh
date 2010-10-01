@@ -86,10 +86,10 @@ download_unpack() {
 
 do_configure() {
     if [ ! -f configure ] ; then
-        LDFLAGS=$LDFLAGS CFLAGS=$CFLAGS ./autogen.sh --host=$HOST $CONFIGURE_PARAMS
+        LDFLAGS=$LDFLAGS CFLAGS=$CFLAGS ./autogen.sh --host=$HOST --prefix=/ $CONFIGURE_PARAMS
     fi
 
-    LDFLAGS=$LDFLAGS CFLAGS=$CFLAGS ./configure --host=$HOST $CONFIGURE_PARAMS
+    LDFLAGS=$LDFLAGS CFLAGS=$CFLAGS ./configure --host=$HOST --prefix=/ $CONFIGURE_PARAMS
 }
 
 do_make() {
@@ -100,7 +100,7 @@ do_install() {
     if type pre_install > /dev/null 2>&1 ; then
         pre_install "$1"
     fi
-    make install prefix=$1 $INSTALL_PARAMS
+    make install DESTDIR=$1 $INSTALL_PARAMS
 
     if type post_install > /dev/null 2>&1 ; then
         post_install "$1"

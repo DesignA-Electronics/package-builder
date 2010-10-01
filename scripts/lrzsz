@@ -3,6 +3,7 @@
 NAME=lrzsz
 VERSION=0.12.20
 SOURCE=http://www.ohse.de/uwe/releases/lrzsz-${VERSION}.tar.gz
+INSTALL_PARAMS=prefix="$1"
 
 export CC=${CROSS}gcc
 do_generic "$1"
