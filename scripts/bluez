@@ -3,8 +3,8 @@
 NAME=bluez
 VERSION=4.69
 SOURCE=http://www.kernel.org/pub/linux/bluetooth/bluez-${VERSION}.tar.gz
-CONFIGURE_PARAMS="--prefix=${1}"
-INSTALL_PARAMS="rulesdir=${1}/lib/udev/rules.d"
+export DBUS_LIBS="-L${STAGING}/lib -ldbus-1"
+CONFIGURE_PARAMS="--disable-silent-rules"
 
 do_generic "$1"
 

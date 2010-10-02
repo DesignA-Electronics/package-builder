@@ -5,9 +5,9 @@ VERSION=0.6
 SOURCE=http://www.ffmpeg.org/releases/ffmpeg-0.6.tar.bz2
 
 download_unpack "$SOURCE"
-./configure --cross-prefix=${CROSS} --target-os=linux --arch=${ARCH}
-make
-make install prefix="$1"
+./configure --cross-prefix=${CROSS} --target-os=linux --arch=${ARCH} --prefix=/
+make -j4
+make install DESTDIR="$1"
 build_package "ffmpeg-presets" "${VERSION}" "$1" ".*ffpreset"
 build_package "libavutil-dev" "${VERSION}" "$1" ".*avutil.*"
 build_package "libavcodec-dev" "${VERSION}" "$1" ".*avcodec.*"

@@ -3,8 +3,7 @@
 NAME=alsa-utils
 VERSION=1.0.23
 SOURCE=ftp://ftp.alsa-project.org/pub/utils/alsa-utils-${VERSION}.tar.bz2
-CONFIGURE_PARAMS="--prefix=$1 --with-curses=ncurses"
-#--with-alsa-prefix=$STAGING/lib --with-alsa-inc-prefix=$STAGING/include/alsa"
+CONFIGURE_PARAMS="--with-curses=ncurses"
 
 do_build_install "$1"
 build_package "${NAME}"-wav "${VERSION}" "$1" ".*/sounds/.*wav"

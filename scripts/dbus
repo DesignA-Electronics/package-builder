@@ -3,7 +3,7 @@
 NAME=dbus
 VERSION=1.2.24
 SOURCE=http://dbus.freedesktop.org/releases/dbus/dbus-${VERSION}.tar.gz
-CONFIGURE_PARAMS="--without-x --prefix=${1}"
+CONFIGURE_PARAMS="--without-x"
 
 do_generic "$1"
 
