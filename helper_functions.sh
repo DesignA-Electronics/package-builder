@@ -93,7 +93,7 @@ do_configure() {
 }
 
 do_make() {
-    make -j4
+    make -j4 $MAKE_PARAMS
 }
 
 do_install() {
