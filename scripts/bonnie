@@ -1,0 +1,17 @@
+NAME=bonnie
+VERSION=0.0
+SOURCE=http://www.textuality.com/bonnie/bonnie.tar.gz
+
+download "$SOURCE"
+if [ ! -d ${NAME} ] ; then
+    mkdir ${NAME}
+    pushd ${NAME}
+    tar xfz ../bonnie.tar.gz
+else
+    pushd ${NAME}
+fi
+make CC=${CROSS}gcc
+
+mkdir -p ${1}/bin
+cp Bonnie ${1}/bin
+build_package ${NAME} ${VERSION} ${1}

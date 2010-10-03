@@ -1,10 +1,11 @@
 --- a/include/SDL_stdinc.h	2009-10-19 20:25:52.000000000 +1300
 +++ b/include/SDL_stdinc.h	2010-10-03 13:36:26.000000000 +1300
-@@ -270,6 +270,9 @@
+@@ -270,6 +270,10 @@
  		: "memory" );					\
  } while(0)
  #endif
 +#if defined(__arm__)
++extern DECLSPEC void arm_memset32(void *dst, int c, size_t len);
 +#define SDL_memset4(dst, val, len) arm_memset32(dst, val, len)
 +#endif
  #ifndef SDL_memset4
@@ -23,7 +24,7 @@
 --- /dev/null	2009-10-18 06:35:13.000000000 +1300
 +++ b/src/video/memset.arm.S	2010-10-03 13:53:54.000000000 +1300
 @@ -0,0 +1,90 @@
-+#ifdef __arm_
++#ifdef __arm__
 +/*
 + * Copyright (C) 2010 The Android Open Source Project
 + *
