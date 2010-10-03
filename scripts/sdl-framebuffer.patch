@@ -114,4 +114,16 @@
 +        .fnend
 +#endif
 +
-
+--- a/Makefile.dc	2010-10-04 11:17:35.000000000 +1300
++++ b/Makefile.dc	2010-10-04 11:17:49.000000000 +1300
+@@ -70,8 +70,9 @@
+ 	src/video/SDL_video.c \
+ 	src/video/SDL_yuv.c \
+ 	src/video/SDL_yuv_sw.c \
++        src/video/memset.arm.S \
+ 
+-OBJS = $(SRCS:.c=.o)
++OBJS = $(SRCS:.c=.o) $(SRCS:.S=.o)
+ 
+ TEST = \
+ 	test/checkkeys.c \

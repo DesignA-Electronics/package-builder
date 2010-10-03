@@ -87,13 +87,15 @@ download_unpack() {
     fi
     if [ ! -d ${DIRNAME} ] ; then
         ${EXTRACT} ${FILENAME}
+        pushd ${DIRNAME}
+        # If we define 'post_unpack', then run it
+        if type post_unpack >/dev/null 2>&1 ; then
+            post_unpack
+        fi
+    else
+        pushd ${DIRNAME}
     fi
-    pushd ${DIRNAME}
 
-    # If we define 'post_unpack', then run it
-    if type post_unpack >/dev/null 2>&1 ; then
-        post_unpack
-    fi
 }
 
 do_configure() {
