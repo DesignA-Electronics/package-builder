@@ -45,6 +45,18 @@ EOF
     rm -rf $TMPIPKG
 }
 
+download() {
+    SOURCE="$1"
+    FILENAME=$2
+    if [ -z "$FILENAME" ] ; then
+        FILENAME=`basename "$SOURCE"`
+    fi
+
+    if [ ! -f $FILENAME ] ; then
+        wget "$SOURCE" -O ${FILENAME}
+    fi
+}
+
 download_unpack() {
     SOURCE="$1"
     FILENAME=$2

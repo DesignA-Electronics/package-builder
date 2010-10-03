@@ -1,0 +1,11 @@
+NAME=fsx
+VERSION=0.0
+SOURCE=http://codemonkey.org.uk/projects/fsx/fsx-linux.c
+
+[ -d ${NAME} ] || mkdir ${NAME}
+pushd ${NAME}
+wget ${SOURCE} -O fsx-linux.c
+${CROSS}gcc -o fsx-linux fsx-linux.c -g -Wall -pipe
+mkdir ${1}/bin/
+cp fsx-linux ${1}/bin/
+build_package ${NAME} ${VERSION} "${1}"
