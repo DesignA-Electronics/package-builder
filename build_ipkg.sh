@@ -10,6 +10,10 @@
 # If the destination is a directory, then the source can be a wildcard
 # ie:
 # ../app/docs/*.html /usr/share/doc/app/
+# Lines starting with '#', or blank lines are ignored
+# To just create a directory, but put no files in it, use a blank source
+# ie:
+# "" /lib/modules/2.6.33.3/
 
 set -e
 
@@ -42,7 +46,9 @@ while read source dest ; do
         dir=$(dirname ${dest})
     fi
     mkdir -p "${STAGING}/${dir}"
-    cp -a ${source} "${STAGING}/${dir}"
+    if [ -n "${source}" ] ; then
+        cp -a ${source} "${STAGING}/${dir}"
+    fi
 
     # Remove .svn directories that have been copied over
     find ${STAGING}/${dir} -name "*\.svn" | xargs -r rm -Rf 
