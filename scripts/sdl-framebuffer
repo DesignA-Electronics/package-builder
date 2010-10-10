@@ -13,7 +13,7 @@ post_unpack() {
 }
 
 post_install() {
-    sed -i "s#/usr/local/lib/libts.la#${STAGING}/lib/libts.la#" "$1"/lib/libSDL.la
+    sed -i "s#//lib/libts.la#${STAGING}/lib/libts.la#" "$1"/lib/libSDL.la
 }
 
 do_generic "$1"
