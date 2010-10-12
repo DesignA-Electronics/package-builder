@@ -137,6 +137,8 @@ do_simple() {
     build_package ${NAME} ${VERSION} "$1"
 }
 
+# Builds a bunch of standard packages based on file wildcards
+# -dev, -doc, -locale & whatever is left
 build_generic_package() {
     build_package "${NAME}"-doc "${VERSION}" "$1" "${DOC_FILES}"
     build_package "${NAME}"-dev "${VERSION}" "$1" "${DEV_FILES}"

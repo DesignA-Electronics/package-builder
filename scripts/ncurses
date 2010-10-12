@@ -4,6 +4,10 @@ NAME=ncurses
 VERSION=5.7
 SOURCE=http://ftp.gnu.org/pub/gnu/ncurses/ncurses-${VERSION}.tar.gz
 
-do_generic "$1"
+CONFIGURE_PARAMS="--enable-overwrite"
+
+do_build_install "$1"
+build_package "${NAME}"-terminfo "${VERSION}" "$1" ".*/terminfo/.*"
+build_generic_package "$1"
 
 
