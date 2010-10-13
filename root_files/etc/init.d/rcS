@@ -6,6 +6,9 @@ ifconfig lo up
 hostname snapper
 telnetd
 
+echo "Setting hotplug script..."
+echo /sbin/hotplug > /proc/sys/kernel/hotplug
+
 CONSOLE=`sed 's/.*console=\([^, ]*\).*/\1/' /proc/cmdline`
 if [ -z "$CONSOLE" ] ; then
         CONSOLE=ttyS0
