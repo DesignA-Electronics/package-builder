@@ -25,7 +25,12 @@ if [ -z "$PACKAGE" -o -z "$VERSION" -o -z "$ARCH" ] ; then
     echo "Usage: $0 <package name> <version> <architecture>"
     exit 1
 fi
-OUTPUT=${PWD}/${PACKAGE}_${VERSION}_${ARCH}.ipk
+
+if [[ ${PACKAGE:0:1} == "/" ]]; then
+    OUTPUT=${PACKAGE}_${VERSION}_${ARCH}.ipk
+else
+    OUTPUT=${PWD}/${PACKAGE}_${VERSION}_${ARCH}.ipk
+fi
 
 STAGING=/tmp/`basename $0`.$$
 PKGDIR=/tmp/`basename $0`.pkg.$$
