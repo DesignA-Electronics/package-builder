@@ -35,7 +35,6 @@ strace
 glib
 libexpat
 dbus
-bluez
 ffmpeg
 fsx
 bonnie
