@@ -2,6 +2,7 @@ BASE=$(pwd)
 PACKAGE_DIR=${PACKAGE_DIR:-${BASE}/packages}
 STAGING=${BASE}/staging
 BUILD_DIR=${BASE}/build
+SUPPORT_FILES=${BASE}/support_files
 
 TOOLCHAIN_DIR=/tools/arm/arm-2010q1
 CROSS=arm-none-linux-gnueabi-
