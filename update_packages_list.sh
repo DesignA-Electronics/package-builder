@@ -1,15 +1,18 @@
 #!/bin/bash
 # Generates the Packages list - run this after building any new packages
-IDX=/work/snapper/releases/latest/oe/build/tmp/staging/i686-linux/usr/bin/ipkg-make-index
-IPKG_DIR=./packages
 
-touch $IPKG_DIR/Packages
-$IDX -r $IPKG_DIR/Packages -p $IPKG_DIR/Packages -l $IPKG_DIR/Packages.filelist -m $IPKG_DIR
+set -e 
+OUTPUT=packages/Packages
 
-for f in $IPKG_DIR/* ; do
-    if [ -d "$f" ] ; then
-    	echo "Building package list for $f"
-        touch $f/Packages
-        $IDX -r $f/Packages -p $f/Packages -l $f/Packages.filelist -m $f
-    fi
+rm -f $OUTPUT
+
+echo "Updating $OUTPUT: "
+for f in packages/*.ipk ; do
+    echo -n "."
+    ar p $f control.tar.gz | tar xzO control >> $OUTPUT
+    echo "Filename: `basename $f`" >> $OUTPUT
+    echo >> $OUTPUT
 done
+
+gzip -c $OUTPUT > packages/Packages.gz
+echo
