@@ -9,7 +9,7 @@ CONFIGURE_PARAMS="--disable-video-x11 --enable-video-fbcon \
         --disable-dga"
 
 post_unpack() {
-    patch -p1 < ${SUPPORT_FILES}/patches/sdl-framebuffer-arm-optimised.patch
+    patch -p1 < ${SUPPORT_FILES}/patches/sdl-framebuffer-arm-optimisation.patch
 }
 
 post_install() {
