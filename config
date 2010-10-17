@@ -9,6 +9,6 @@ CROSS=arm-none-linux-gnueabi-
 HOST=arm-none-linux-gnueabi
 ARCH=${ARCH:-arm}
 CFLAGS="-march=armv4t -I${STAGING}/include"
-LDFLAGS="-L${STAGING}/lib"
+LDFLAGS="-L${STAGING}/lib -march=armv4t"
 
 export PATH=${TOOLCHAIN_DIR}/bin:$PATH
