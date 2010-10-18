@@ -1,0 +1,13 @@
+none    /proc   proc    defaults    0   0
+none    /sys    sysfs   defaults    0   0
+none	/sys/kernel/debug	debugfs	defaults	0	0
+none    /var/tmp    tmpfs   defaults    0   0
+none	/dev/pts	devpts	defaults	0	0
+none	/proc/bus/usb	usbfs	defaults	0	0
+
+fs-home:/home		/home		nfs	defaults,nolock,rsize=1024,wsize=1024	0	0
+fs-work:/work		/work		nfs	defaults,nolock,rsize=1024,wsize=1024	0	0
+fs-tools:/tools		/tools		nfs	defaults,nolock,rsize=1024,wsize=1024	0	0
+fs-archive:/archive	/archive	nfs	defaults,nolock,rsize=1024,wsize=1024	0	0
+fs-public:/public	/public		nfs	defaults,nolock,rsize=1024,wsize=1024	0	0
+

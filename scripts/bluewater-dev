@@ -1,0 +1,4 @@
+mkdir -p "$1"/etc/
+mkdir -p "$1"/home/ "$1"/work "$1"/tools "$1"/archive "$1"/public
+cp "${SUPPORT_FILES}"/bluewater_dev/fstab "$1"/etc/
+build_package bluewater-dev 1.0.0 "$1"
