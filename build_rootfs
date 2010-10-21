@@ -111,6 +111,9 @@ find "${DEST}" -depth -name ".svn" -exec rm -rf {} \;
 # Install packages
 echo -n "  Installing Packages..."
 cat $PACKAGES_LIST | while read p ; do
+    if [ -z "$p" ] ; then
+        continue
+    fi
     install_package $p
 done
 echo
