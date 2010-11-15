@@ -38,7 +38,7 @@ install_package() {
         echo "Cannot find package '${package}'" >&2
         exit 1
     fi
-    ar p ${FILE} data.tar.gz | (cd $DEST ; tar xmz)
+    ( ar p ${FILE} data.tar.gz | (cd $DEST ; tar xmz) ) &
     echo -n "."
 }
 
@@ -64,12 +64,13 @@ make_device () {
         mkdir "$device"
     elif [ "$type" == "c" -o "$type" == "b" ] ; then
         if [ "$count" == "-" -o -z "$count" ] ; then
-            sudo mknod "$device" $type $major $minor
+            sudo mknod "$device" $type $major $minor &
         else
             i=$start
             pos=$(( $minor ))
             while [ "$i" -le "$count" ] ; do
-                sudo mknod "$device$i" $type $major $pos
+                # Background them to speed it up
+                sudo mknod "$device$i" $type $major $pos &
                 pos=$(( $pos + $inc ))
                 i=$(( $i + 1 ))
         done
@@ -122,6 +123,9 @@ echo
 echo -n "  Building Device Files..."
 make_devices ${DEVICE_TABLE}
 echo
+
+# Wait for any background stuff to finish
+wait
 
 if [ "$STRIP_ROOTFS" == "1" ] ; then
     echo -n "  Stripping binaries..."
