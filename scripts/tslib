@@ -12,6 +12,8 @@ if [ ! -d tslib ] ; then
 fi
 pushd tslib
 git pull
+# Make sure that debug mode is disabled
+sed -i 's/#define DEBUG//g' src/tslib-private.h 
 do_configure
 do_make
 do_install "$1"

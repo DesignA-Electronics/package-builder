@@ -27,18 +27,19 @@ copy_lib () {
     shift
     for f in $* ; do
         echo -n "."
-        cp -a "$BINARY_BASE"/$base/$f "$DEST"/$base
+        cp -a "$BINARY_BASE"/$base/$f "$DEST"/$base &
     done
 }
 
 install_package() {
     package=$1
-    FILE="${PACKAGE_DIR}/${package}_*.ipk"
+    FILE=`realpath ${PACKAGE_DIR}/${package}_*.ipk`
+    #echo $FILE
     if [ ! -f ${FILE} ] ; then
         echo "Cannot find package '${package}'" >&2
         exit 1
     fi
-    ( ar p ${FILE} data.tar.gz | (cd $DEST ; tar xmz) ) &
+    ar p ${FILE} data.tar.gz | tar -xmzC ${DEST} --no-overwrite-dir --delay-directory-restore &
     echo -n "."
 }
 
@@ -96,7 +97,7 @@ mkdir -p "$DEST/lib" "$DEST/dev" "$DEST/proc" "$DEST/sys" "$DEST/etc/init.d" "$D
 
 # Copy libraries (ARM only)
 if [ "${ARCH}" == "arm" ] ; then
-    echo -n "  Copying Libraries..."
+    echo -n "  Copying Libraries "
     ln -s /var/tmp "$DEST/tmp"
 
     # Copy toolchain libraries
@@ -110,7 +111,7 @@ cp -a ${ROOT}/root_files/* "${DEST}/"
 find "${DEST}" -depth -name ".svn" -exec rm -rf {} \;
 
 # Install packages
-echo -n "  Installing Packages..."
+echo -n "  Installing Packages "
 cat $PACKAGES_LIST | while read p ; do
     if [ -z "$p" ] ; then
         continue
