@@ -116,6 +116,9 @@ cat $PACKAGES_LIST | while read p ; do
     if [ -z "$p" ] ; then
         continue
     fi
+    if [ "${p:0:1}" == "#" ] ; then
+        continue
+    fi
     install_package $p
 done
 echo
