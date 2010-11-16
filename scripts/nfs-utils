@@ -1,0 +1,17 @@
+#!/bin/sh
+
+NAME=nfs-utils
+VERSION=1.2.3
+SOURCE=http://sourceforge.net/projects/nfs/files/nfs-utils/${VERSION}/nfs-utils-${VERSION}.tar.bz2
+CONFIGURE_PARAMS="--with-statduser=nobody \
+                  --without-tcp-wrappers \
+                  --enable-nfsv3 \
+		  --disable-nfsv4 \
+		  --disable-gss \
+		  --disable-uuid \
+		  --with-statedir=/var/lib/nfs \
+                  --disable-tirpc"
+export CC_FOR_BUILD=${CROSS}gcc
+do_generic "$1"
+
+
