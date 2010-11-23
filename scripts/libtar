@@ -1,0 +1,35 @@
+#!/bin/sh
+
+NAME=libtar
+VERSION=1.2.11
+SOURCE=ftp://ftp.feep.net/pub/software/libtar/libtar-1.2.11.tar.gz
+
+download_unpack "$SOURCE"
+
+# libtar configure is broken for cross compilers :-(
+./configure --prefix=/
+cat << END > MCONFIG
+BINDIR=$1/bin
+SBINDIR=$1/sbin
+MANDIR=${mandir}
+ROOTBINDIR=/bin
+BINMODE=755
+DAEMONMODE=755
+MANMODE=644
+SUIDMODE=4755
+PREFIX=
+EXECPREFIX=
+ROOTPREFIX=
+INSTALLROOT=
+CC=${CROSS}gcc
+LD=${CROSS}ld
+CFLAGS=${CFLAGS}
+LDFLAGS=${LDFLAGS}
+LIBS=
+END
+
+do_make
+do_install "$1"
+build_generic_package "$1"
+
+
