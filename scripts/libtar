@@ -4,32 +4,23 @@ NAME=libtar
 VERSION=1.2.11
 SOURCE=ftp://ftp.feep.net/pub/software/libtar/libtar-1.2.11.tar.gz
 
+# Libtar's configure script is broken for cross-compiling :-(
+export compat_cv_func_makedev_three_args=no
+export compat_cv_func_snprintf_works=yes
+export AR=${CROSS}ar
+
 download_unpack "$SOURCE"
+make
 
-# libtar configure is broken for cross compilers :-(
-./configure --prefix=/
-cat << END > MCONFIG
-BINDIR=$1/bin
-SBINDIR=$1/sbin
-MANDIR=${mandir}
-ROOTBINDIR=/bin
-BINMODE=755
-DAEMONMODE=755
-MANMODE=644
-SUIDMODE=4755
-PREFIX=
-EXECPREFIX=
-ROOTPREFIX=
-INSTALLROOT=
-CC=${CROSS}gcc
-LD=${CROSS}ld
-CFLAGS=${CFLAGS}
-LDFLAGS=${LDFLAGS}
-LIBS=
-END
+# Manual install
+if [ ! -d "%1"/lib ]; then
+	mkdir -p "$1"/lib
+fi
+if [ ! -d "%1"/include ]; then
+	mkdir -p "$1"/include
+fi	
+cp lib/libtar.a "$1"/lib
+cp lib/libtar.h "$1"/include
 
-do_make
-do_install "$1"
 build_generic_package "$1"
-
 
