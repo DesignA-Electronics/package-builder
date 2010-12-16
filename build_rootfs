@@ -11,8 +11,13 @@ DEVICE_TABLE=${3:-${ROOT}/device_table}
 
 BINARY_BASE=${TOOLCHAIN_DIR}/arm-none-linux-gnueabi/libc/armv4t
 
-if [ -z "$PACKAGES_LIST" -o -z "$DEST" -o ! -f "$PACKAGES_LIST" ] ; then
+if [ -z "$PACKAGES_LIST" -o -z "$DEST" -o -z "$PACKAGES_LIST" ] ; then
     echo "Usage: $0 packages_list_file output_directory [device_table]"
+    exit 1
+fi
+
+if [ ! -f "$PACKAGES_LIST" ] ; then
+    echo "Package file '$PACKAGES_LIST' does not exist"
     exit 1
 fi
 
