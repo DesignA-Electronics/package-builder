@@ -2,14 +2,16 @@
 
 NAME=libtar
 VERSION=1.2.11
-SOURCE=ftp://ftp.feep.net/pub/software/libtar/libtar-1.2.11.tar.gz
+#SOURCE=ftp://ftp.feep.net/pub/software/libtar/libtar-1.2.11.tar.gz
+SOURCE=http://ftp.debian.org/debian/pool/main/libt/libtar/libtar_1.2.11.orig.tar.gz
 
 # Libtar's configure script is broken for cross-compiling :-(
 export compat_cv_func_makedev_three_args=no
 export compat_cv_func_snprintf_works=yes
 export AR=${CROSS}ar
 
-download_unpack "$SOURCE"
+download_unpack "$SOURCE" "" libtar-1.2.11
+do_configure
 make
 
 # Manual install
