@@ -44,7 +44,7 @@ install_package() {
         echo "Cannot find package '${package}'" >&2
         exit 1
     fi
-    ar p ${FILE} data.tar.gz | tar -xmzC ${DEST} --no-overwrite-dir --delay-directory-restore &
+    ar p ${FILE} data.tar.gz | tar -xmzC ${DEST} --no-overwrite-dir --delay-directory-restore
     echo -n "."
 }
 
@@ -149,5 +149,5 @@ if [ "$STRIP_ROOTFS" == "1" ] ; then
 fi
 
 # Finalise
-/sbin/ldconfig -r "$DEST"
+/sbin/ldconfig -r -i `realpath "$DEST"` -N
 
