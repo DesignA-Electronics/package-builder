@@ -149,5 +149,5 @@ if [ "$STRIP_ROOTFS" == "1" ] ; then
 fi
 
 # Finalise
-/sbin/ldconfig -r -i `realpath "$DEST"` -N
+/sbin/ldconfig -r `realpath "$DEST"`
 
