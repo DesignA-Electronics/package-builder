@@ -13,7 +13,7 @@ else
     svn up
 fi
 
-CC=${CROSS}gcc ./configure --prefix=/ --enable-cross-compile --enable-armv5te --yasm='' --target=${HOST}
+./configure --prefix=/ --enable-cross-compile --enable-armv5te --yasm='' --target=${HOST} --host-cc=gcc --cc=${CROSS}gcc --enable-fbdev --enable-alsa
 do_make
 do_install "$1"
 build_generic_package "$1"
