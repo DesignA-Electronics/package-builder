@@ -1,0 +1,21 @@
+#!/bin/bash
+
+NAME=mplayer
+VERSION=svn
+SOURCE=svn://svn.mplayerhq.hu/mplayer/trunk
+
+# Make sure we're up to date
+if [ ! -d mplayer ] ; then
+    svn co "$SOURCE" mplayer
+    cd mplayer
+else
+    cd mplayer
+    svn up
+fi
+
+CC=${CROSS}gcc ./configure --prefix=/ --enable-cross-compile --enable-armv5te --yasm='' --target=${HOST}
+do_make
+do_install "$1"
+build_generic_package "$1"
+cd ..
+
