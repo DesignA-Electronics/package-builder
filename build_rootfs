@@ -151,3 +151,4 @@ fi
 # Finalise
 /sbin/ldconfig -r `realpath "$DEST"`
 
+#sudo /sbin/ldconfig -r -i `realpath "$DEST"` -N
