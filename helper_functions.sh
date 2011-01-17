@@ -67,6 +67,9 @@ download_unpack() {
     if [ ${FILENAME%.tar.gz} != ${FILENAME} ] ; then
         EXTRACT="tar xfz"
         DIRNAME=${FILENAME%.tar.gz}
+    elif [ ${FILENAME%.tgz} != ${FILENAME} ] ; then
+        EXTRACT="tar xfz"
+        DIRNAME=${FILENAME%.tgz}
     elif [ ${FILENAME%.tar.bz2} != ${FILENAME} ] ; then
         EXTRACT="tar xfj"
         DIRNAME=${FILENAME%.tar.bz2}
