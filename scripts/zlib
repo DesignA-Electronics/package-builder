@@ -11,7 +11,7 @@ if [ ! -d zlib-${VERSION} ] ; then
     tar xfj zlib-${VERSION}.tar.bz2
 fi
 pushd zlib-${VERSION}
-CC=${CROSS}gcc ./configure
+CC=${CROSS}gcc CFLAGS="-march=armv4t -mtune=arm9tdmi" ./configure
 make -j4
 make install prefix=$1
 popd
