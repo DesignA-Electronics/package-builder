@@ -1,0 +1,44 @@
+#!/bin/sh
+
+NAME=netkit-rpc
+VERSION=0.0.17
+SOURCE=ftp://ftp.uk.linux.org/pub/linux/Networking/netkit/netkit-rpc-0.17.tar.gz
+
+download_unpack "$SOURCE"
+patch -p1 < ${SUPPORT_FILES}/patches/netkit-rpc/gcc4.patch
+
+# Configure for netkit doesn't support cross compilers :-/
+./configure
+cat << END > MCONFIG
+BINDIR=$1/bin
+SBINDIR=$1/sbin
+MANDIR=${mandir}
+ROOTBINDIR=/bin
+BINMODE=755
+DAEMONMODE=755
+MANMODE=644
+SUIDMODE=4755
+PREFIX=
+EXECPREFIX=
+ROOTPREFIX=
+INSTALLROOT=
+CC=${CROSS}gcc
+LD=${CROSS}ld
+CFLAGS=${CFLAGS}
+LDFLAGS=${LDFLAGS}
+LIBS=
+END
+
+# Build
+make
+
+# Manual install (Can't figure out why make install doesn't work)
+if [ ! -d "%1"/sbin ]; then
+	mkdir -p "$1"/sbin
+fi
+cp rpcinfo/rpcinfo "$1"/sbin
+cp rpcgen/rpcgen "$1"/sbin
+
+build_generic_package "$1"
+
+

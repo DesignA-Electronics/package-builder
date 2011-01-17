@@ -1,0 +1,3 @@
+mkdir -p "$1"/lib/firmware/
+cp "${SUPPORT_FILES}"/firmware/libertas_cs* "$1"/lib/firmware
+build_package libertas-cs-firmware 1.0.0 "$1"
