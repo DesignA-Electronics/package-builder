@@ -151,4 +151,16 @@ fi
 # Finalise
 /sbin/ldconfig -r `realpath "$DEST"`
 
+# Ensure that we have linuxrc in the root
+if [ ! -f ${DEST}/linuxrc ]; then
+    if [ -f ${DEST}/bin/busybox ]; then
+        pushd ${DEST}
+        ln -sf bin/busybox linuxrc
+        popd
+    else
+        echo "Warning: No linuxrc file in root dir and can't find /bin/busybox"
+    fi
+fi
+
+    
 #sudo /sbin/ldconfig -r -i `realpath "$DEST"` -N
