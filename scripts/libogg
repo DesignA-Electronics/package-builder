@@ -1,0 +1,8 @@
+#!/bin/sh
+
+NAME=libogg
+VERSION=1.2.2
+SOURCE=http://downloads.xiph.org/releases/ogg/libogg-1.2.2.tar.gz
+CONFIGURE_PARAMS="--enable-static"
+
+do_generic "$1"
