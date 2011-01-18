@@ -1,0 +1,8 @@
+#!/bin/sh
+
+NAME=liba52
+VERSION=0.7.4
+SOURCE=http://liba52.sourceforge.net/files/a52dec-0.7.4.tar.gz
+CONFIGURE_PARAMS="--enable-static"
+
+do_generic "$1"

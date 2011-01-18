@@ -1,0 +1,8 @@
+#!/bin/sh
+
+NAME=lame
+VERSION=3.98.4
+SOURCE=http://downloads.sourceforge.net/project/lame/lame/3.98.4/lame-3.98.4.tar.gz
+CONFIGURE_PARAMS="--enable-static"
+
+do_generic "$1"
