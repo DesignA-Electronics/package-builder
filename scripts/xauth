@@ -1,0 +1,8 @@
+#!/bin/bash
+
+NAME=xauth
+VERSION=1.0.5
+SOURCE=http://www.x.org/releases/X11R7.6/src/everything/xauth-1.0.5.tar.bz2
+
+do_generic "$1"
+
