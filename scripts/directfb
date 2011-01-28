@@ -1,0 +1,9 @@
+#!/bin/sh
+
+NAME=directfb
+VERSION=1.4.11
+SOURCE=http://directfb.org/downloads/Core/DirectFB-1.4/DirectFB-${VERSION}.tar.gz
+CONFIGURE_PARAMS=--with-gfxdrivers=ep9x,gl,omap,pxa3xx
+do_generic "$1"
+
+
