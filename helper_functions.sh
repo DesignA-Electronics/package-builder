@@ -102,6 +102,9 @@ download_unpack() {
 }
 
 do_configure() {
+    export PKG_CONFIG=${BASE}/pkg-config
+    export PKG_CONFIG_PATH=${STAGING}/lib/pkgconfig
+
     if [ ! -f configure ] ; then
         LDFLAGS=$LDFLAGS CFLAGS=$CFLAGS ./autogen.sh --host=$HOST --prefix=/ $CONFIGURE_PARAMS
     fi
