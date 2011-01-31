@@ -102,7 +102,6 @@ download_unpack() {
 }
 
 do_configure() {
-    export PKG_CONFIG=${BASE}/pkg-config
     export PKG_CONFIG_PATH=${STAGING}/lib/pkgconfig
 
     if [ ! -f configure ] ; then
