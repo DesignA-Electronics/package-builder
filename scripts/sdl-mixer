@@ -3,7 +3,7 @@
 NAME=sdl-mixer
 VERSION=1.2.11
 SOURCE=http://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-${VERSION}.tar.gz
-CONFIGURE_PARAMS="--disable-music-mod --disable-music-mp3"
+CONFIGURE_PARAMS="--disable-music-mod --disable-music-mp3 --with-sdl-exec-prefix=${STAGING} --with-sdl-prefix=${STAGING}"
 
 do_generic "$1"
 
