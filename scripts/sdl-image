@@ -3,12 +3,13 @@
 NAME=sdl-image
 VERSION=1.2.10
 SOURCE=http://www.libsdl.org/projects/SDL_image/release/SDL_image-${VERSION}.tar.gz
-CONFIGURE_PARAMS=
+CONFIGURE_PARAMS="--disable-music-mod --disable-music-mp3 --with-sdl-exec-prefix=${STAGING} --with-sdl-prefix=${STAGING}"
 
-export CPPFLAGS=-I${STAGING}/include
-export SDL_LIBS="-lSDL -lts"
-export LIBPNG_CFLAGS=-I${STAGING}/include/libpng14
-export LIBPNG_LIBS=-lpng14
+export LIBS=-lts
+#export CPPFLAGS=-I${STAGING}/include
+#export SDL_LIBS="-lSDL -lts"
+#export LIBPNG_CFLAGS=-I${STAGING}/include/libpng14
+#export LIBPNG_LIBS=-lpng14
 
 do_generic "$1"
 
