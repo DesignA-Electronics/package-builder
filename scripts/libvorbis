@@ -3,7 +3,7 @@
 NAME=libvorbis
 VERSION=1.3.2
 SOURCE=http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.2.tar.gz
-CONFIGURE_PARAMS="--enable-static"
+CONFIGURE_PARAMS="--enable-static --with-ogg=${STAGING}"
 
 do_generic "$1"
 
