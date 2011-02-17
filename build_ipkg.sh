@@ -28,6 +28,7 @@ fi
 
 if [[ ${PACKAGE:0:1} == "/" ]]; then
     OUTPUT=${PACKAGE}_${VERSION}_${ARCH}.ipk
+    mkdir -p `dirname $OUTPUT`
 else
     OUTPUT=${PWD}/${PACKAGE}_${VERSION}_${ARCH}.ipk
 fi
