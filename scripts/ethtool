@@ -1,0 +1,8 @@
+#!/bin/bash
+
+NAME=ethtool
+VERSION=2.6.37
+SOURCE=http://www.kernel.org/pub/software/network/ethtool/ethtool-${VERSION}.tar.bz2
+
+do_generic "$1"
+
