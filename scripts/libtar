@@ -26,6 +26,7 @@ if [ ! -d "%1"/include ]; then
 fi	
 cp lib/libtar.a "$1"/lib
 cp lib/libtar.h "$1"/include
+cp listhash/libtar_listhash.h "$1"/include
 
 build_generic_package "$1"
 
