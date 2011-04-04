@@ -2,7 +2,7 @@
 
 NAME=xcb-proto
 VERSION=1.6
-SOURCE=http://www.x.org/releases/X11R7.6/src/xcb/xcb-proto-1.6.tar.bz2
+SOURCE=http://www.x.org/releases/X11R7.6/src/xcb/xcb-proto-${VERSION}.tar.bz2
 
 do_generic "$1"
 

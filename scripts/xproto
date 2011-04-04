@@ -2,7 +2,7 @@
 
 NAME=xproto
 VERSION=7.0.20
-SOURCE=http://www.x.org/releases/X11R7.6/src/proto/xproto-7.0.20.tar.bz2
+SOURCE=http://www.x.org/releases/X11R7.6/src/proto/xproto-${VERSION}.tar.bz2
 
 do_generic "$1"
 
