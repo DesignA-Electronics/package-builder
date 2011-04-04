@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ "$1" == "--atleast-pkgconfig-version" ] ; then
+    /usr/bin/pkg-config $@
+else
+    /usr/bin/pkg-config --define-variable=prefix=/home/andre/work/package_builder/staging $@
+fi
+
