@@ -1,0 +1,8 @@
+#!/bin/bash
+
+NAME=xf86vidmodeproto
+VERSION=2.3
+SOURCE=http://www.x.org/releases/X11R7.6/src/everything/${NAME}-${VERSION}.tar.bz2
+
+do_generic "$1"
+
