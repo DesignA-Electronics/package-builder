@@ -1,0 +1,8 @@
+#!/bin/bash
+
+NAME=videoproto
+VERSION=2.3.1
+SOURCE=http://www.x.org/releases/X11R7.6/src/everything/videoproto-${VERSION}.tar.bz2
+
+do_generic "$1"
+

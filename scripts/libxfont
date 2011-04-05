@@ -1,0 +1,9 @@
+#!/bin/bash
+
+NAME=libxfont
+VERSION=1.4.3
+SOURCE=http://www.x.org/releases/X11R7.6/src/everything/libXfont-${VERSION}.tar.bz2
+
+export FREETYPE_CFLAGS="-I${STAGING}/include/freetype2"
+do_generic "$1"
+

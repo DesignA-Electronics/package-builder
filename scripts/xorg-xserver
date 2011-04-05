@@ -3,6 +3,7 @@
 NAME=xorg-xserver
 VERSION=1.9.3
 SOURCE=http://www.x.org/releases/X11R7.6/src/xserver/xorg-server-${VERSION}.tar.bz2
+CONFIGURE_PARAMS="--disable-dri --disable-dri2"
 
 do_generic "$1"
 

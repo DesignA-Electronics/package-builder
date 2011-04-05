@@ -1,0 +1,8 @@
+#!/bin/bash
+
+NAME=fixesproto
+VERSION=4.1.2
+SOURCE=http://www.x.org/releases/X11R7.6/src/everything/fixesproto-${VERSION}.tar.bz2
+
+do_generic "$1"
+

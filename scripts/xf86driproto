@@ -1,0 +1,8 @@
+#!/bin/bash
+
+NAME=xf86driproto
+VERSION=2.1.0
+SOURCE=http://www.x.org/releases/X11R7.6/src/proto/xf86driproto-${VERSION}.tar.bz2
+
+do_generic "$1"
+
