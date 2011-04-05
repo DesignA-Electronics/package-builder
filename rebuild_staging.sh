@@ -4,11 +4,12 @@
 
 set -e
 
+echo "Deleting old staging..."
 rm -rf staging
 mkdir staging
 
 for f in packages/*.ipk ; do
-    echo ${f}
+    echo "Installing `basename ${f}`"
     ar p ${f} data.tar.gz | (cd staging ; tar xfz -)
 done
 
