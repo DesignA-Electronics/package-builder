@@ -1,7 +1,7 @@
 #!/bin/sh
 
 NAME=libpng
-VERSION=1.4.5
+VERSION=1.4.7
 SOURCE=ftp://ftp.simplesystems.org/pub/libpng/png/src/libpng-${VERSION}.tar.bz2
 
 post_unpack() {
