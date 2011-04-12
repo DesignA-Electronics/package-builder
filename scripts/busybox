@@ -10,6 +10,12 @@ set_config() {
     sed -i "s/^# $option .*$/$option=$value/" $config
 }
 
+clear_config() {
+    config=$1
+    option=$2
+    sed -i "s/^$option=.*$/# $option is not set/" $config
+}
+
 VERSION=1.13.3
 SOURCE=http://busybox.net/downloads/busybox-${VERSION}.tar.bz2
 
@@ -18,6 +24,8 @@ make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS=${CFLAGS} defconfig
 # Turn on some options that we like
 set_config .config CONFIG_FEATURE_EDITING_FANCY_PROMPT
 set_config .config CONFIG_ASH_EXPAND_PRMT
+# Saved history is annoying across multiple terminals
+clear_config .config CONFIG_FEATURE_EDITING_SAVEHISTORY
 
 make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS=${CFLAGS} oldconfig
 make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS=${CFLAGS} -j4
