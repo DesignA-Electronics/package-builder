@@ -1,13 +1,26 @@
-#!/bin/sh
+#!/bin/bash
 #
-# Usage: install_package.sh PACKAGE DEST
+# Usage: install_package.sh PACKAGE1 [PACKAGE2 PACKAGE3...] DEST
 
-FILE=$1
-DEST=$2
+set -e
 
-if [ -z "$FILE" -o -z "$DEST" ] ; then
-    echo "Usage: $0 <ipkg file> <destination directory>"
+if [ -z "$*" ] ; then
+    echo "Usage: $0 <ipkg files...> <destination directory>"
     exit 1
 fi
 
-ar p "${FILE}" data.tar.gz | (cd "$DEST" ; tar xmz)
+PACKAGE_COUNT=$(( ${BASH_ARGC} - 1 ))
+DEST=${BASH_ARGV[${PACAKGE_COUNT}]}
+if [ ! -d "$DEST" ] ; then
+    echo "$DEST is not a directory"
+    exit 1
+fi
+
+while [ ${PACKAGE_COUNT} -gt 0 ] ; do
+    FILE=$1
+    ar p "${FILE}" data.tar.gz | (cd "$DEST" ; tar xmz)
+    shift
+    PACKAGE_COUNT=$(( ${PACKAGE_COUNT} - 1 ))
+done
+
+
