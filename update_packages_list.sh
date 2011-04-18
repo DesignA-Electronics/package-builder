@@ -6,7 +6,7 @@ OUTPUT=packages/Packages
 
 rm -f $OUTPUT
 
-echo "Updating $OUTPUT: "
+echo -n "Updating $OUTPUT: "
 for f in packages/*.ipk ; do
     echo -n "."
     ar p $f control.tar.gz | tar xzO control >> $OUTPUT
