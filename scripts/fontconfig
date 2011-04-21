@@ -1,0 +1,11 @@
+#!/bin/bash
+
+NAME=fontconfig
+VERSION=2.8.0
+SOURCE=http://www.freedesktop.org/software/fontconfig/release/fontconfig-${VERSION}.tar.gz
+export CFLAGS="-I${STAGING}/include"
+CONFIGURE_PARAMS="--with-arch=arm"
+
+do_generic "$1"
+
+
