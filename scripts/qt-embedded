@@ -8,9 +8,10 @@ make install INSTALL_ROOT="$1"
 build_package "${NAME}"-plugins "${VERSION}" "$1" ".*/plugins/.*"
 build_package "${NAME}"-demos "${VERSION}" "$1" ".*/demos/.*"
 build_package "${NAME}"-examples "${VERSION}" "$1" ".*/examples/.*"
-# build_package "${NAME}"-fonts "${VERSION}" "$1" ".*/fonts/.*"
-build_package "${NAME}"-dev "${VERSION}" "$1" ".*/include/.*|.*/mkspecs/.*"
+build_package "${NAME}"-fonts "${VERSION}" "$1" ".*/fonts/.*"
+build_package "${NAME}"-dev "${VERSION}" "$1" ".*/include/.*|.*/mkspecs/.*|${DEV_FILES}"
 build_package "${NAME}"-locale "${VERSION}" "$1" ".*/translations/.*"
+build_package "${NAME}"-bin "${VERSION}" "$1" ".*/bin/.*"
 build_package "${NAME}" "${VERSION}" "$1"
 
 
