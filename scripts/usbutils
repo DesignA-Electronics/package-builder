@@ -1,8 +1,11 @@
 #!/bin/bash
 
 NAME=usbutils
-VERSION=0.86
-SOURCE=http://downloads.sourceforge.net/project/linux-usb/usbutils/usbutils-${VERSION}.tar.gz
+VERSION=002
+SOURCE=http://www.kernel.org/pub/linux/utils/usb/usbutils/usbutils-${VERSION}.tar.bz2
+#SOURCE=http://downloads.sourceforge.net/project/linux-usb/usbutils/usbutils-${VERSION}.tar.gz
+export LIBUSB_CFLAGS="-I${STAGING}/include/libusb-1.0/"
+export LIBUSB_LIBS="-L${STAGING}/lib -lusb-1.0"
 
 do_generic "$1"
 
