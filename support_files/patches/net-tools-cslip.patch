@@ -1,0 +1,11 @@
+--- a/lib/interface.c	2001-02-11 08:31:15.000000000 +1300
++++ b/lib/interface.c	2011-05-12 09:11:21.000000000 +1200
+@@ -663,7 +663,7 @@
+ 
+     hf = ptr->type;
+ 
+-    if (hf == ARPHRD_CSLIP || hf == ARPHRD_CSLIP6)
++/*  if (hf == ARPHRD_CSLIP || hf == ARPHRD_CSLIP6) */
+ 	can_compress = 1;
+ 
+     hw = get_hwntype(hf);
