@@ -50,5 +50,8 @@ libvorbis
 liba52
 lame
 minicom
+directfb
+libexif
 ethtool
 bluez
+
