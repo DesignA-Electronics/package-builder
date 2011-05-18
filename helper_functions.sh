@@ -53,7 +53,7 @@ download() {
     fi
 
     if [ ! -f $FILENAME ] ; then
-        wget "$SOURCE" -O ${FILENAME}
+        wget --no-check-certificate "$SOURCE" -O ${FILENAME}
     fi
 }
 
@@ -86,7 +86,7 @@ download_unpack() {
     fi
 
     if [ ! -f $FILENAME ] ; then
-        wget "$SOURCE" -O ${FILENAME}
+        wget --no-check-certificate "$SOURCE" -O ${FILENAME}
     fi
     if [ ! -d ${DIRNAME} ] ; then
         ${EXTRACT} ${FILENAME}
@@ -120,6 +120,10 @@ do_install() {
         pre_install "$1"
     fi
     make install DESTDIR=$1 $INSTALL_PARAMS
+    # .la linker scripts essentially never seem to be correct
+    # when doing cross compiling with different root filesystems/prefixes.
+    # So we'll just always remove them (& ignore any errors about this)
+    # rm -f "$1"/lib/*.la || true
 
     if type post_install > /dev/null 2>&1 ; then
         post_install "$1"
