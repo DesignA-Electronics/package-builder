@@ -2,7 +2,9 @@
 
 NAME=minicom
 VERSION=2.4
-SOURCE=https://alioth.debian.org/frs/download.php/3195/minicom-${VERSION}.tar.gz
+SOURCE=https://launchpad.net/ubuntu/+archive/primary/+files/minicom_${VERSION}.orig.tar.gz
+#SOURCE=https://alioth.debian.org/frs/download.php/3195/minicom-${VERSION}.tar.gz
+FORCE_DIRNAME=minicom-${VERSION}
 
 do_generic "$1"
 
