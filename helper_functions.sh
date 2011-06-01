@@ -87,6 +87,8 @@ download_unpack() {
 
     if [ ! -f $FILENAME ] ; then
         wget --no-check-certificate "$SOURCE" -O ${FILENAME}
+    else
+        echo "Skipping download of ${FILENAME} - already present"
     fi
     if [ ! -d ${DIRNAME} ] ; then
         ${EXTRACT} ${FILENAME}
