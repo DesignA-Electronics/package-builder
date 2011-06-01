@@ -1,0 +1,10 @@
+NAME=iptables
+VERSION=1.4.11
+SOURCE=http://ftp.netfilter.org/pub/iptables/iptables-${VERSION}.tar.bz2
+
+post_install() {
+    ln -sf /sbin/xtables-multi $1/sbin/iptables-multi
+    ln -sf /sbin/xtables-multi $1/sbin/ip6tables-multi
+}
+
+do_generic "$1"
