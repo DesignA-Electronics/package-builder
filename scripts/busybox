@@ -16,7 +16,7 @@ clear_config() {
     sed -i "s/^$option=.*$/# $option is not set/" $config
 }
 
-VERSION=1.13.3
+VERSION=1.18.4
 SOURCE=http://busybox.net/downloads/busybox-${VERSION}.tar.bz2
 
 download_unpack "$SOURCE"
