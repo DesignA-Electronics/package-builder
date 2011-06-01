@@ -39,6 +39,7 @@ ffmpeg
 fsx
 bonnie
 sd8686-firmware
+sd8688-firmware
 ipw2200-firmware
 bluewater-dev
 net-snmp
@@ -55,4 +56,4 @@ libexif
 ethtool
 bluez
 net-tools
-
+iptables
