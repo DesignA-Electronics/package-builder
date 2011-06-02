@@ -1,0 +1,8 @@
+#!/bin/bash
+
+NAME=pixman
+VERSION=0.20.2
+SOURCE=http://cairographics.org/releases/pixman-${VERSION}.tar.gz
+
+do_generic "$1"
+
