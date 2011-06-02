@@ -57,3 +57,5 @@ ethtool
 bluez
 net-tools
 iptables
+uapevent
+uaputl
