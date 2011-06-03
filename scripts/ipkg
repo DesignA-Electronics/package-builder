@@ -1,9 +1,6 @@
-#!/bin/bash
-
 NAME=ipkg
 VERSION=0.99.163
 SOURCE=http://downloads.openmoko.org/developer/sources/ipkg-${VERSION}.tar.gz
-#SOURCE=http://www.handhelds.org/download/packages/ipkg/ipkg-${VERSION}.tar.gz
 
 if [ ! -f ipkg-${VERSION}.tar.gz ] ; then
     wget $SOURCE
