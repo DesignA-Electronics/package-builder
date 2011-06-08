@@ -1,0 +1,27 @@
+NAME=python
+VERSION=2.6.6
+SOURCE=http://www.python.org/ftp/python/${VERSION}/Python-${VERSION}.tar.bz2
+
+download_unpack "${SOURCE}"
+
+# Make sure we don't have the hangover from an old build
+if [ -f Makefile ] ; then
+    make distclean
+fi
+
+# Build the i686 version, since it is needed to build the ARM version
+./configure
+make python Parser/pgen -j4
+mv python hostpython
+mv Parser/pgen Parser/hostpgen
+
+# Clean out the i686 version, and build the ARM version
+make distclean
+
+patch --forward -p1 < ${SUPPORT_FILES}/patches/Python-${VERSION}-xcompile.patch
+
+CC=${CROSS}gcc CXX=${CROSS}g++ AR=${CROSS}ar RANLIB=${CROSS}ranlib ./configure --host=arm-linux
+make HOSTPYTHON=./hostpython HOSTPGEN=./Parser/hostpgen BLDSHARED="${CROSS}gcc -shared" CROSS_COMPILE=rm-none-linux-gnueabi- CROSS_COMPILE_TARGET=yes -j4
+make install HOSTPYTHON=./hostpython BLDSHARED="${CROSS}gcc -shared" CROSS_COMPILE=${CROSS} CROSS_COMPILE_TARGET=yes prefix="$1"
+
+build_package "${NAME}" "${VERSION}" "$1"
