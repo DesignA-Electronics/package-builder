@@ -59,4 +59,5 @@ net-tools
 iptables
 uapevent
 uaputl
+sd8688-uap-firmware
 python
