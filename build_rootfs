@@ -107,7 +107,7 @@ make_devices () {
 
 
 # Build directory structure
-mkdir -p "$DEST/lib" "$DEST/dev" "$DEST/proc" "$DEST/sys" "$DEST/etc/init.d" "$DEST/var/tmp" "$DEST/home" "$DEST/mnt" "$DEST/var/run" "$DEST/usr/local/bin" "$DEST/usr/lib"
+mkdir -p "$DEST/lib" "$DEST/dev" "$DEST/proc" "$DEST/sys" "$DEST/etc/init.d" "$DEST/var/tmp" "$DEST/home" "$DEST/mnt" "$DEST/var/run" "$DEST/usr/local/bin" "$DEST/usr/lib" "$DEST/lib/modules"
 
 # Copy libraries (ARM only)
 if [ "${ARCH}" == "arm" ] ; then
