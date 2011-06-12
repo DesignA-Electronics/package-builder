@@ -1,0 +1,10 @@
+NAME=picocom
+VERSION=1.6
+SOURCE=http://picocom.googlecode.com/files/picocom-${VERSION}.tar.gz
+
+download_unpack "$SOURCE"
+make CC=${CROSS}gcc
+mkdir -p "$1"/bin
+cp picocom "$1"/bin/
+build_package ${NAME} ${VERSION} "$1"
+
