@@ -63,3 +63,6 @@ sd8688-uap-firmware
 python
 picocom
 nuttcp
+openobex
+libical
+liblzo

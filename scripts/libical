@@ -1,0 +1,14 @@
+NAME=libical
+VERSION=0.46
+SOURCE=http://downloads.sourceforge.net/project/freeassociation/libical/libical-${VERSION}/libical-${VERSION}.tar.gz
+
+post_unpack() {
+    # The default configure script seems a bit broken - get the autogen to 
+    # recreate it, and use the on-system ltmain.sh
+    rm configure
+    rm ltmain.sh
+    cp /usr/share/libtool/config/ltmain.sh .
+}
+
+do_generic "$1"
+
