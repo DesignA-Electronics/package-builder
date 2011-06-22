@@ -27,7 +27,9 @@ build_package() {
     mkdir $TMPIPKG
     tar cfz $TMPIPKG/data.tar.gz ${PKG_FILES}
     rm -rf ${PKG_FILES}
-    find . -depth -type d -empty ! -name "." -exec rmdir {} \;
+    # We used to remove empty directories, 
+    # but I don't think we really want to do that anymore
+    # find . -depth -type d -empty ! -name "." -exec rmdir {} \;
     popd
     pushd $STAGING ; tar xfz $TMPIPKG/data.tar.gz ; popd
     pushd $TMPIPKG
