@@ -115,6 +115,10 @@ do_configure() {
 
 do_make() {
     make -j4 $MAKE_PARAMS
+
+    if type post_make > /dev/null 2>&1 ; then
+        post_make
+    fi
 }
 
 do_install() {
