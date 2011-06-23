@@ -4,7 +4,6 @@ SOURCE=http://www.kernel.org/pub/linux/bluetooth/openobex-${VERSION}.tar.gz
 
 post_unpack() {
     patch < ${SUPPORT_FILES}/patches/openobex-configure.patch
-EOF
 }
 
 do_generic "$1"
