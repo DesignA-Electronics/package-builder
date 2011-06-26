@@ -113,6 +113,9 @@ do_configure() {
     fi
 
     LDFLAGS=$LDFLAGS CFLAGS=$CFLAGS ./configure --host=$HOST --prefix=/ $CONFIGURE_PARAMS
+    if type post_configure > /dev/null 2>&1 ; then
+        post_configure
+    fi
 }
 
 do_make() {

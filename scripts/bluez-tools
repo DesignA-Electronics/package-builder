@@ -1,0 +1,17 @@
+NAME=bluez-tools
+VERSION=0.1.38-662e
+SOURCE=http://bluez-tools.googlecode.com/files/bluez-tools-${VERSION}.tar.gz
+
+export GLIB_CFLAGS="-I${STAGING}/include/glib-2.0 -I${STAGING}/lib/glib-2.0/include"
+export GLIB_LIBS="-lglib-2.0 -lgobject-2.0 -lgthread-2.0"
+export DBUS_CFLAGS="-I${STAGING}/include/dbus-1.0 -I${STAGING}/lib/dbus-1.0/include"
+export DBUS_LIBS="-L${STAGING}/lib -ldbus-1"
+
+# Readline/ncurses issue
+post_configure() {
+    sed -i 's/^LIBREADLINE =.*$/LIBREADLINE=-lreadline -lcurses/g' src/Makefile
+}
+
+
+do_generic "$1"
+

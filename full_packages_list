@@ -55,6 +55,7 @@ directfb
 libexif
 ethtool
 bluez
+bluez-tools
 net-tools
 iptables
 uapevent

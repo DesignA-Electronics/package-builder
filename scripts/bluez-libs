@@ -1,0 +1,6 @@
+NAME=bluez-libs
+VERSION=3.36
+SOURCE=http://bluez.sf.net/download/bluez-libs-${VERSION}.tar.gz
+
+do_generic "$1"
+
