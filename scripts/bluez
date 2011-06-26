@@ -4,8 +4,13 @@ SOURCE=http://www.kernel.org/pub/linux/bluetooth/bluez-${VERSION}.tar.gz
 export DBUS_CFLAGS="-I${STAGING}/include/dbus-1.0 -I${STAGING}/lib/dbus-1.0/include"
 export DBUS_LIBS="-L${STAGING}/lib -ldbus-1"
 export GLIB_CFLAGS="-I${STAGING}/include -I${STAGING}/include/glib-2.0 -I${STAGING}/lib/glib-2.0/include"
-CONFIGURE_PARAMS="--disable-silent-rules --disable-alsa"
+CONFIGURE_PARAMS="--disable-silent-rules"
 MAKE_PARAMS=libdir=${STAGING}/lib
+
+# HORRIBLE HACK TO GET AROUND libtool INSTALLATION ISSUE
+post_configure() {
+    sed -i 's/func_fatal_error "error: cannot install.*$/func_warning "skipped"/g' libtool
+}
 
 post_make() {
     make test/agent LIBS=-ldbus-1
