@@ -1,0 +1,6 @@
+NAME=bluez-hcidump
+VERSION=2.1
+SOURCE=http://www.kernel.org/pub/linux/bluetooth/bluez-hcidump-${VERSION}.tar.gz
+
+do_generic "$1"
+
