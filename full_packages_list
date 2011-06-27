@@ -57,6 +57,7 @@ ethtool
 bluez
 bluez-tools
 bluez-hcidump
+obexd
 net-tools
 iptables
 uapevent
