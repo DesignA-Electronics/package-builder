@@ -69,3 +69,5 @@ nuttcp
 openobex
 libical
 liblzo
+libxml2
+evtest
