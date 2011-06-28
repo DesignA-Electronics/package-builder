@@ -54,8 +54,21 @@ download() {
         FILENAME=`basename "$SOURCE"`
     fi
 
-    if [ ! -f $FILENAME ] ; then
+    # If the file is already in the cache, then copy it from there
+    # If it isn't in the cache, but is in the current directory,
+    # then just unpack it from there
+    # Finally, if it is in neither place, then download it
+    if [ -n "${DOWNLOAD_CACHE_DIR}" -a \
+         -f "${DOWNLOAD_CACHE_DIR}/${FILENAME}" ] ; then
+        echo "File ${FILENAME} exists in ${DOWNLOAD_CACHE_DIR} - copying from there"
+        cp "${DOWNLOAD_CACHE_DIR}/${FILENAME}" "${FILENAME}"
+    elif [ -f $FILENAME ] ; then
+        echo "Skipping download of ${FILENAME} - already present"
+    else
         wget --no-check-certificate "$SOURCE" -O ${FILENAME}
+        if [ -n "${DOWNLOAD_CACHE_DIR} " ] ; then
+            cp "${FILENAME}" "${DOWNLOAD_CACHE_DIR}"
+        fi
     fi
 }
 
@@ -87,11 +100,8 @@ download_unpack() {
         DIRNAME=$3
     fi
 
-    if [ ! -f $FILENAME ] ; then
-        wget --no-check-certificate "$SOURCE" -O ${FILENAME}
-    else
-        echo "Skipping download of ${FILENAME} - already present"
-    fi
+    download "$SOURCE" "$FILENAME"
+
     if [ ! -d ${DIRNAME} ] ; then
         ${EXTRACT} ${FILENAME}
         pushd ${DIRNAME}
