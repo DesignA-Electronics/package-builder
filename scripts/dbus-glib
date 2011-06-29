@@ -1,0 +1,18 @@
+NAME=dbus-glib
+VERSION=0.92
+SOURCE=http://dbus.freedesktop.org/releases/dbus-glib/dbus-glib-${VERSION}.tar.gz
+
+export DBUS_CFLAGS=-I${STAGING}/include/dbus-1.0
+export DBUS_LIBS="-L${STAGING}/lib -ldbus-1"
+export DBUS_GLIB_CFLAGS="-I${STAGING}/include/glib-2.0 -I${STAGING}/lib/glib-2.0/include"
+export DBUS_GLIB_LIBS="-L${STAGING}/lib -lglib-2.0 -lgobject-2.0 -lgthread-2.0 -Wl,-rpath=${STAGING}/lib"
+
+# Use the native dbus-binding-tool
+post_configure() {
+    sed -i 's/^DBUS_BINDING_TOOL = .*$/DBUS_BINDING_TOOL=dbus-binding-tool/' dbus/examples/Makefile
+    sed -i 's/^DBUS_BINDING_TOOL = .*$/DBUS_BINDING_TOOL=dbus-binding-tool/' dbus/examples/Makefile
+    sed -i 's/^DBUS_BINDING_TOOL = .*$/DBUS_BINDING_TOOL=dbus-binding-tool/' dbus/examples/statemachine/Makefile
+}
+
+do_generic "$1"
+
