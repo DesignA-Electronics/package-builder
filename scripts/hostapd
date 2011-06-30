@@ -1,0 +1,21 @@
+NAME=hostapd
+VERSION=0.7.3
+SOURCE=http://w1.fi/releases/hostapd-${VERSION}.tar.gz
+
+download_unpack "$SOURCE"
+cd hostapd
+cp defconfig .config
+cat >> .config << EOF
+CC=${CROSS}gcc
+CFLAGS+=-I${STAGING}/include
+LIBS+=-L${STAGING}/lib -ldl
+V=1
+DEST=$1
+EOF
+# Make it install into the right place
+sed -i 's#/usr/local/bin/#$(DEST)/bin/#g' Makefile
+make
+mkdir "$1"/bin/
+make install
+build_generic_package "$1"
+
