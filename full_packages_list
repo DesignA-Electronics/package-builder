@@ -72,4 +72,5 @@ libical
 liblzo
 libxml2
 evtest
+libnl1
 hostapd

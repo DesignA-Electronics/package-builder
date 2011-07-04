@@ -1,0 +1,10 @@
+--- a/include/netlink-local.h        2011-07-01 11:07:02.000000000 +1200
++++ b/include/netlink-local.h     2011-07-01 11:07:08.000000000 +1200
+@@ -12,6 +12,7 @@
+ #ifndef NETLINK_LOCAL_H_
+ #define NETLINK_LOCAL_H_
+ 
++#include <limits.h>
+ #include <stdio.h>
+ #include <errno.h>
+ #include <stdlib.h>

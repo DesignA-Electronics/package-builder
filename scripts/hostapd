@@ -6,6 +6,7 @@ download_unpack "$SOURCE"
 cd hostapd
 cp defconfig .config
 cat >> .config << EOF
+CONFIG_DRIVER_NL80211=y
 CC=${CROSS}gcc
 CFLAGS+=-I${STAGING}/include
 LIBS+=-L${STAGING}/lib -ldl

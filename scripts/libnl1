@@ -1,0 +1,10 @@
+NAME=libnl1
+VERSION=1.1
+SOURCE=http://www.infradead.org/~tgr/libnl/files/libnl-${VERSION}.tar.gz
+
+post_unpack() {
+    patch -p1 < ${SUPPORT_FILES}/patches/libnl1-limits.patch
+}
+
+do_generic "$1"
+
