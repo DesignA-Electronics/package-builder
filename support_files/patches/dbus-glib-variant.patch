@@ -1,0 +1,13 @@
+--- a/dbus/dbus-gtype-specialized.c	2011-07-04 13:44:03.000000000 +1200
++++ b/dbus/dbus-gtype-specialized.c	2011-07-04 13:44:20.000000000 +1200
+@@ -1186,8 +1186,8 @@
+     return g_variant_type_copy (G_VARIANT_TYPE_DOUBLE);
+   else if (type == G_TYPE_STRING)
+     return g_variant_type_copy (G_VARIANT_TYPE_STRING);
+-  else if (type == G_TYPE_STRV)
+-    return g_variant_type_copy (G_VARIANT_TYPE_STRING_ARRAY);
++  /*else if (type == G_TYPE_STRV)
++    return g_variant_type_copy (G_VARIANT_TYPE_STRING_ARRAY);*/
+   else if (type == DBUS_TYPE_G_OBJECT_PATH)
+     return g_variant_type_copy (G_VARIANT_TYPE_OBJECT_PATH);
+   else if (type == DBUS_TYPE_G_SIGNATURE)

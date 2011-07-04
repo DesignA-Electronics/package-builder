@@ -1,0 +1,24 @@
+--- a/configure	2010-11-10 23:26:01.000000000 +1300
++++ b/configure	2011-06-24 08:59:07.000000000 +1200
+@@ -11132,8 +11132,9 @@
+   if test "$cross_compiling" = yes; then :
+   { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error $? "cannot run test program while cross compiling
+-See \`config.log' for more details" "$LINENO" 5 ; }
++#as_fn_error $? "cannot run test program while cross compiling
++#See \`config.log' for more details" "$LINENO" 5 ; 
++}
+ else
+   cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+@@ -12369,7 +12370,8 @@
+ fi
+ 
+ if test x$have_glib = xno ; then
+-    as_fn_error $? "GLib development libraries not found" "$LINENO" 5
++    # as_fn_error $? "GLib development libraries not found" "$LINENO" 5
++    true 
+ fi
+ 
+  if test x$have_glib = xyes; then
