@@ -138,12 +138,15 @@ do_make() {
 
 # Sometimes the .la files contain the /tmp directory for various paths.
 # Adjust them to point to the staging directory instead
-# They can also end up pointing to /lib (or //lib), which is no good for the cross
-# compile. So fix that as well
+# They can also end up pointing to /lib (or //lib), which is no 
+# good for the cross compile. 
+# Lastly, sometimes they point to other .la files in /tmp, which should be
+# in staging
 fix_la_files() {
     find "$1" -name "*.la" -exec sed -i "s#\([ ']\)/tmp/[^ ]*/lib#\1${STAGING}/lib#g" {} \;
     find "$1" -name "*.la" -exec sed -i "s#-L/tmp/[^ ]*/lib#-L${STAGING}/lib#g" {} \;
     find "$1" -name "*.la" -exec sed -i "s#\([' ]\)//*lib#\1${STAGING}/lib#g" {} \;
+    find "$1" -name "*.la" -exec sed -i "s#\([' ]\)/tmp/[^/]*/\([^ ]*.la\)#\1${STAGING}/\2\#g" {} \;
 }
 
 do_install() {
