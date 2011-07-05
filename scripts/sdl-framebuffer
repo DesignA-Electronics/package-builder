@@ -12,9 +12,5 @@ post_unpack() {
     patch -p1 < ${SUPPORT_FILES}/patches/sdl-framebuffer-arm-optimisation.patch
 }
 
-post_install() {
-    sed -i "s#//lib/libts.la#${STAGING}/lib/libts.la#" "$1"/lib/libSDL.la
-}
-
 do_generic "$1"
 

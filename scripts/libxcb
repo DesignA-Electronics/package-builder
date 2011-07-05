@@ -6,12 +6,5 @@ SOURCE=http://www.x.org/releases/X11R7.6/src/xcb/libxcb-${VERSION}.tar.bz2
 
 CONFIGURE_PARAMS=XCBPROTO_XCBINCLUDEDIR=${STAGING}/share/xcb
 
-# These .la scripts often have odd directories due to the
-# cross compile. However having no .la means that the linker
-# just works it out itself, which seems to be fine
-post_install() {
-    rm "$1"/lib/libxcb.la
-}
-
 do_generic "$1"
 

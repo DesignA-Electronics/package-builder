@@ -8,7 +8,6 @@ CONFIGURE_PARAMS="--without-x"
 post_install() {
     mkdir -p "$1"/etc/dbus-1/session.d
     mkdir -p "$1"/var/lib/dbus
-    sed -i "s#libdir='//lib'#libdir='${STAGING}/lib'#" "$1"/lib/libdbus-1.la
 }
 
 do_generic "$1"
