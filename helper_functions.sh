@@ -136,15 +136,22 @@ do_make() {
     fi
 }
 
+# Sometimes the .la files contain the /tmp directory for various paths.
+# Adjust them to point to the staging directory instead
+# They can also end up pointing to /lib (or //lib), which is no good for the cross
+# compile. So fix that as well
+fix_la_files() {
+    find "$1" -name "*.la" -exec sed -i "s#/tmp/[^ ]*/lib#${STAGING}/lib#g" {} \;
+    find "$1" -name "*.la" -exec sed -i "s#\([' ]\)//*lib#\1${STAGING}/lib#g" {} \;
+}
+
 do_install() {
     if type pre_install > /dev/null 2>&1 ; then
         pre_install "$1"
     fi
     make install DESTDIR=$1 $INSTALL_PARAMS
-    # .la linker scripts essentially never seem to be correct
-    # when doing cross compiling with different root filesystems/prefixes.
-    # So we'll just always remove them (& ignore any errors about this)
-    # rm -f "$1"/lib/*.la || true
+
+    fix_la_files "$1"
 
     if type post_install > /dev/null 2>&1 ; then
         post_install "$1"
