@@ -1,21 +1,11 @@
-#!/bin/sh
-
 NAME=openssl
 VERSION=1.0.0a
 SOURCE=http://www.openssl.org/source/openssl-${VERSION}.tar.gz
 
-if [ ! -f openssl-${VERSION}.tar.gz ] ; then
-    wget $SOURCE
-fi
+download_unpack "${SOURCE}"
 
-if [ ! -d openssl-${VERSION} ] ; then
-    tar xfz openssl-${VERSION}.tar.gz
-fi
-
-pushd openssl-${VERSION}
 CC=${CROSS}gcc ./Configure --prefix=$1 linux-armv4
 make install
-popd
 
 build_generic_package "$1"
 
