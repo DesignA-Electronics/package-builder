@@ -141,7 +141,8 @@ do_make() {
 # They can also end up pointing to /lib (or //lib), which is no good for the cross
 # compile. So fix that as well
 fix_la_files() {
-    find "$1" -name "*.la" -exec sed -i "s#/tmp/[^ ]*/lib#${STAGING}/lib#g" {} \;
+    find "$1" -name "*.la" -exec sed -i "s#\([ ']\)/tmp/[^ ]*/lib#\1${STAGING}/lib#g" {} \;
+    find "$1" -name "*.la" -exec sed -i "s#-L/tmp/[^ ]*/lib#-L${STAGING}/lib#g" {} \;
     find "$1" -name "*.la" -exec sed -i "s#\([' ]\)//*lib#\1${STAGING}/lib#g" {} \;
 }
 
