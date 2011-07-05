@@ -1,19 +1,12 @@
-#!/bin/bash
-
 NAME=zlib
 VERSION=1.2.5
 SOURCE=http://zlib.net/zlib-${VERSION}.tar.bz2
+INSTALL_PARAMS=prefix="$1"
 
-if [ ! -f zlib-${VERSION}.tar.bz2 ] ; then
-    wget $SOURCE
-fi
-if [ ! -d zlib-${VERSION} ] ; then
-    tar xfj zlib-${VERSION}.tar.bz2
-fi
-pushd zlib-${VERSION}
+download_unpack "${SOURCE}"
+
 CC=${CROSS}gcc CFLAGS="-march=armv4t -mtune=arm9tdmi" ./configure
-make -j4
-make install prefix=$1
-popd
+do_make
+do_install "$1"
 
 build_generic_package "$1"

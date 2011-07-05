@@ -2,15 +2,8 @@ NAME=ipkg
 VERSION=0.99.163
 SOURCE=http://downloads.openmoko.org/developer/sources/ipkg-${VERSION}.tar.gz
 
-if [ ! -f ipkg-${VERSION}.tar.gz ] ; then
-    wget $SOURCE
-fi
+download_unpack "${SOURCE}"
 
-if [ ! -d ipkg-${VERSION} ] ; then
-    tar xfz ipkg-${VERSION}.tar.gz
-fi
-
-pushd ipkg-${VERSION}
 CFLAGS=${CFLAGS} ./configure --host=$HOST
 make -j4
 mkdir -p "$1/bin" "$1/lib" "$1/etc"
@@ -18,7 +11,6 @@ cp .libs/ipkg-cl $1/bin/
 cp update-alternatives $1/bin/
 cp .libs/libipkg.so* $1/lib/
 touch $1/etc/ipkg.conf
-popd
 
 build_generic_package "$1"
 
