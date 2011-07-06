@@ -1,6 +1,6 @@
 NAME=ffmpeg
 VERSION=0.6
-SOURCE=http://www.ffmpeg.org/releases/ffmpeg-0.6.tar.bz2
+SOURCE=http://www.ffmpeg.org/releases/ffmpeg-${VERSION}.tar.bz2
 
 download_unpack "$SOURCE"
 ./configure --cross-prefix=${CROSS} --target-os=linux --arch=${ARCH} --prefix=/
