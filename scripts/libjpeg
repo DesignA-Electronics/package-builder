@@ -1,5 +1,3 @@
-#!/bin/bash
-
 NAME=libjpeg
 VERSION=8b
 SOURCE=http://www.ijg.org/files/jpegsr8b.zip

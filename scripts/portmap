@@ -1,5 +1,3 @@
-#!/bin/sh
-
 NAME=portmap
 VERSION=6.0.0
 SOURCE=http://www.sourcefiles.org/Networking/Tools/Miscellanenous/portmap-6.0.tgz

@@ -1,5 +1,3 @@
-#!/bin/bash
-
 NAME=wireless-tools
 VERSION=29
 SOURCE=http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/wireless_tools.${VERSION}.tar.gz

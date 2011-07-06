@@ -1,5 +1,3 @@
-#!/bin/sh
-
 NAME=sdl-mixer
 VERSION=1.2.11
 SOURCE=http://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-${VERSION}.tar.gz

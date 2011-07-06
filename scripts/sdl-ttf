@@ -1,5 +1,3 @@
-#!/bin/sh
-
 NAME=sdl-ttf
 VERSION=2.0.10
 SOURCE=http://www.libsdl.org/projects/SDL_ttf/release/SDL_ttf-${VERSION}.tar.gz

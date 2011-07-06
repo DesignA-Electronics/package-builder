@@ -1,5 +1,3 @@
-#!/bin/sh
-
 NAME=tslib
 VERSION=git
 SOURCE=https://github.com/kergoth/tslib.git

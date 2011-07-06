@@ -1,5 +1,3 @@
-#!/bin/bash
-
 set_config() {
     config=$1
     option=$2

@@ -1,5 +1,3 @@
-#!/bin/sh
-
 NAME=libusb1
 VERSION=1.0.8
 SOURCE=http://downloads.sourceforge.net/project/libusb/libusb-1.0/libusb-${VERSION}/libusb-${VERSION}.tar.bz2

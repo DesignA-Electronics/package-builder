@@ -1,5 +1,3 @@
-#!/bin/bash
-
 NAME=dosfstools
 VERSION=3.0.9
 SOURCE=http://www.daniel-baumann.ch/software/dosfstools/dosfstools-${VERSION}.tar.bz2

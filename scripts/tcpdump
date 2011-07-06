@@ -1,5 +1,3 @@
-#!/bin/bash
-
 NAME=tcpdump
 VERSION=4.0.0
 SOURCE=http://www.tcpdump.org/release/tcpdump-${VERSION}.tar.gz

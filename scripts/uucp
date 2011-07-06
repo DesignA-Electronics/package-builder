@@ -1,5 +1,3 @@
-#!/bin/bash
-
 NAME=uucp
 VERSION=1.07
 SOURCE=http://ftp.gnu.org/pub/gnu/uucp/uucp-${VERSION}.tar.gz

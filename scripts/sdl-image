@@ -1,5 +1,3 @@
-#!/bin/sh
-
 NAME=sdl-image
 VERSION=1.2.10
 SOURCE=http://www.libsdl.org/projects/SDL_image/release/SDL_image-${VERSION}.tar.gz

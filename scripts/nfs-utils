@@ -1,5 +1,3 @@
-#!/bin/sh
-
 NAME=nfs-utils
 VERSION=1.2.3
 SOURCE=http://sourceforge.net/projects/nfs/files/nfs-utils/${VERSION}/nfs-utils-${VERSION}.tar.bz2

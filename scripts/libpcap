@@ -1,5 +1,3 @@
-#!/bin/sh
-
 NAME=libpcap
 VERSION=1.0.0
 SOURCE=http://www.tcpdump.org/release/libpcap-${VERSION}.tar.gz

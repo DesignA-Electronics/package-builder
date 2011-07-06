@@ -1,5 +1,3 @@
-#!/bin/sh
-
 NAME=dbus
 VERSION=1.2.24
 SOURCE=http://dbus.freedesktop.org/releases/dbus/dbus-${VERSION}.tar.gz

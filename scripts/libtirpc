@@ -1,5 +1,3 @@
-#!/bin/sh
-
 NAME=libtirpc
 VERSION=0.2.1
 SOURCE=http://sourceforge.net/projects/libtirpc/files/libtirpc/${VERSION}/libtirpc-${VERSION}.tar.bz2

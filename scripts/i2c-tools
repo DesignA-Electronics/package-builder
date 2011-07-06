@@ -1,5 +1,3 @@
-#!/bin/bash
-
 NAME=i2c-tools
 VERSION=3.0.2
 SOURCE=http://dl.lm-sensors.org/i2c-tools/releases/i2c-tools-${VERSION}.tar.bz2

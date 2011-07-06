@@ -1,5 +1,3 @@
-#!/bin/bash
-
 NAME=recordproto
 VERSION=1.14.1
 SOURCE=http://www.x.org/releases/X11R7.6/src/everything/${NAME}-${VERSION}.tar.bz2

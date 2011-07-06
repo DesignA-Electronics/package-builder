@@ -1,5 +1,3 @@
-#!/bin/sh
-
 NAME=sdl-framebuffer
 VERSION=1.2.14
 SOURCE=http://www.libsdl.org/release/SDL-$VERSION.tar.gz

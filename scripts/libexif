@@ -1,7 +1,4 @@
-#!/bin/sh
-
 NAME=libexif
 VERSION=0.6.20
-SOURCE=http://downloads.sourceforge.net/project/libexif/libexif/0.6.20/libexif-0.6.20.tar.gz
-# CONFIGURE_PARAMS=""
+SOURCE=http://downloads.sourceforge.net/project/libexif/libexif/${VERSION}/libexif-${VERSION}.tar.gz
 do_generic "$1"

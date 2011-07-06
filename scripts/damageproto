@@ -1,5 +1,3 @@
-#!/bin/bash
-
 NAME=damageproto
 VERSION=1.2.1
 SOURCE=http://www.x.org/releases/X11R7.6/src/everything/damageproto-${VERSION}.tar.bz2

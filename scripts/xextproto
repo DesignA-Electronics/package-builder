@@ -1,5 +1,3 @@
-#!/bin/bash
-
 NAME=xextproto
 VERSION=7.1.2
 SOURCE=http://www.x.org/releases/X11R7.6/src/everything/${NAME}-${VERSION}.tar.bz2

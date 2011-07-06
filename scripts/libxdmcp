@@ -1,5 +1,3 @@
-#!/bin/bash
-
 NAME=libxdmcp
 VERSION=1.1.0
 SOURCE=http://www.x.org/releases/X11R7.6/src/everything/libXdmcp-${VERSION}.tar.bz2

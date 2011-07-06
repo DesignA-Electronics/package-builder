@@ -1,5 +1,3 @@
-#!/bin/sh
-
 NAME=libtar
 VERSION=1.2.11
 #SOURCE=ftp://ftp.feep.net/pub/software/libtar/libtar-1.2.11.tar.gz

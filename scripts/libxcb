@@ -1,5 +1,3 @@
-#!/bin/bash
-
 NAME=libxcb
 VERSION=1.7
 SOURCE=http://www.x.org/releases/X11R7.6/src/xcb/libxcb-${VERSION}.tar.bz2

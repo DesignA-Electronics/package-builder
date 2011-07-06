@@ -1,5 +1,3 @@
-#!/bin/bash
-
 NAME=xtrans
 VERSION=1.2.6
 SOURCE=http://www.x.org/releases/X11R7.6/src/lib/xtrans-${VERSION}.tar.bz2

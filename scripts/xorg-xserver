@@ -1,5 +1,3 @@
-#!/bin/bash
-
 NAME=xorg-xserver
 VERSION=1.9.3
 SOURCE=http://www.x.org/releases/X11R7.6/src/xserver/xorg-server-${VERSION}.tar.bz2

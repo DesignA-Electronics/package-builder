@@ -1,5 +1,3 @@
-#!/bin/sh
-
 NAME=netkit-rpc
 VERSION=0.0.17
 SOURCE=ftp://ftp.uk.linux.org/pub/linux/Networking/netkit/netkit-rpc-0.17.tar.gz

@@ -1,5 +1,3 @@
-#!/bin/bash
-
 NAME=bigreqsproto
 VERSION=1.1.1
 SOURCE=http://www.x.org/releases/X11R7.6/src/everything/bigreqsproto-${VERSION}.tar.bz2

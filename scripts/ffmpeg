@@ -1,5 +1,3 @@
-#!/bin/sh
-
 NAME=ffmpeg
 VERSION=0.6
 SOURCE=http://www.ffmpeg.org/releases/ffmpeg-0.6.tar.bz2

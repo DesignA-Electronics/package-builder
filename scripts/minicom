@@ -1,5 +1,3 @@
-#!/bin/bash
-
 NAME=minicom
 VERSION=2.4
 SOURCE=https://launchpad.net/ubuntu/+archive/primary/+files/minicom_${VERSION}.orig.tar.gz

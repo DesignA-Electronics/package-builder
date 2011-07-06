@@ -1,5 +1,3 @@
-#!/bin/bash
-
 NAME=strace
 VERSION=4.5.20
 SOURCE=http://downloads.sourceforge.net/project/strace/strace/${VERSION}/strace-${VERSION}.tar.bz2
