@@ -59,6 +59,7 @@ bluez
 bluez-tools
 bluez-hcidump
 openobex
+libical
 obexd
 net-tools
 iptables
@@ -68,7 +69,6 @@ sd8688-uap-firmware
 python
 picocom
 nuttcp
-libical
 liblzo
 libxml2
 evtest
