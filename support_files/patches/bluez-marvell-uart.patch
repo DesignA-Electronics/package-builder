@@ -1,0 +1,54 @@
+--- a/tools/hciattach.c	2011-05-31 14:39:53.000000000 +1200
++++ b/tools/hciattach.c	2011-07-12 10:02:56.000000000 +1200
+@@ -37,6 +37,7 @@
+ #include <signal.h>
+ #include <syslog.h>
+ #include <termios.h>
++#include <endian.h>
+ #include <time.h>
+ #include <sys/time.h>
+ #include <sys/poll.h>
+@@ -846,6 +847,32 @@
+ 	return 0;
+ }
+ 
++/*
++ * Marvell
++ */
++static int marvell(int fd, struct uart_t *u, struct termios *ti)
++{
++	struct timespec tm = {0, 50000};
++	char cmd[8];
++        uint32_t speed = htole32(u->speed);
++
++	/* Marvell set baud rate command */
++	cmd[0] = HCI_COMMAND_PKT;
++	cmd[1] = 0x09;			// OCF = HCI_CMD_MARVELL_UART_BAUD
++	cmd[2] = 0xfc;			// OGF = Vendor specific
++        cmd[3] = 0x04;
++        memcpy(&cmd[4], &speed, 4);
++
++	/* Send baudrate command */
++	if (write(fd, cmd, sizeof(cmd)) != sizeof(cmd)) {
++		perror("Failed to write init command");
++		return -1;
++	}
++
++	nanosleep(&tm, NULL);
++	return 0;
++}
++
+ static int stlc2500(int fd, struct uart_t *u, struct termios *ti)
+ {
+ 	bdaddr_t bdaddr;
+@@ -1139,6 +1166,10 @@
+ 	{ "qualcomm",   0x0000, 0x0000, HCI_UART_H4,   115200, 115200,
+ 			FLOW_CTL, DISABLE_PM, NULL, qualcomm, NULL },
+ 
++	/* Marvell */
++	{ "marvell",      0x0000, 0x0000, HCI_UART_H4,   115200, 115200,
++				FLOW_CTL, DISABLE_PM, NULL, marvell  },
++
+ 	{ NULL, 0 }
+ };
+ 

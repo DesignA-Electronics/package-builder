@@ -7,11 +7,9 @@ export GLIB_CFLAGS="-I${STAGING}/include -I${STAGING}/include/glib-2.0 -I${STAGI
 # alsa-plugin needs to find -lbluetooth, but we haven't installed it yet
 export LDFLAGS="${LDFLAGS} -L${PWD}/bluez-${VERSION}/lib/.libs/"
 CONFIGURE_PARAMS="--disable-silent-rules --enable-input"
-#MAKE_PARAMS=libdir=${STAGING}/lib
 
-# HORRIBLE HACK TO GET AROUND libtool INSTALLATION ISSUE
-post_configure() {
-    sed -i 's/func_fatal_error "error: cannot install.*$/func_warning "skipped"/g' libtool
+post_unpack() {
+    patch -p1 < ${SUPPORT_FILES}/patches/bluez-marvell-uart.patch
 }
 
 post_make() {
