@@ -147,8 +147,8 @@ do_make() {
 fix_install_paths() {
     find "$1" -name "*.la" -exec sed -i "s#${1}#${STAGING}#g" {} \;
     find "$1" -name "*.la" -exec sed -i "s#\([' ]\)//*lib#\1${STAGING}/lib#g" {} \;
-    find "$1" -iname "*.pc" -exec sed -i "s#${1}#${STAGING}#g" {} \;
-    find "$1" -iname "*.pc" -exec sed -i "s#prefix=/\$#prefix=${STAGING}#g" {} \;
+    find "$1" -name "*.pc" -exec sed -i "s#${1}#${STAGING}#g" {} \;
+    find "$1" -name "*.pc" -exec sed -i "s#prefix=/\$#prefix=${STAGING}#g" {} \;
 }
 
 #
