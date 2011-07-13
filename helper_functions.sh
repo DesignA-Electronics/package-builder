@@ -143,18 +143,22 @@ do_make() {
 # Adjust them to point to the staging directory instead
 # They can also end up pointing to /lib (or //lib), which is no 
 # good for the cross compile. 
-fix_la_files() {
+# Similar issues happen with pkg-config files
+fix_install_paths() {
     find "$1" -name "*.la" -exec sed -i "s#${1}#${STAGING}#g" {} \;
     find "$1" -name "*.la" -exec sed -i "s#\([' ]\)//*lib#\1${STAGING}/lib#g" {} \;
+    find "$1" -iname "*.pc" -exec sed -i "s#${1}#${STAGING}#g" {} \;
+    find "$1" -iname "*.pc" -exec sed -i "s#prefix=/\$#prefix=${STAGING}#g" {} \;
 }
 
+#
 do_install() {
     if type pre_install > /dev/null 2>&1 ; then
         pre_install "$1"
     fi
     make install DESTDIR=$1 $INSTALL_PARAMS
 
-    fix_la_files "$1"
+    fix_install_paths "$1"
 
     if type post_install > /dev/null 2>&1 ; then
         post_install "$1"

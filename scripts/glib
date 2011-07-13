@@ -12,6 +12,6 @@ download_unpack "$SOURCE"
 do_configure
 do_make
 make install
-fix_la_files "$1"
+fix_install_paths "$1"
 build_generic_package "$1"
 
