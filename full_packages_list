@@ -74,3 +74,4 @@ libxml2
 evtest
 libnl1
 hostapd
+libtool
