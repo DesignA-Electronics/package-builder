@@ -77,3 +77,4 @@ hostapd
 libtool
 speex
 libsndfile
+pulseaudio

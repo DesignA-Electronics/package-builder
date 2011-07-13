@@ -1,0 +1,7 @@
+NAME=pulseaudio
+VERSION=0.9.23
+SOURCE=http://freedesktop.org/software/pulseaudio/releases/pulseaudio-${VERSION}.tar.gz
+CONFIGURE_PARAMS="--disable-x11 --disable-gtk2 --disable-avahi"
+
+do_generic "$1"
+
