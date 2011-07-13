@@ -1,0 +1,6 @@
+NAME=speex
+VERSION=1.2rc1
+SOURCE=http://downloads.xiph.org/releases/speex/speex-${VERSION}.tar.gz
+
+do_generic "$1"
+

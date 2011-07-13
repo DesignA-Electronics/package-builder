@@ -75,3 +75,5 @@ evtest
 libnl1
 hostapd
 libtool
+speex
+libsndfile
