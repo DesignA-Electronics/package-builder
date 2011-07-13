@@ -91,6 +91,9 @@ download_unpack() {
     elif [ ${FILENAME%.zip} != ${FILENAME} ] ; then
         EXTRACT="unzip"
         DIRNAME=${FILENAME%.zip}
+    elif [ ${FILENAME%.tar.xz} != ${FILENAME} ] ; then
+        EXTRACT="tar xfJ"
+        DIRNAME=${FILENAME%.tar.xz}
     else
         echo "Unknown extraction name: $FILENAME"
         exit 1
