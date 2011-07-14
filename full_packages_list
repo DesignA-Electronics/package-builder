@@ -20,6 +20,7 @@ wireless-tools
 wpa-supplicant
 alsa-lib
 alsa-utils
+alsa-plugins
 libusb1
 libusb0
 sqlite3
