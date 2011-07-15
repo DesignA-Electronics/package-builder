@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if ! which realpath > /dev/null 2>&1 ; then
+    echo "'realpath' utility function not installed." >&2
+    echo "Please install & retry" >&1
+    exit 1
+fi
+
 ROOT=$(realpath $(dirname $0))
 
 set -e
