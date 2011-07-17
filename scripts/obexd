@@ -1,5 +1,5 @@
 NAME=obexd
-VERSION=0.41
+VERSION=0.42
 SOURCE=http://www.kernel.org/pub/linux/bluetooth/obexd-${VERSION}.tar.gz
 export DBUS_CFLAGS="-I${STAGING}/include/dbus-1.0 -I${STAGING}/lib/dbus-1.0/include"
 export DBUS_LIBS="-L${STAGING}/lib -ldbus-1"
