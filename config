@@ -9,7 +9,16 @@ TOOLCHAIN_DIR=/tools/arm/arm-2010q1
 CROSS=arm-none-linux-gnueabi-
 HOST=arm-none-linux-gnueabi
 ARCH=${ARCH:-arm}
+# Set this to something else if you want to name your 
+# packages with a different suffix 
+# (ie: thumb, or armv5 etc...)
+# This only affects the filenames, not the package contents
+PACKAGE_ARCH=${ARCH}
 CFLAGS="-march=armv4t -I${STAGING}/include"
 LDFLAGS="-L${STAGING}/lib -march=armv4t"
+# Uncomment the below lines if you want a thumb build instead
+#CFLAGS="-march=armv5t -mthumb-interwork -mthumb -I${STAGING}/include"
+#LDFLAGS="-L${STAGING}/lib -march=armv5t"
+#PACKAGE_ARCH=thumb
 
 export PATH=${TOOLCHAIN_DIR}/bin:$PATH

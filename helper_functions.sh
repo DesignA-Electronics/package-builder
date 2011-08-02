@@ -42,7 +42,7 @@ EOF
     tar cfz control.tar.gz control
     rm control
     echo 2.0 > debian-binary
-    ar crs "${PACKAGE_DIR}/${PKG_NAME}_${PKG_VERSION}_${ARCH}.ipk" debian-binary data.tar.gz control.tar.gz
+    ar crs "${PACKAGE_DIR}/${PKG_NAME}_${PKG_VERSION}_${PACKAGE_ARCH}.ipk" debian-binary data.tar.gz control.tar.gz
     popd
     rm -rf $TMPIPKG
 }
