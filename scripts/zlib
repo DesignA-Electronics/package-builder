@@ -5,7 +5,7 @@ INSTALL_PARAMS=prefix=/
 
 download_unpack "${SOURCE}"
 
-CC=${CROSS}gcc CFLAGS="-march=armv4t -mtune=arm9tdmi" ./configure
+CC=${CROSS}gcc CFLAGS="$CFLAGS" ./configure
 do_make
 do_install "$1"
 
