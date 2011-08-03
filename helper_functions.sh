@@ -202,4 +202,11 @@ do_generic() {
     build_generic_package "$1"
 }
 
-
+executable_required() {
+    for f in $* ; do
+        if ! which "$f" > /dev/null ; then
+            echo "Required executable '$f' is not available. Please install" >&2
+            exit 1
+        fi
+    done
+}
