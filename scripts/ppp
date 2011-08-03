@@ -1,5 +1,6 @@
 NAME=ppp
 VERSION=2.4.5
 SOURCE=ftp://ftp.samba.org/pub/ppp/ppp-${VERSION}.tar.gz
+export CC=${CROSS}gcc
 do_generic "$1"
 
