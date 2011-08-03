@@ -7,9 +7,20 @@
 
 set -e
 
+trap
+
 PACKAGE=$1
 . ./config
 . ./helper_functions.sh
+TMPDIR=/tmp/$PACKAGE.$$
+
+cleanup() {
+    echo "Erasing temporary directory: $TMPDIR"
+    rm -rf "$TMPDIR"
+}
+
+trap cleanup 1 2 3 6
+
 
 if [ ! -f "scripts/$PACKAGE" ] ; then
     echo "Package '$PACKAGE' not found" 2>&1
@@ -30,11 +41,10 @@ if [ ! -d "${STAGING}" ] ; then
 fi
 
 # Make a temporary build directory, and do the build in there
-TMPDIR=/tmp/$PACKAGE.$$
 mkdir $TMPDIR
 pushd build
 . ../scripts/$PACKAGE $TMPDIR
 popd
 
-rm -rf $TMPDIR
+cleanup
 
