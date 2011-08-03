@@ -144,11 +144,15 @@ do_make() {
 # They can also end up pointing to /lib (or //lib), which is no 
 # good for the cross compile. 
 # Similar issues happen with pkg-config files
+# Also, pre pkg-config packages which have their own bin/*-config
+# script need some adjustment
 fix_install_paths() {
     find "$1" -name "*.la" -exec sed -i "s#${1}#${STAGING}#g" {} \;
     find "$1" -name "*.la" -exec sed -i "s#\([' ]\)//*lib#\1${STAGING}/lib#g" {} \;
     find "$1" -name "*.pc" -exec sed -i "s#${1}#${STAGING}#g" {} \;
     find "$1" -name "*.pc" -exec sed -i "s#prefix=/\$#prefix=${STAGING}#g" {} \;
+    find "$1" -path "*/bin/*-config" -exec sed -i "s#^prefix=/\$#prefix=${STAGING}#g" {} \;
+    find "$1" -path "*/bin/*-config" -exec sed -i "s#^prefix=\"/\"\$#prefix=${STAGING}#g" {} \;
 }
 
 #
