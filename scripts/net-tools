@@ -52,6 +52,6 @@ EOF
 }
 
 download_unpack "${SOURCE}"
-make CC=${CROSS}gcc
+make CC=${CROSS}gcc COPTS="${CFLAGS} -g -Wall"
 make install BASEDIR="$1"
 build_generic_package "$1"
