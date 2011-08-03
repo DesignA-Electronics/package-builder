@@ -1,7 +1,8 @@
 #!/bin/bash
+BASEDIR=`realpath $1`
 if [ "$1" == "--atleast-pkgconfig-version" ] ; then
     /usr/bin/pkg-config $@
 else
-    /usr/bin/pkg-config --define-variable=prefix=/home/andre/work/package_builder/staging $@
+    /usr/bin/pkg-config --define-variable=prefix=$BASEDIR/staging $@
 fi
 
