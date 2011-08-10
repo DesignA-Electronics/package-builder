@@ -1,5 +1,5 @@
 NAME=bluez
-VERSION=4.95
+VERSION=4.96
 SOURCE=http://www.kernel.org/pub/linux/bluetooth/bluez-${VERSION}.tar.gz
 export DBUS_CFLAGS="-I${STAGING}/include/dbus-1.0 -I${STAGING}/lib/dbus-1.0/include"
 export DBUS_LIBS="-L${STAGING}/lib -ldbus-1"
