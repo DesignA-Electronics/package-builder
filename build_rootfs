@@ -47,6 +47,11 @@ copy_lib () {
 ##
 install_package() {
     package=$1
+    count=`ls ${PACKAGE_DIR}/${package}_*.ipk | wc -l`
+    if [ $count -gt 1 ] ; then
+        echo "Multiple versions of ${package} in packages dir" >&2
+        exit 1
+    fi
     FILE=`realpath ${PACKAGE_DIR}/${package}_*.ipk`
     #echo $FILE
     if [ ! -f ${FILE} ] ; then
