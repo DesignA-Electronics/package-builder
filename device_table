@@ -112,4 +112,5 @@
 /dev/mmcblk0p1	b	660	0	0	254	1	-	-	-
 /dev/video	c	644	0	0	81	0	-	-	-
 /dev/video0	c	644	0	0	81	0	-	-	-
+/dev/ppp        c       644     0       0       108     0       -       -       -
 /dev/log        l       /var/tmp/syslog.socket
