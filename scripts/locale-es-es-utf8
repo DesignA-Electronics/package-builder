@@ -1,0 +1,5 @@
+NAME=locale-es-es-utf8
+LOCALE=es_ES.utf8
+
+. ${SCRIPT_DIR}/locale-generic
+

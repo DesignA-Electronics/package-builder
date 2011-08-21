@@ -4,6 +4,7 @@ STAGING=${BASE}/staging
 BUILD_DIR=${BASE}/build
 SUPPORT_FILES=${BASE}/support_files
 DOWNLOAD_CACHE_DIR=/work/internal/package_download_cache/
+SCRIPT_DIR=${BASE}/scripts
 
 TOOLCHAIN_DIR=/tools/arm/arm-2010q1
 CROSS=arm-none-linux-gnueabi-

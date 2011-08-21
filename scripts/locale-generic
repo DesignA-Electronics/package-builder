@@ -1,0 +1,6 @@
+VERSION=`${CC} -v 2>&1 | grep "^gcc version" | awk '{print $3}'`
+
+mkdir -p "$1"/usr/lib/locale/${LOCALE}
+cp -a ${TOOLCHAIN_DIR}/${HOST}/libc/armv4t/usr/lib/locale/${LOCALE}/* "$1"/usr/lib/locale/${LOCALE}
+
+build_package "${NAME}" "${VERSION}" "$1"
