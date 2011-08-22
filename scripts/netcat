@@ -1,0 +1,5 @@
+NAME=netcat
+VERSION=0.7.1
+SOURCE=http://sourceforge.net/projects/netcat/files/netcat/${VERSION}/netcat-${VERSION}.tar.bz2
+
+do_generic "$1"
