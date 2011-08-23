@@ -24,4 +24,5 @@ CC=${CROSS}gcc CXX=${CROSS}g++ AR=${CROSS}ar RANLIB=${CROSS}ranlib ./configure -
 make HOSTPYTHON=./hostpython HOSTPGEN=./Parser/hostpgen BLDSHARED="${CROSS}gcc -shared" CROSS_COMPILE=rm-none-linux-gnueabi- CROSS_COMPILE_TARGET=yes -j4
 make install HOSTPYTHON=./hostpython BLDSHARED="${CROSS}gcc -shared" CROSS_COMPILE=${CROSS} CROSS_COMPILE_TARGET=yes prefix="$1"
 
+build_package "${NAME}"-dev "${VERSION}" "$1" "${DEV_FILES}"
 build_package "${NAME}" "${VERSION}" "$1"
