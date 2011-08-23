@@ -4,9 +4,11 @@ SOURCE=ftp://ftp.alsa-project.org/pub/utils/alsa-utils-${VERSION}.tar.bz2
 CONFIGURE_PARAMS="--with-curses=ncurses"
 
 # So we find the right ncurses5-config
-export PATH=${STAGING}/bin/ncurses5-config:$PATH
+cp ${STAGING}/bin/ncurses5-config "$1"
+export PATH=$1:$PATH
 
 do_build_install "$1"
+rm "$1"/ncurses5-config
 build_package "${NAME}"-wav "${VERSION}" "$1" ".*/sounds/.*wav"
 build_generic_package "$1"
 
