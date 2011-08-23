@@ -1,0 +1,7 @@
+NAME=util-linux
+VERSION=2.19.1
+SOURCE=ftp://ftp.kernel.org/pub/linux/utils/util-linux/v2.19/util-linux-${VERSION}.tar.bz2
+
+CONFIGURE_PARAMS="--disable-use-tty-group --disable-makeinstall-chown --disable-makeinstall-setuid"
+
+do_generic "$1"
