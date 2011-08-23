@@ -1,0 +1,5 @@
+NAME=libhal
+VERSION=0.5.14
+SOURCE=http://hal.freedesktop.org/releases/hal-${VERSION}.tar.bz2
+
+do_generic "$1"
