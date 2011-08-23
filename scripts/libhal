@@ -2,4 +2,6 @@ NAME=libhal
 VERSION=0.5.14
 SOURCE=http://hal.freedesktop.org/releases/hal-${VERSION}.tar.bz2
 
+CONFIGURE_PARAMS="--disable-pci-ids --disable-usb-ids --disable-policy-kit --disable-console-kit"
+
 do_generic "$1"
