@@ -1,0 +1,5 @@
+NAME=libzip
+VERSION=0.10
+SOURCE=http://www.nih.at/libzip/libzip-${VERSION}.tar.bz2
+
+do_generic "$1"
