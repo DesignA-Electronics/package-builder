@@ -1,0 +1,5 @@
+NAME=libconfuse
+VERSION=2.7
+SOURCE=http://savannah.nongnu.org/download/confuse/confuse-${VERSION}.tar.gz
+
+do_generic "$1"
