@@ -1,0 +1,15 @@
+NAME=php5
+VERSION=5.3.8
+SOURCE=http://php.net/distributions/php-${VERSION}.tar.bz2
+
+download_unpack "$SOURCE"
+rm -f config.cache
+export PHP_LIBXML_DIR=${STAGING}
+DEV_FILES="${DEV_FILES}|.*/lib/php/build/.*"
+LDFLAGS=${LDFLAGS} CFLAGS="${CFLAGS} -I${STAGING}/include/libxml2 -L${STAGING}/lib -lresolv" CC=${CROSS}gcc ./configure --prefix="$1" --oldincludedir=${STAGING}/include --disable-phar --without-pear --disable-all --enable-sockets
+# Nasty hack, as I can't quite work out how to stop configure 
+# from putting -I/usr/include into the makefile
+find . -name Makefile -exec sed -i s#/usr/include#${STAGING}/include#g {} \;
+do_make
+do_install
+build_generic_package "$1"

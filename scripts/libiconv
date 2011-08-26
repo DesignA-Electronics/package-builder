@@ -1,0 +1,5 @@
+NAME=libiconv
+VERSION=1.14
+SOURCE=http://ftp.gnu.org/pub/gnu/libiconv/libiconv-${VERSION}.tar.gz
+
+do_generic "$1"
