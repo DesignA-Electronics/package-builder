@@ -87,3 +87,4 @@ locale-pt-br-utf8
 netcat
 libconfuse
 libzip
+libiconv
