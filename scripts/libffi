@@ -1,0 +1,6 @@
+NAME=libffi
+VERSION=3.0.10
+SOURCE=ftp://sourceware.org/pub/libffi/libffi-${VERSION}.tar.gz
+
+do_generic "$1"
+

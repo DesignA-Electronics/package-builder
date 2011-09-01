@@ -1,0 +1,8 @@
+NAME=cairo
+VERSION=1.10.2
+SOURCE=http://cairographics.org/releases/cairo-${VERSION}.tar.gz
+
+CONFIGURE_PARAMS="--enable-xlib=no"
+
+do_generic "$1"
+
