@@ -3,7 +3,7 @@ VERSION=3.36
 SOURCE=http://bluez.sf.net/download/bluez-utils-${VERSION}.tar.gz
 
 export GLIB_CFLAGS="-I${STAGING}/include/glib-2.0 -I${STAGING}/lib/glib-2.0/include"
-export DBUS_CFLAGS="-I${STAGING}/include/dbus-1.0"
+export DBUS_CFLAGS="-I${STAGING}/include/dbus-1.0 -I${STAGING}/lib/dbus-1.0/include"
 
 do_generic "$1"
 
