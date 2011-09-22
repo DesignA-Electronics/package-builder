@@ -1,0 +1,6 @@
+NAME=lib3ds
+VERSION=1.3.0
+SOURCE=http://lib3ds.googlecode.com/files/lib3ds-${VERSION}.zip
+
+do_generic "$1"
+
