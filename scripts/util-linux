@@ -1,6 +1,8 @@
 NAME=util-linux
 VERSION=2.19.1
-SOURCE=ftp://ftp.kernel.org/pub/linux/utils/util-linux/v2.19/util-linux-${VERSION}.tar.bz2
+#SOURCE=ftp://ftp.kernel.org/pub/linux/utils/util-linux/v2.19/util-linux-${VERSION}.tar.bz2
+SOURCE=http://ftp.de.debian.org/debian/pool/main/u/util-linux/util-linux_${VERSION}.orig.tar.gz
+FORCE_DIRNAME=util-linux-${VERSION}
 
 CONFIGURE_PARAMS="--disable-use-tty-group --disable-makeinstall-chown --disable-makeinstall-setuid"
 
