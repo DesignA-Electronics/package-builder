@@ -1,0 +1,6 @@
+NAME=popt
+VERSION=1.16
+SOURCE=http://rpm5.org/files/popt/popt-${VERSION}.tar.gz
+
+do_generic "$1"
+

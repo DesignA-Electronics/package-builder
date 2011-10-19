@@ -1,0 +1,10 @@
+NAME=memtester
+VERSION=4.2.2
+SOURCE=http://pyropus.ca/software/memtester/old-versions/memtester-${VERSION}.tar.gz
+
+download_unpack "$SOURCE"
+echo ${CROSS}gcc ${CFLAGS} > conf-cc
+echo ${CROSS}gcc ${LDFLAGS} -s > conf-ld
+make install INSTALLPATH="$1"/
+build_generic_package "$1"
+
