@@ -90,3 +90,5 @@ libzip
 libiconv
 lib3ds
 stress
+memtester
+popt
