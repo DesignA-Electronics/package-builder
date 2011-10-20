@@ -1,0 +1,10 @@
+NAME=oprofile
+VERSION=0.9.7
+SOURCE=http://prdownloads.sourceforge.net/oprofile/oprofile-${VERSION}.tar.gz
+
+# So we find libiberty & libpopt properly
+export LDFLAGS="${LDFLAGS} -L${STAGING}/lib/armv4t -Wl,-rpath=${STAGING}/lib"
+export CPPFLAGS="${CFLAGS}"
+
+do_generic "$1"
+
