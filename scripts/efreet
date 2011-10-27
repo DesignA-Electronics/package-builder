@@ -1,0 +1,6 @@
+NAME=efreet
+VERSION=1.0.1
+SOURCE=http://download.enlightenment.org/releases/${NAME}-${VERSION}.tar.gz
+
+do_generic "$1"
+

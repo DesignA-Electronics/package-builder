@@ -1,0 +1,7 @@
+NAME=eina
+VERSION=1.0.1
+SOURCE=http://download.enlightenment.org/releases/eina-${VERSION}.tar.gz
+CONFIGURE_PARAMS="--disable-valgrind"
+
+do_generic "$1"
+

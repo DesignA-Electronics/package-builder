@@ -1,0 +1,6 @@
+NAME=eet
+VERSION=1.4.1
+SOURCE=http://download.enlightenment.org/releases/eet-${VERSION}.tar.gz
+
+do_generic "$1"
+

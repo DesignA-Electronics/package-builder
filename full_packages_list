@@ -94,3 +94,10 @@ memtester
 popt
 binutils
 lua
+eina
+eet
+evas
+ecore
+embryo
+edje
+efreet
