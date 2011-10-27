@@ -1,0 +1,11 @@
+NAME=python-dbus
+VERSION=0.84.0
+SOURCE=http://dbus.freedesktop.org/releases/dbus-python/dbus-python-${VERSION}.tar.gz
+
+export GLIB_CFLAGS="-I${STAGING}/include/glib-2.0 -I${STAGING}/lib/glib-2.0/include"
+export DBUS_CFLAGS="-I${STAGING}/include/dbus-1.0 -I${STAGING}/lib/dbus-1.0/include"
+export PYTHON_INCLUDES="-I${STAGING}/include/python2.6"
+export PYTHON_LIBS="-L${STAGING}/lib -lpython2.6"
+
+do_generic "$1"
+
