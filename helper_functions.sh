@@ -3,7 +3,7 @@
 
 # Regex for matching files that should go into development packages
 DOC_FILES=".*/man/.*|.*/info/.*|.*/share/.*doc/.*"
-DEV_FILES=".*\.h|.*\.a|.*\.la|.*/pkgconfig/.*|.*/bin/.*-config|.*/share/aclocal/.*\.m4"
+DEV_FILES=".*\.h|.*\.a|.*\.la|.*/pkgconfig/.*|.*/bin/.*-config|.*/share/aclocal/.*\.m4|.*/include/.*\.x|.*/include/.*\.hpp"
 # Regex for matching LOCALE files
 LOCALE_FILES=".*/share/locale/.*"
 
