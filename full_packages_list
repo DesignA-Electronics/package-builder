@@ -93,3 +93,4 @@ stress
 memtester
 popt
 binutils
+lua
