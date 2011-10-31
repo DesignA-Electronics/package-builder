@@ -1,0 +1,27 @@
+DEST="$1"
+mkdir -p "$1"/lib
+mkdir -p "$1"/usr/lib
+
+if [ -z "${TOOLCHAIN_LIBC_DIR}" ] ; then
+    echo "TOOLCHAIN_LIBC_DIR not set" >&2
+    exit 1
+fi
+
+copy_lib () {
+    for f in $* ; do
+        # They might be in lib, or usr/lib, so just copy from both
+        # Ignore any errors, as not all of these files are going to be in
+        # all the toolchains
+        cp -a "${TOOLCHAIN_LIBC_DIR}/lib/"$f "$DEST/lib" || true
+        cp -a "${TOOLCHAIN_LIBC_DIR}/usr/lib/"$f "$DEST/usr/lib" || true
+    done
+}
+
+copy_lib ld-*.so libc-*.so libm-*.so libcrypt-*.so libnss_files-*.so libnss_dns-*.so libresolv-*.so libgcc_s.so.* libpthread-*.so librt-*.so libdl-*.so libnsl-*.so libutil-*.so libthread_db-*.so libstdc++.so* libuClibc-*.so
+
+# C++ in its own package
+build_package toolchain-libs-c++ 1.0.0 "$1" ".*/libstdc++.*\.so.*"
+# ld-linux, libgcc, libc & libm are the 'core' packages
+build_package toolchain-libs-core 1.0.0 "$1" ".*/ld-.*\.so.*|.*/libc-.*\.so.*|.*/libuClibc-.*\.so.*|.*/ld-uClibc.*\.so.*|.*/libgcc_s.so.*|.*/libm-.*\.so.*"
+# Whatever is left
+build_package toolchain-libs-misc 1.0.0 "$1"
