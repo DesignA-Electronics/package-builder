@@ -6,8 +6,16 @@ SUPPORT_FILES=${BASE}/support_files
 DOWNLOAD_CACHE_DIR=/work/internal/package_download_cache/
 SCRIPT_DIR=${BASE}/scripts
 
+# Codesourcery 2010q1
 TOOLCHAIN_DIR=/tools/arm/arm-2010q1
+TOOLCHAIN_LIBC_DIR=${TOOLCHAIN_DIR}/arm-none-linux-gnueabi/libc/armv4t
 CROSS=arm-none-linux-gnueabi-
+
+# Crosstools-ng 1.9.3 build of uClibc with GCC
+#TOOLCHAIN_DIR=/home/andre/x-tools/arm-unknown-linux-uclibcgnueabi
+#TOOLCHAIN_LIBC_DIR=${TOOLCHAIN_DIR}/arm-unknown-linux-uclibcgnueabi/sys-root
+#CROSS=arm-unknown-linux-uclibcgnueabi-
+
 HOST=arm-none-linux-gnueabi
 ARCH=${ARCH:-arm}
 # Set this to something else if you want to name your 
