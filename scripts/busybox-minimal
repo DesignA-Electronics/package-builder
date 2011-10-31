@@ -1,0 +1,14 @@
+NAME=busybox-minimal
+VERSION=1.19.0
+SOURCE=http://busybox.net/downloads/busybox-${VERSION}.tar.bz2
+
+download_unpack "$SOURCE"
+cp ${SUPPORT_FILES}/configs/busybox-minimal.config .config
+# make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS="${CFLAGS}" oldconfig
+# make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS="${CFLAGS}" -j4
+make CROSS_COMPILE=${CROSS} ARCH=${ARCH} -j4
+make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS="${CFLAGS}" busybox.links
+./applets/install.sh "$1" --symlinks
+
+build_package ${NAME} ${VERSION} $1
+
