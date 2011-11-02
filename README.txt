@@ -18,8 +18,7 @@ NAME - name of the package
 VERSION - package version
 SOURCE - downloadable location of the source
 FORCE_DIRNAME - if the unpacked directory name is not the same as the filename (without suffix), then set this to the correct directory name
-BUILD_LIBRARY - if set to 1, then a -dev version of the package will be built containing all the .a, .h & man pages
-The folloowing functions can be defined within a script to give finer control
+The following functions can be defined within a script to give finer control
 over the build process:
 post_unpack - This will be run after the archive is unpacked from within the source directory
 post_install - This will be run after the installation process to the temporary directory has completed. It will be passed the full directory path as its argument
