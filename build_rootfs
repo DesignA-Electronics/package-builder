@@ -56,7 +56,7 @@ install_package() {
         echo "Cannot find package '${package}'" >&2
         exit 1
     fi
-    ar p ${FILE} data.tar.gz | tar -xmzC ${DEST} --no-overwrite-dir --delay-directory-restore
+    sh -c "ar p ${FILE} data.tar.gz | tar -xmzC ${DEST} --no-overwrite-dir --delay-directory-restore" &
     echo -n "."
 }
 
@@ -118,15 +118,25 @@ make_devices () {
 # Build directory structure
 mkdir -p "$DEST/lib" "$DEST/dev" "$DEST/proc" "$DEST/sys" "$DEST/etc/init.d" "$DEST/var/tmp" "$DEST/home" "$DEST/mnt" "$DEST/var/run" "$DEST/usr/local/bin" "$DEST/usr/lib" "$DEST/lib/modules"
 
-# Copy libraries (ARM only)
+# Copy libraries (ARM only), and only if there is no mention of 'toolchain-libs' in the packages file
+# New projects should include the toolchain-libs into their packages listing, this is just
+# for compatability with older projects
 if [ "${ARCH}" == "arm" ] ; then
-    echo -n "  Copying Libraries "
-    ln -s /var/tmp "$DEST/tmp"
+    if ! grep -q toolchain-libs $PACKAGES_LIST ; then
+        echo -n "  Copying Libraries "
+        ln -s /var/tmp "$DEST/tmp"
 
-    # Copy toolchain libraries
-    copy_lib lib ld-*.so libc-*.so libm-*.so libcrypt-*.so libnss_files-*.so libnss_dns-*.so libresolv-*.so libgcc_s.so.* libpthread-*.so librt-*.so libdl-*.so libnsl-*.so libutil-*.so libthread_db-*.so
-    copy_lib usr/lib libstdc++.so*
-    echo
+        # Copy toolchain libraries
+        if [ "$USE_UCLIBC" == "1" ] ; then
+            copy_lib lib libuClibc-*.so
+            copy_lib lib libstdc++.so*
+        else
+            copy_lib lib libc-*.so libnss_files-*.so libnss_dns-*.so libthread_db-*.so
+            copy_lib usr/lib libstdc++.so*
+        fi
+        copy_lib lib ld-*.so libm-*.so libcrypt-*.so libresolv-*.so libgcc_s.so.* libpthread-*.so librt-*.so libdl-*.so libnsl-*.so libutil-*.so
+        echo
+    fi
 fi
 
 # Copy default root files
