@@ -4,7 +4,7 @@ SOURCE=http://www.openssl.org/source/openssl-${VERSION}.tar.gz
 
 download_unpack "${SOURCE}"
 
-CC=${CROSS}gcc ./Configure --prefix=$1 linux-armv4
+CC="${CROSS}gcc ${CFLAGS}" ./Configure --prefix=$1 linux-armv4
 make install
 
 fix_install_paths "$1"
