@@ -211,6 +211,11 @@ build_generic_package() {
     build_package "${NAME}" "${VERSION}" "$1"
 }
 
+remove_cflags() {
+    remove=$1
+    CFLAGS=`echo $CFLAGS | sed "s/$1//g"`
+}
+
 # Builds a package using the standard ./configure, make, make install
 # and then packages it up into 4 archives:
 # doc, dev, locale & what ever is left.
