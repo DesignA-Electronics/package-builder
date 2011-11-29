@@ -121,6 +121,23 @@ download_unpack() {
 do_configure() {
     export PKG_CONFIG_PATH=${STAGING}/lib/pkgconfig
 
+    # Some config.sub files don't understand the -linux-uclibcgnueabi os 
+    # option, so fix them to think of it the same way as -linux-gnueabi
+    if [ "$FIX_CONFIG_SUB" == "1" ] ; then
+        if [ -f config.sub ] ; then
+            file=config.sub
+        else
+            file=*/config.sub
+        fi
+        if [ -z "$file" ] ; then
+            echo "Cannot find config.sub file"
+            exit 1
+        fi
+        echo "Fixing linux-uclibcgnu* option in $file"
+        sed -i 's/ linux-gnu\*/ linux-uclibcgnu\* | linux-gnu\*/g' $file
+        sed -i 's/ -linux-gnu\*/ -linux-uclibcgnu\* | -linux-gnu\*/g' $file
+    fi
+
     if [ ! -f configure ] ; then
         LDFLAGS=$LDFLAGS CFLAGS=$CFLAGS ./autogen.sh --host=$HOST --prefix=/ $CONFIGURE_PARAMS
     fi
