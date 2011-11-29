@@ -10,7 +10,7 @@ if [ ! -d ${NAME} ] ; then
 else
     pushd ${NAME}
 fi
-make CC=${CROSS}gcc
+make CC=${CROSS}gcc SYSFLAGS="${CFLAGS}"
 
 mkdir -p ${1}/bin
 cp Bonnie ${1}/bin
