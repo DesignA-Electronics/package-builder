@@ -1,0 +1,12 @@
+NAME=fbset
+VERSION=2.1
+SOURCE=http://users.telenet.be/geertu/Linux/fbdev/fbset-${VERSION}.tar.gz
+
+download_unpack "$SOURCE"
+make CC="${CROSS}gcc ${CFLAGS}"
+mkdir -p "$1"/bin "$1"/man/man8 "$1"/man/man5
+cp fbset "$1"/bin
+cp fbset.8 "$1"/man/man8
+cp fb.modes.5 "$1"/man/man5
+build_generic_package "$1"
+
