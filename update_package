@@ -27,7 +27,7 @@ if [ ! -f "scripts/$PACKAGE" ] ; then
     exit 1
 fi
 
-executable_required "flex" "bison" "fromdos" "git" "svn" "autoconf" "libtool" "shtool"
+executable_required "flex" "bison" "fromdos" "git" "svn" "autoconf" "libtool" "shtool" "xmlto"
 
 # Ensure all of the directories are in place
 if [ ! -d "${PACKAGE_DIR}" ] ; then
