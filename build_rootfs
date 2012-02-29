@@ -1,12 +1,6 @@
 #!/bin/bash
 
-if ! which realpath > /dev/null 2>&1 ; then
-    echo "'realpath' utility function not installed." >&2
-    echo "Please install & retry" >&1
-    exit 1
-fi
-
-ROOT=$(realpath $(dirname $0))
+ROOT=$(readlink -f $(dirname $0))
 
 set -e
 . ${ROOT}/config
@@ -50,7 +44,7 @@ install_package() {
         echo "Multiple versions of ${package} in packages dir" >&2
         exit 1
     fi
-    FILE=`realpath ${PACKAGE_DIR}/${package}_*.ipk`
+    FILE=`readlink -f ${PACKAGE_DIR}/${package}_*.ipk`
     #echo $FILE
     if [ ! -f ${FILE} ] ; then
         echo "Cannot find package '${package}'" >&2
@@ -178,7 +172,7 @@ if [ "$STRIP_ROOTFS" == "1" ] ; then
 fi
 
 # Finalise .so symlinks
-/sbin/ldconfig -r `realpath "$DEST"`
+/sbin/ldconfig -r `readlink -f "$DEST"`
 
 # Ensure that we have linuxrc in the root
 if [ ! -f ${DEST}/linuxrc ]; then

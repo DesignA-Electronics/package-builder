@@ -1,5 +1,5 @@
 #!/bin/bash
-BASEDIR=`realpath $1`
+BASEDIR=`readlink -f $1`
 if [ "$1" == "--atleast-pkgconfig-version" ] ; then
     /usr/bin/pkg-config $@
 else
