@@ -1,5 +1,5 @@
 NAME=ffmpeg
-VERSION=0.6
+VERSION=0.10
 SOURCE=http://www.ffmpeg.org/releases/ffmpeg-${VERSION}.tar.bz2
 
 download_unpack "$SOURCE"
