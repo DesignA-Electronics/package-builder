@@ -1,0 +1,17 @@
+NAME=v4l-utils
+VERSION=0.8.6
+SOURCE=http://linuxtv.org/downloads/v4l-utils/v4l-utils-${VERSION}.tar.bz2
+
+MAKE_PARAMS="CC=${CROSS}gcc CXX=${CROSS}g++"
+export CPPFLAGS="${CFLAGS}"
+export LDFLAGS="${LDFLAGS} -Wl,-rpath=${STAGING}/lib"
+
+download_unpack "$SOURCE"
+
+# Remove this line
+sed -i 's@#include <linux/i2c.h>@@'g utils/rds/rds-saa6588.c
+
+do_make
+make install DESTDIR="$1" PREFIX=/
+fix_install_paths "$1"
+build_generic_package "$1"
