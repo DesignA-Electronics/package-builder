@@ -1,0 +1,13 @@
+NAME=dash
+VERSION=git
+SOURCE=git://git.kernel.org/pub/scm/utils/dash/dash.git
+
+if [ ! -d ${NAME} ] ; then
+    git clone ${SOURCE} ${NAME}
+fi
+pushd ${NAME}
+git pull
+do_configure
+do_make
+do_install "$1"
+build_generic_package "$1"
