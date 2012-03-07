@@ -95,3 +95,5 @@ memtester
 popt
 binutils
 lua
+dash
+musl

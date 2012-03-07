@@ -1,0 +1,22 @@
+NAME=musl
+VERSION=0.8.6
+SOURCE=http://www.etalabs.net/musl/releases/musl-${VERSION}.tar.gz
+
+download_unpack "${SOURCE}"
+
+cat >> config.mak << EOF
+prefix=/
+exec_prefix=/
+ARCH=${ARCH}
+DESTDIR=$1
+CC=${CROSS}gcc
+CROSS_COMPILE=${CROSS}
+EOF
+# Should be adding cflags, but they don't support armv4t
+# CFLAGS+=${CFLAGS}
+
+do_make
+do_install "$1"
+
+build_generic_package "$1"
+
