@@ -30,7 +30,7 @@ copy_lib () {
     shift
     for f in $* ; do
         echo -n "."
-        cp -a "$TOOLCHAIN_LIBC_DIR"/$base/$f "$DEST"/$base &
+        cp -a "$TOOLCHAIN_LIBC_DIR"/$base/$f "$DEST"/$base
     done
 }
 
@@ -50,7 +50,7 @@ install_package() {
         echo "Cannot find package '${package}'" >&2
         exit 1
     fi
-    sh -c "ar p ${FILE} data.tar.gz | tar -xmzC ${DEST} --no-overwrite-dir --delay-directory-restore" &
+    sh -c "ar p ${FILE} data.tar.gz | tar -xmzC ${DEST} --no-overwrite-dir --delay-directory-restore"
     echo -n "."
 }
 
@@ -149,7 +149,10 @@ cat $PACKAGES_LIST | while read p ; do
     fi
     install_package $p
 done
+wait
+
 echo
+
 
 # Build device files
 echo -n "  Building Device Files "
@@ -170,6 +173,11 @@ if [ "$STRIP_ROOTFS" == "1" ] ; then
     done
     echo
 fi
+
+
+# Newer ldconfigs require a cache file. 
+# We create the directory so that it doesn't complain
+mkdir -p "${DEST}/var/cache/ldconfig"
 
 # Finalise .so symlinks
 /sbin/ldconfig -r `readlink -f "$DEST"`
