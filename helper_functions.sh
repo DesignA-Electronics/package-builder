@@ -75,27 +75,51 @@ download() {
     fi
 }
 
+unpack() {
+    FILENAME="$1"
+    DIRNAME="$2"
+    if [ ${FILENAME%.tar.gz} != ${FILENAME} ] ; then
+        EXTRACT="tar xfz"
+    elif [ ${FILENAME%.tgz} != ${FILENAME} ] ; then
+        EXTRACT="tar xfz"
+    elif [ ${FILENAME%.tar.bz2} != ${FILENAME} ] ; then
+        EXTRACT="tar xfj"
+    elif [ ${FILENAME%.zip} != ${FILENAME} ] ; then
+        EXTRACT="unzip"
+    elif [ ${FILENAME%.tar.xz} != ${FILENAME} ] ; then
+        EXTRACT="tar xfJ"
+    else
+        echo "Unknown extraction name: $FILENAME"
+        exit 1
+    fi
+
+    if [ ! -d ${DIRNAME} ] ; then
+        ${EXTRACT} ${FILENAME}
+        pushd ${DIRNAME}
+        # If we define 'post_unpack', then run it
+        if type post_unpack >/dev/null 2>&1 ; then
+            post_unpack
+        fi
+        popd
+    fi
+}
+
 download_unpack() {
     SOURCE="$1"
-    FILENAME=$2
+    FILENAME="$2"
     if [ -z "$FILENAME" ] ; then
         FILENAME=`basename "$SOURCE"`
     fi
 
     if [ ${FILENAME%.tar.gz} != ${FILENAME} ] ; then
-        EXTRACT="tar xfz"
         DIRNAME=${FILENAME%.tar.gz}
     elif [ ${FILENAME%.tgz} != ${FILENAME} ] ; then
-        EXTRACT="tar xfz"
         DIRNAME=${FILENAME%.tgz}
     elif [ ${FILENAME%.tar.bz2} != ${FILENAME} ] ; then
-        EXTRACT="tar xfj"
         DIRNAME=${FILENAME%.tar.bz2}
     elif [ ${FILENAME%.zip} != ${FILENAME} ] ; then
-        EXTRACT="unzip"
         DIRNAME=${FILENAME%.zip}
     elif [ ${FILENAME%.tar.xz} != ${FILENAME} ] ; then
-        EXTRACT="tar xfJ"
         DIRNAME=${FILENAME%.tar.xz}
     else
         echo "Unknown extraction name: $FILENAME"
@@ -107,18 +131,9 @@ download_unpack() {
     fi
 
     download "$SOURCE" "$FILENAME"
+    unpack "$FILENAME" "$DIRNAME"
 
-    if [ ! -d ${DIRNAME} ] ; then
-        ${EXTRACT} ${FILENAME}
-        pushd ${DIRNAME}
-        # If we define 'post_unpack', then run it
-        if type post_unpack >/dev/null 2>&1 ; then
-            post_unpack
-        fi
-    else
-        pushd ${DIRNAME}
-    fi
-
+    pushd ${DIRNAME}
 }
 
 do_configure() {
