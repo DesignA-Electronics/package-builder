@@ -269,7 +269,7 @@ do_pmake_build() {
         pushd $DIR
     fi
 
-    CFLAGS="-I${STAGING}/include -I${STAGING}/usr/include"
+    CFLAGS="-I${STAGING}/include"
     CC=${CROSS}gcc LD=${CROSS}ld CFLAGS=${CFLAGS} pmake
 
     if [ -n "$DIR" ] ; then
@@ -290,7 +290,7 @@ do_pmake_install() {
     done
 
     GROUP=`id -gn`
-    ARGS="DESTDIR=${DEST}"
+    ARGS="DESTDIR=${DEST} LIBDIR=/lib OBJECT_FMT=ELF"
     ARGS="${ARGS} BINOWN=${USER} BINGRP=${GROUP}"
     ARGS="${ARGS} MANOWN=${USER} MANGRP=${GROUP}"
     INSTALL="install -D" MACHINE_MULTIARCH="" pmake install ${ARGS}
