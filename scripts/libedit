@@ -1,0 +1,11 @@
+NAME=libedit
+VERSION=2.11
+DATE=20080614
+PATCH_LEVEL=3
+
+download_unpack_debian "${NAME}" "${VERSION}-${DATE}" "tar.bz2" "${PATCH_LEVEL}"
+# This file needs to be executable
+chmod u+x libedit/makelist
+do_pmake "$1" libedit
+build_generic_package "$1"
+
