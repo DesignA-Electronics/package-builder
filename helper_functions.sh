@@ -167,7 +167,11 @@ do_configure() {
 }
 
 do_make() {
-    make -j4 $MAKE_PARAMS
+    J=4
+    if [ -f /proc/cpuinfo ] ; then
+        J=`grep -c "^processor" /proc/cpuinfo`
+    fi
+    make -j$J $MAKE_PARAMS
 
     if type post_make > /dev/null 2>&1 ; then
         post_make
