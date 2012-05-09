@@ -136,6 +136,44 @@ download_unpack() {
     pushd ${DIRNAME}
 }
 
+# Downloads and unpacks the debian pakage source
+download_unpack_debian() {
+    NAME=$1
+    VERSION=$2
+    EXTENSION=$3
+
+    DIR=${NAME:0:1}
+    if [ "${NAME:0:3}" = "lib" ] ; then
+        DIR=${NAME:0:4}
+    fi
+
+    BASE="http://ftp.de.debian.org/debian/pool/main/${DIR}/${NAME}"
+
+    if [ -n "$4" ] ; then
+        PATCH=$4
+        PATCH_FILENAME=${NAME}_${VERSION}-${PATCH}.debian.${EXTENSION}
+        PATCH_SOURCE=${BASE}/${PATCH_FILENAME}
+        download "$PATCH_SOURCE" "$PATCH_FILENAME"
+    fi
+
+    FILENAME=${NAME}_${VERSION}.orig.${EXTENSION}
+    SOURCE=${BASE}/${FILENAME}
+    DIRNAME=${NAME}-${VERSION}
+
+    download_unpack "$SOURCE" "$FILENAME" "$DIRNAME"
+
+    if [ -n "$4" ] ; then
+        unpack ../${PATCH_FILENAME} "debian"
+
+        # Apply any patches
+        if [ -d "debian/patches" -a -f "debian/patches/series" ] ; then
+            for patch in `cat debian/patches/series` ; do
+                patch -p1 < debian/patches/$patch
+            done
+        fi
+    fi
+}
+
 do_configure() {
     export PKG_CONFIG_PATH=${STAGING}/lib/pkgconfig
 
@@ -222,6 +260,59 @@ do_simple() {
     do_build_install "$1"
 
     build_package ${NAME} ${VERSION} "$1"
+}
+
+# Build a package with the NetBSD make
+do_pmake_build() {
+    DIR="$1"
+    if [ -n "$DIR" ] ; then
+        pushd $DIR
+    fi
+
+    CFLAGS="-I${STAGING}/include -I${STAGING}/usr/include"
+    CC=${CROSS}gcc LD=${CROSS}ld CFLAGS=${CFLAGS} pmake
+
+    if [ -n "$DIR" ] ; then
+        popd
+    fi
+}
+
+# Install using the NetBSD make
+do_pmake_install() {
+    DEST=$1
+    DIR="$2"
+    if [ -n "$DIR" ] ; then
+        pushd $DIR
+    fi
+
+    for i in 1 2 3 4 5 6 7 8 9 ; do
+        mkdir -p ${DEST}/usr/share/man/man$i/
+    done
+
+    GROUP=`id -gn`
+    ARGS="DESTDIR=${DEST}"
+    ARGS="${ARGS} BINOWN=${USER} BINGRP=${GROUP}"
+    ARGS="${ARGS} MANOWN=${USER} MANGRP=${GROUP}"
+    INSTALL="install -D" MACHINE_MULTIARCH="" pmake install ${ARGS}
+    INSTALL="install -D" MACHINE_MULTIARCH="" pmake incinstall ${ARGS}
+
+    # Attempt to remove empty directories
+    for i in 1 2 3 4 5 6 7 8 9 ; do
+        rmdir ${DEST}/usr/share/man/man$i/ > /dev/null 2>&1 || true
+    done
+
+    if [ -n "$DIR" ] ; then
+        popd
+    fi
+}
+
+# Build and install with the NetBSD make
+do_pmake() {
+    DESTDIR="$1"
+    BASEDIR="$2"
+
+    do_pmake_build "${BASEDIR}"
+    do_pmake_install "${DESTDIR}" "${BASEDIR}"
 }
 
 # Builds a bunch of standard packages based on file wildcards
