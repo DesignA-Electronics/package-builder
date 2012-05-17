@@ -262,6 +262,20 @@ do_simple() {
     build_package ${NAME} ${VERSION} "$1"
 }
 
+# Build using CMake
+do_cmake() {
+	mkdir build
+	pushd build
+
+	cmake -DCMAKE_INSTALL_PREFIX='/' \
+	      -DCMAKE_TOOLCHAIN_FILE=${BASE}/codesourcery.cmake \
+	      ..
+	make
+	make install DESTDIR="$1"
+
+	popd
+}
+
 # Build a package with the NetBSD make
 do_pmake_build() {
     DIR="$1"
