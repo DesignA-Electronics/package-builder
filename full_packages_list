@@ -98,3 +98,4 @@ lua
 dash
 musl
 libevent
+yajl
