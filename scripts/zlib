@@ -1,5 +1,5 @@
 NAME=zlib
-VERSION=1.2.6
+VERSION=1.2.7
 SOURCE=http://zlib.net/zlib-${VERSION}.tar.bz2
 INSTALL_PARAMS=prefix=/
 
