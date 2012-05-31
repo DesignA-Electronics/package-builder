@@ -1,6 +1,7 @@
 NAME=sqlite3
-VERSION=3.7.2
-SOURCE=http://www.sqlite.org/sqlite-amalgamation-${VERSION}.tar.gz
-FORCE_DIRNAME=sqlite-${VERSION}
+VERSION=3.7.11
+#SOURCE=http://www.sqlite.org/sqlite-amalgamation-${VERSION}.tar.gz
+SOURCE=http://www.sqlite.org/sqlite-autoconf-3071100.tar.gz
+#FORCE_DIRNAME=sqlite-${VERSION}
 
 do_generic "${1}"
