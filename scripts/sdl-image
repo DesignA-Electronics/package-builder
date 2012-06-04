@@ -1,5 +1,5 @@
 NAME=sdl-image
-VERSION=1.2.10
+VERSION=1.2.12
 SOURCE=http://www.libsdl.org/projects/SDL_image/release/SDL_image-${VERSION}.tar.gz
 CONFIGURE_PARAMS="--disable-music-mod --disable-music-mp3 --with-sdl-exec-prefix=${STAGING} --with-sdl-prefix=${STAGING}"
 
