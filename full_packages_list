@@ -60,7 +60,7 @@ nfs-utils
 lighttpd
 lame
 minicom
-directfb
+#directfb
 libexif
 ethtool
 bluez
@@ -96,6 +96,6 @@ popt
 binutils
 lua
 dash
-musl
+#musl
 libevent
 yajl
