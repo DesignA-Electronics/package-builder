@@ -49,7 +49,7 @@ EOF
 
 download() {
     SOURCE="$1"
-    FILENAME=$2
+    FILENAME="$2"
     if [ -z "$FILENAME" ] ; then
         FILENAME=`basename "$SOURCE"`
     fi
@@ -304,7 +304,8 @@ do_pmake_install() {
     done
 
     GROUP=`id -gn`
-    ARGS="DESTDIR=${DEST} LIBDIR=/lib OBJECT_FMT=ELF"
+    ARGS="DESTDIR=${DEST} LIBDIR=/lib INCSDIR=/include"
+    ARGX="${ARGS} OBJECT_FMT=ELF"
     ARGS="${ARGS} BINOWN=${USER} BINGRP=${GROUP}"
     ARGS="${ARGS} MANOWN=${USER} MANGRP=${GROUP}"
     INSTALL="install -D" MACHINE_MULTIARCH="" pmake install ${ARGS}
