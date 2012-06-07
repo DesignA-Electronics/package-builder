@@ -4,7 +4,8 @@ SOURCE=http://codemonkey.org.uk/projects/fsx/fsx-linux.c
 
 [ -d ${NAME} ] || mkdir ${NAME}
 pushd ${NAME}
-wget ${SOURCE} -O fsx-linux.c
+#wget ${SOURCE} -O fsx-linux.c
+download "${SOURCE}"
 ${CROSS}gcc -o fsx-linux fsx-linux.c -g -Wall -pipe
 mkdir ${1}/bin/
 cp fsx-linux ${1}/bin/
