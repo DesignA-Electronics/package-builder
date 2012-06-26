@@ -1,10 +1,14 @@
 NAME=sdl-framebuffer
-VERSION=1.2.14
+VERSION=1.2.15
 SOURCE=http://www.libsdl.org/release/SDL-$VERSION.tar.gz
 CONFIGURE_PARAMS="--disable-video-x11 --enable-video-fbcon \
         --enable-pthreads --enable-alsa --enable-input-tslib \
         --disable-pulseaudio --disable-esd --disable-video-directfb \
         --disable-dga"
+export ac_cv_lib_iconv_libiconv_open=no
+export ac_cv_header_iconv_h=no
+export ac_cv_func_iconv=no
+CFLAGS="${CFLAGS} -O3"
 
 post_unpack() {
     patch -p1 < ${SUPPORT_FILES}/patches/sdl-framebuffer-arm-optimisation.patch
