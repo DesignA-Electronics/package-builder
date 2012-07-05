@@ -4,7 +4,7 @@ SOURCE=http://dl.lm-sensors.org/i2c-tools/releases/i2c-tools-${VERSION}.tar.bz2
 
 download_unpack "$SOURCE"
 
-make CC=${CROSS}gcc
+make CC=${CROSS}gcc CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"
 make install prefix=$1
 
 build_generic_package "$1"
