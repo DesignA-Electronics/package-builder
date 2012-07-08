@@ -46,7 +46,7 @@ while read source dest ; do
     # Do this so that variables defined in source/dest are expanded
     source=`eval echo $source`
     dest=`eval echo $dest`
-    if [ ${dest: -1} == "/" ] ; then
+    if [ "${dest: -1}" == "/" ] ; then
         dir=${dest}
     else
         dir=$(dirname ${dest})
