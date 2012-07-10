@@ -27,6 +27,7 @@ libogg
 libvorbis
 liba52
 speex
+flac
 libsndfile
 libexpat
 util-linux
