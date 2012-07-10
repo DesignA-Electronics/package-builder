@@ -1,0 +1,6 @@
+NAME=flac
+VERSION=1.2.1
+SOURCE=http://downloads.sourceforge.net/project/flac/flac-src/flac-${VERSION}-src/flac-${VERSION}.tar.gz
+
+do_generic "$1"
+
