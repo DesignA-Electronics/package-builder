@@ -1,5 +1,5 @@
 NAME=libusb1
-VERSION=1.0.8
+VERSION=1.0.9
 SOURCE=http://downloads.sourceforge.net/project/libusb/libusb-1.0/libusb-${VERSION}/libusb-${VERSION}.tar.bz2
 
 do_generic "$1"

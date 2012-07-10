@@ -1,7 +1,7 @@
 NAME=libjpeg
-VERSION=8b
-SOURCE=http://www.ijg.org/files/jpegsr8b.zip
-FORCE_DIRNAME=jpeg-8b
+VERSION=8d
+SOURCE=http://www.ijg.org/files/jpegsr8d.zip
+FORCE_DIRNAME=jpeg-8d
 
 post_unpack() { 
     fromdos *
