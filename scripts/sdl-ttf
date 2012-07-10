@@ -1,5 +1,5 @@
 NAME=sdl-ttf
-VERSION=2.0.10
+VERSION=2.0.11
 SOURCE=http://www.libsdl.org/projects/SDL_ttf/release/SDL_ttf-${VERSION}.tar.gz
 CFLAGS="${CFLAGS} -I${STAGING}/include/freetype2"
 CONFIGURE_PARAMS="--without-x --disable-gl --with-sdl-exec-prefix=${STAGING} --with-sdl-prefix=${STAGING} --with-freetype-prefix=${STAGING}"

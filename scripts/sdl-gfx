@@ -1,5 +1,5 @@
 NAME=sdl-gfx
-VERSION=2.0.21
+VERSION=2.0.23
 SOURCE=http://www.ferzkopp.net/Software/SDL_gfx-2.0/SDL_gfx-${VERSION}.tar.gz
 CONFIGURE_PARAMS="--disable-mmx"
 export SDL_CONFIG=${STAGING}/bin/sdl-config

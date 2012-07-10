@@ -1,5 +1,5 @@
 NAME=ncurses
-VERSION=5.7
+VERSION=5.9
 SOURCE=http://ftp.gnu.org/pub/gnu/ncurses/ncurses-${VERSION}.tar.gz
 
 CONFIGURE_PARAMS="--enable-overwrite"

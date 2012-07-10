@@ -1,5 +1,5 @@
 NAME=busybox-minimal
-VERSION=1.19.0
+VERSION=1.20.2
 SOURCE=http://busybox.net/downloads/busybox-${VERSION}.tar.bz2
 
 download_unpack "$SOURCE"
