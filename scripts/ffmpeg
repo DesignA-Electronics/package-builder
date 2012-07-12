@@ -1,5 +1,5 @@
 NAME=ffmpeg
-VERSION=0.10
+VERSION=0.11.1
 SOURCE=http://www.ffmpeg.org/releases/ffmpeg-${VERSION}.tar.bz2
 
 download_unpack "$SOURCE"
@@ -7,11 +7,14 @@ download_unpack "$SOURCE"
 make -j4
 do_install "$1"
 build_package "ffmpeg-presets" "${VERSION}" "$1" ".*ffpreset"
+build_package "libavfilter-dev" "${VERSION}" "$1" ".*avfilter.*"
+build_package "libswresample-dev" "${VERSION}" "$1" ".*swresample.*"
 build_package "libavutil-dev" "${VERSION}" "$1" ".*avutil.*"
 build_package "libavcodec-dev" "${VERSION}" "$1" ".*avcodec.*"
 build_package "libavdevice-dev" "${VERSION}" "$1" ".*avdevice.*"
 build_package "libavformat-dev" "${VERSION}" "$1" ".*avformat.*"
 build_package "libswscale-dev" "${VERSION}" "$1" ".*swscale.*"
+build_package "ffmpeg-doc" "${VERSION}" "$1" ".*share/man/.*|.*examples.*"
 build_package "ffmpeg-ffprobe" "${VERSION}" "$1" ".*bin/ffprobe"
 build_package "ffmpeg-ffserver" "${VERSION}" "$1" ".*bin/ffserver"
 build_package "ffmpeg" "${VERSION}" "$1"
