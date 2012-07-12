@@ -23,8 +23,11 @@ ARCH=${ARCH:-arm}
 # (ie: thumb, or armv5 etc...)
 # This only affects the filenames, not the package contents
 PACKAGE_ARCH=${ARCH}
-CFLAGS="-march=armv4t -I${STAGING}/include"
+CFLAGS="-march=armv4t -I${STAGING}/include -O3"
 LDFLAGS="-L${STAGING}/lib -march=armv4t"
+# Uncomment the below lines if you want an armv5 build
+#CFLAGS="-march=armv5t -I${STAGING}/include -O3"
+#LDFLAGS="-L${STAGING}/lib -march=armv5t"
 # Uncomment the below lines if you want a thumb build instead
 #CFLAGS="-march=armv5t -mthumb-interwork -mthumb -I${STAGING}/include"
 #LDFLAGS="-L${STAGING}/lib -march=armv5t"
