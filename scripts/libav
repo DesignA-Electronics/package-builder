@@ -1,0 +1,9 @@
+NAME=libav
+VERSION=0.8.3
+SOURCE=http://libav.org/releases/libav-${VERSION}.tar.xz
+
+download_unpack "$SOURCE"
+./configure --cross-prefix=${CROSS} --target-os=linux --arch=${ARCH} --prefix=/ --extra-cflags="${CFLAGS}" --extra-ldflags="${LDFLAGS}"
+make -j4
+do_install "$1"
+build_generic_package "$1"
