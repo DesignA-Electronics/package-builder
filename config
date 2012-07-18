@@ -34,3 +34,8 @@ LDFLAGS="-L${STAGING}/lib -march=armv4t"
 #PACKAGE_ARCH=thumb
 
 export PATH=${TOOLCHAIN_DIR}/bin:$PATH
+
+CUSTOM_CONFIG=$(dirname $0)/custom_config
+if [ -f "$CUSTOM_CONFIG" ] ; then
+    . "$CUSTOM_CONFIG"
+fi
