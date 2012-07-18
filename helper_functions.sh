@@ -77,23 +77,36 @@ download() {
 
 unpack() {
     FILENAME="$1"
-    DIRNAME="$2"
     if [ ${FILENAME%.tar.gz} != ${FILENAME} ] ; then
         EXTRACT="tar xfz"
+        DIRNAME=${FILENAME%.tar.gz}
     elif [ ${FILENAME%.tgz} != ${FILENAME} ] ; then
         EXTRACT="tar xfz"
+        DIRNAME=${FILENAME%.tgz}
     elif [ ${FILENAME%.tar.bz2} != ${FILENAME} ] ; then
         EXTRACT="tar xfj"
+        DIRNAME=${FILENAME%.tar.bz2}
     elif [ ${FILENAME%.zip} != ${FILENAME} ] ; then
         EXTRACT="unzip"
+        DIRNAME=${FILENAME%.zip}
     elif [ ${FILENAME%.tar.xz} != ${FILENAME} ] ; then
         EXTRACT="tar xfJ"
+        DIRNAME=${FILENAME%.tar.xz}
+    elif [ ${FILENAME%.tar.lzma} != ${FILENAME} ] ; then
+        EXTRACT="tar xfJ"
+        DIRNAME=${FILENAME%.tar.lzma}
     else
         echo "Unknown extraction name: $FILENAME"
         exit 1
     fi
 
-    if [ ! -d ${DIRNAME} ] ; then
+    if [ -n "$2" ] ; then
+        DIRNAME="$2"
+    fi
+
+    if [ -d "${DIRNAME}" ] ; then
+        echo "Skipping unpack - ${DIRNAME} already exists"
+    else
         ${EXTRACT} ${FILENAME}
         pushd ${DIRNAME}
         # If we define 'post_unpack', then run it
@@ -107,27 +120,10 @@ unpack() {
 download_unpack() {
     SOURCE="$1"
     FILENAME="$2"
+    DIRNAME="$3"
+
     if [ -z "$FILENAME" ] ; then
         FILENAME=`basename "$SOURCE"`
-    fi
-
-    if [ ${FILENAME%.tar.gz} != ${FILENAME} ] ; then
-        DIRNAME=${FILENAME%.tar.gz}
-    elif [ ${FILENAME%.tgz} != ${FILENAME} ] ; then
-        DIRNAME=${FILENAME%.tgz}
-    elif [ ${FILENAME%.tar.bz2} != ${FILENAME} ] ; then
-        DIRNAME=${FILENAME%.tar.bz2}
-    elif [ ${FILENAME%.zip} != ${FILENAME} ] ; then
-        DIRNAME=${FILENAME%.zip}
-    elif [ ${FILENAME%.tar.xz} != ${FILENAME} ] ; then
-        DIRNAME=${FILENAME%.tar.xz}
-    else
-        echo "Unknown extraction name: $FILENAME"
-        exit 1
-    fi
-
-    if [ -n "$3" ] ; then
-        DIRNAME=$3
     fi
 
     download "$SOURCE" "$FILENAME"
