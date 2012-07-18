@@ -1,0 +1,17 @@
+NAME=libdce
+VERSION=git
+SOURCE=git://github.com/robclark/libdce.git
+
+if [ ! -d ${NAME} ] ; then
+    git clone ${SOURCE} ${NAME}
+fi
+pushd ${NAME}
+git checkout remotes/origin/rpmsg
+export ac_cv_path_PKG_CONFIG="${BASE}/pkg-config"
+CFLAGS="${CFLAGS}" ./autogen.sh --host=${HOST} --prefix="$1"
+make
+make install
+mkdir -p "$1/lib/firmware"
+cp firmware/*.xem3 "$1/lib/firmware/"
+build_package "${NAME}"-firmware "${VERSION}" "$1" ".*\.xem3"
+build_generic_package "$1"
