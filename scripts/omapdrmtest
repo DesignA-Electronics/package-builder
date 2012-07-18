@@ -1,0 +1,13 @@
+NAME=omapdrmtest
+VERSION=git
+SOURCE=git://github.com/robclark/omapdrmtest.git
+
+if [ ! -d ${NAME} ] ; then
+    git clone ${SOURCE} ${NAME}
+fi
+pushd ${NAME}
+export ac_cv_path_PKG_CONFIG="${BASE}/pkg-config"
+CFLAGS="${CFLAGS}" ./autogen.sh --host=${HOST} --prefix="$1" --disable-x11
+make
+make install
+build_generic_package "$1"
