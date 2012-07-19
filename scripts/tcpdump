@@ -1,5 +1,5 @@
 NAME=tcpdump
-VERSION=4.0.0
+VERSION=4.3.0
 SOURCE=http://www.tcpdump.org/release/tcpdump-${VERSION}.tar.gz
 CONFIGURE_PARAMS="--with-crypto=${STAGING} --enable-ipv6"
 export LIBS="-ldl -lcrypto"

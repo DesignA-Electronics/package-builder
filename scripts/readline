@@ -1,5 +1,5 @@
 NAME=readline
-VERSION=6.1
+VERSION=6.2
 SOURCE=ftp://ftp.cwru.edu/pub/bash/readline-${VERSION}.tar.gz
 
 do_generic "$1"

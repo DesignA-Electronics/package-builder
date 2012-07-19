@@ -1,5 +1,5 @@
 NAME=i2c-tools
-VERSION=3.0.2
+VERSION=3.1.0
 SOURCE=http://dl.lm-sensors.org/i2c-tools/releases/i2c-tools-${VERSION}.tar.bz2
 
 download_unpack "$SOURCE"

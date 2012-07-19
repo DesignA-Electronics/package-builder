@@ -1,5 +1,5 @@
 NAME=picocom
-VERSION=1.6
+VERSION=1.7
 SOURCE=http://picocom.googlecode.com/files/picocom-${VERSION}.tar.gz
 
 download_unpack "$SOURCE"

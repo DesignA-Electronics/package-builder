@@ -1,5 +1,5 @@
 NAME=qt-embedded
-VERSION=4.7.4
+VERSION=4.8.1
 SOURCE=http://get.qt.nokia.com/qt/source/qt-everywhere-opensource-src-${VERSION}.tar.gz
 download_unpack "${SOURCE}"
 ./configure -opensource -embedded arm -confirm-license -xplatform qws/linux-arm-gnueabi-g++ -no-qt3support -prefix / -qt-mouse-tslib -qt-gfx-linuxfb -no-opengl -L ${STAGING}/lib -I ${STAGING}/include -R ${STAGING}/lib

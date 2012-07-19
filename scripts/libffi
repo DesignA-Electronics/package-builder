@@ -1,5 +1,5 @@
 NAME=libffi
-VERSION=3.0.10
+VERSION=3.0.11
 SOURCE=ftp://sourceware.org/pub/libffi/libffi-${VERSION}.tar.gz
 
 do_generic "$1"
