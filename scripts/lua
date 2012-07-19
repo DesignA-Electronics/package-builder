@@ -1,5 +1,5 @@
 NAME=lua
-VERSION=5.1.4
+VERSION=5.1.5
 SOURCE=http://www.lua.org/ftp/lua-${VERSION}.tar.gz
 
 download_unpack "$SOURCE"

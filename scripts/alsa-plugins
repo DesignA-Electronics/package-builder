@@ -1,6 +1,7 @@
 NAME=alsa-plugins
-VERSION=1.0.24
-SOURCE=http://gd.tuwien.ac.at/opsys/linux/alsa/plugins/alsa-plugins-${VERSION}.tar.bz2
+VERSION=1.0.25
+SOURCE=ftp://ftp.alsa-project.org/pub/plugins/alsa-plugins-${VERSION}.tar.bz2
+CONFIGURE_PARAMS="--disable-jack"
 
 do_generic "$1"
 
