@@ -1,0 +1,9 @@
+NAME=tiomap4-syslink-mm-firmware
+VERSION=2.x.8
+SOURCE=http://ppa.launchpad.net/tiomap-dev/omap-trunk/ubuntu/pool/main/t/tiomap4-syslink-mm-firmware/tiomap4-syslink-mm-firmware_2.x.8~2+dce1+1.1.tar.gz
+FORCE_DIRNAME=$NAME
+
+download_unpack $SOURCE "" "$FORCE_DIRNAME"
+mkdir -p "$1"/lib/firmware
+cp *.xem3 *.xe64T "$1"/lib/firmware
+build_package "$NAME" "$VERSION" "$1"
