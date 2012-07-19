@@ -1,16 +1,13 @@
 NAME=lighttpd
-VERSION=1.4.28
-SOURCE=http://download.lighttpd.net/lighttpd/releases-1.4.x/lighttpd-1.4.28.tar.bz2
+VERSION=1.4.21
+SOURCE=http://download.lighttpd.net/lighttpd/releases-1.4.x/lighttpd-${VERSION}.tar.bz2
 
 CONFIGURE_PARAMS="--without-pcre --without-bzip2"
 do_build_install "$1"
 # Turn all the individidual modules into separate packages
 for f in "$1"/lib/mod_*.so ; do
-    echo ${f}
     modname=${f#*mod_}
-    echo ${modname}
     modname=${modname%.so}
-    echo ${modname}
     build_package "${NAME}"-mod-${modname} "${VERSION}" "$1" .*/lib/mod_${modname}.so
 done
 build_generic_package "$1"

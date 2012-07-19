@@ -1,5 +1,5 @@
 NAME=wpa-supplicant
-VERSION=0.6.10
+VERSION=1.0
 SOURCE=http://hostap.epitest.fi/releases/wpa_supplicant-${VERSION}.tar.gz
 
 download_unpack ${SOURCE}

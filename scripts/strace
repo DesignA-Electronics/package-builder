@@ -1,6 +1,6 @@
 NAME=strace
-VERSION=4.5.20
-SOURCE=http://downloads.sourceforge.net/project/strace/strace/${VERSION}/strace-${VERSION}.tar.bz2
+VERSION=4.7
+SOURCE=http://downloads.sourceforge.net/project/strace/strace/${VERSION}/strace-${VERSION}.tar.xz
 
 do_generic "$1"
 
