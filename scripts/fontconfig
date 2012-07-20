@@ -1,8 +1,8 @@
 NAME=fontconfig
-VERSION=2.8.0
-SOURCE=http://www.freedesktop.org/software/fontconfig/release/fontconfig-${VERSION}.tar.gz
+VERSION=2.10.0
+SOURCE=http://www.freedesktop.org/software/fontconfig/release/fontconfig-${VERSION}.tar.bz2
 export CFLAGS="-I${STAGING}/include"
-CONFIGURE_PARAMS="--with-arch=arm"
+CONFIGURE_PARAMS="--with-arch=arm --enable-libxml2"
 
 do_generic "$1"
 
