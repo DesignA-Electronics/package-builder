@@ -1,7 +1,6 @@
 NAME=binutils
-VERSION=2.21.1a
+VERSION=2.22
 SOURCE=http://ftp.gnu.org/gnu/binutils/binutils-${VERSION}.tar.bz2
-FORCE_DIRNAME=binutils-2.21.1
 
 do_generic "$1"
 

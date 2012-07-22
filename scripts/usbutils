@@ -1,9 +1,7 @@
 NAME=usbutils
-VERSION=002
-SOURCE=http://www.kernel.org/pub/linux/utils/usb/usbutils/usbutils-${VERSION}.tar.bz2
-#SOURCE=http://downloads.sourceforge.net/project/linux-usb/usbutils/usbutils-${VERSION}.tar.gz
-export LIBUSB_CFLAGS="-I${STAGING}/include/libusb-1.0/"
-export LIBUSB_LIBS="-L${STAGING}/lib -lusb-1.0"
+VERSION=006
+SOURCE=http://www.kernel.org/pub/linux/utils/usb/usbutils/usbutils-${VERSION}.tar.xz
+export ac_cv_path_PKG_CONFIG="${BASE}/pkg-config"
 
 do_generic "$1"
 
