@@ -1,0 +1,24 @@
+--- a/test/Makefile.am	2012-05-11 08:05:44.000000000 +1200
++++ b/test/Makefile.am	2012-07-23 11:38:52.349516497 +1200
+@@ -81,7 +81,8 @@
+ 	pdf-fullrewrite.cc
+ 
+ pdf_fullrewrite_LDADD = \
+-	$(top_builddir)/poppler/libpoppler.la
++	$(top_builddir)/poppler/libpoppler.la   \
++        $(FREETYPE_LIBS)
+ 
+ EXTRA_DIST =					\
+ 	pdf-operators.c				\
+--- a/cpp/tests/Makefile.am	2012-05-11 08:05:44.000000000 +1200
++++ b/cpp/tests/Makefile.am	2012-07-23 11:42:12.617549881 +1200
+@@ -7,7 +7,8 @@
+ 
+ LDADDS =					\
+ 	$(top_builddir)/poppler/libpoppler.la	\
+-	$(top_builddir)/cpp/libpoppler-cpp.la
++	$(top_builddir)/cpp/libpoppler-cpp.la   \
++	$(FREETYPE_LIBS)
+ 
+ 
+ noinst_PROGRAMS =				\

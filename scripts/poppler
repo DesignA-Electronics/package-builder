@@ -1,0 +1,14 @@
+NAME=poppler
+VERSION=0.20.2
+SOURCE=http://poppler.freedesktop.org/poppler-${VERSION}.tar.gz
+
+post_unpack() {
+    patch -p1 < ${SUPPORT_FILES}/patches/poppler-libs.patch
+}
+
+export CXXFLAGS="${CFLAGS}"
+export FONTCONFIG_LIBS="-lfontconfig -lfreetype -lpng"
+export ac_cv_path_PKG_CONFIG="${BASE}/pkg-config"
+
+do_generic "$1"
+
