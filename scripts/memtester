@@ -1,5 +1,5 @@
 NAME=memtester
-VERSION=4.2.2
+VERSION=4.3.0
 SOURCE=http://pyropus.ca/software/memtester/old-versions/memtester-${VERSION}.tar.gz
 
 download_unpack "$SOURCE"
@@ -8,7 +8,5 @@ echo ${CROSS}gcc ${LDFLAGS} -s > conf-ld
 # memtester has a broken install, so fix that
 mkdir -p "$1"/bin "$1"/man/man8
 make install INSTALLPATH="$1"/
-# fix up memtesters broken install
-rmdir "$1/{bin,man/man8}/" "$1/{bin,man/"
 build_generic_package "$1"
 
