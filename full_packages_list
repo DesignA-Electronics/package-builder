@@ -97,6 +97,7 @@ popt
 binutils
 lua
 dash
-#musl
 libevent
 yajl
+fontconfig
+poppler
