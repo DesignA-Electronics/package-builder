@@ -1,5 +1,5 @@
 NAME=valgrind
-VERSION=3.6.0
+VERSION=3.7.0
 SOURCE=http://www.valgrind.org/downloads/valgrind-${VERSION}.tar.bz2
 export ac_cv_host=armv7-none-linux-gnueabi
 #CONFIGURE_PARAMS="--host=arm7"
