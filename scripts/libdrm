@@ -4,5 +4,14 @@ SOURCE=http://dri.freedesktop.org/libdrm/libdrm-${VERSION}.tar.bz2
 
 CONFIGURE_PARAMS="--enable-omap-experimental-api"
 
-do_generic "$1"
+# It's handy to have these utilities available
+post_install() {
+    mkdir -p "$1/bin"
+    cp tests/modetest/.libs/modetest "$1/bin/"
+    cp tests/modeprint/.libs/modeprint "$1/bin/"
+}
+
+do_build_install "$1"
+build_package "${NAME}"-tests "${VERSION}" "$1" ".*/bin/modetest|.*/bin/modeprint"
+build_generic_package "$1"
 
