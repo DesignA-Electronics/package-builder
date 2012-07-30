@@ -1,6 +1,6 @@
 NAME=dosfstools
-VERSION=3.0.9
-SOURCE=http://www.daniel-baumann.ch/software/dosfstools/dosfstools-${VERSION}.tar.bz2
+VERSION=3.0.12
+SOURCE=http://www.daniel-baumann.ch/software/dosfstools/dosfstools-${VERSION}.tar.gz
 
 download_unpack "$SOURCE"
 export CC=${CROSS}gcc

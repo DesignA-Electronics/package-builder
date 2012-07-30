@@ -1,5 +1,5 @@
 NAME=nuttcp
-VERSION=7.1.5
+VERSION=7.1.6
 SOURCE=http://lcp.nrl.navy.mil/nuttcp/beta/nuttcp-${VERSION}.c
 
 if [ ! -d nuttcp-${VERSION} ] ; then
