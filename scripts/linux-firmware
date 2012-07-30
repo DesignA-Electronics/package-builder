@@ -1,0 +1,15 @@
+NAME=linux-firmware
+VERSION=git
+SOURCE=git://git.kernel.org/pub/scm/linux/kernel/git/dwmw2/linux-firmware.git
+
+if [ ! -d $NAME ] ; then
+    git clone $SOURCE $NAME
+fi
+pushd $NAME
+git pull
+git checkout -f HEAD
+mkdir -p "$1/lib/firmware"
+cp -a * "$1/lib/firmware/"
+
+# This list should be updated as firmware we're interested in is required
+build_package firmware-ti-connectivity-wl1271 ${VERSION} "$1" '.*/ti-connectivity/wl1271.*'
