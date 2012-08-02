@@ -191,7 +191,7 @@ do_configure() {
     fi
 
     if [ ! -f configure ] ; then
-        LDFLAGS=$LDFLAGS CFLAGS=$CFLAGS ./autogen.sh --host=$HOST --prefix=/ $CONFIGURE_PARAMS
+        LDFLAGS=$LDFLAGS CFLAGS=$CFLAGS sh autogen.sh --host=$HOST --prefix=/ $CONFIGURE_PARAMS
     fi
 
     LDFLAGS=$LDFLAGS CFLAGS=$CFLAGS ./configure --host=$HOST --prefix=/ $CONFIGURE_PARAMS
