@@ -1,0 +1,6 @@
+NAME=dropbear
+VERSION=2012.55
+SOURCE=https://matt.ucc.asn.au/dropbear/dropbear-${VERSION}.tar.bz2
+
+do_generic "$1"
+
