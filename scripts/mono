@@ -1,0 +1,10 @@
+NAME=mono
+VERSION=2.10.9
+SOURCE=http://download.mono-project.com/sources/mono/mono-${VERSION}.tar.bz2
+
+export mono_cv_uscore=yes
+export CPPFLAGS="-DARM_FPU_VFP=1"
+CONFIGURE_PARAMS="--disable-mcs-build --with-tls=pthread --with-mcs-docs=no --with-sigaltstack=no"
+
+do_generic "$1"
+
