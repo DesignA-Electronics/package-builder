@@ -1,8 +1,10 @@
 NAME=libdrm
-VERSION=2.4.37
+VERSION=2.4.38
 SOURCE=http://dri.freedesktop.org/libdrm/libdrm-${VERSION}.tar.bz2
 
 CONFIGURE_PARAMS="--enable-omap-experimental-api"
+
+export ac_cv_path_PKG_CONFIG="${BASE}/pkg-config"
 
 # It's handy to have these utilities available
 post_install() {
