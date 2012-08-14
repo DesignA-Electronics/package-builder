@@ -1,6 +1,6 @@
 #!/bin/bash
 BASEDIR=$(dirname $(readlink -f $0))
-export PKG_CONFIG_PATH=$BASEDIR/staging/lib/pkgconfig
+export PKG_CONFIG_LIBDIR=$BASEDIR/staging/lib
 if [ "$1" == "--atleast-pkgconfig-version" ] ; then
     /usr/bin/pkg-config $@
 else
