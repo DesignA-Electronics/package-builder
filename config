@@ -1,10 +1,10 @@
-BASE=$(pwd)
-PACKAGE_DIR=${PACKAGE_DIR:-${BASE}/packages}
-STAGING=${BASE}/staging
-BUILD_DIR=${BASE}/build
-SUPPORT_FILES=${BASE}/support_files
+PACKAGE_BUILDER_BASE=${PACKAGE_BUILDER_BASE:-$(pwd)}
+PACKAGE_DIR=${PACKAGE_DIR:-${PACKAGE_BUILDER_BASE}/packages}
+STAGING=${PACKAGE_BUILDER_BASE}/staging
+BUILD_DIR=${PACKAGE_BUILDER_BASE}/build
+SUPPORT_FILES=${PACKAGE_BUILDER_BASE}/support_files
 DOWNLOAD_CACHE_DIR=/work/internal/package_download_cache/
-SCRIPT_DIR=${BASE}/scripts
+SCRIPT_DIR=${PACKAGE_BUILDER_BASE}/scripts
 
 # Codesourcery 2010q1
 TOOLCHAIN_DIR=/tools/arm/arm-2010q1
@@ -18,9 +18,8 @@ CROSS=arm-none-linux-gnueabi-
 
 HOST=arm-none-linux-gnueabi
 ARCH=${ARCH:-arm}
-# Set this to something else if you want to name your 
-# packages with a different suffix 
-# (ie: thumb, or armv5 etc...)
+# Set this to something else if you want to name your packages with a
+# different suffix (ie: thumb, or armv5 etc...)
 # This only affects the filenames, not the package contents
 PACKAGE_ARCH=${ARCH}
 CFLAGS="-march=armv4t -I${STAGING}/include -O3"

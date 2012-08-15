@@ -1,13 +1,13 @@
 #!/bin/bash
 
-ROOT=$(readlink -f $(dirname $0))
+PACKAGE_BUILDER_BASE=$(readlink -f $(dirname $0))
 
 set -e
-. ${ROOT}/config
+. ${PACKAGE_BUILDER_BASE}/config
 
 PACKAGES_LIST=$1
 DEST=$2
-DEVICE_TABLE=${3:-${ROOT}/device_table}
+DEVICE_TABLE=${3:-${PACKAGE_BUILDER_BASE}/device_table}
 
 if [ -z "$PACKAGES_LIST" -o -z "$DEST" -o -z "$PACKAGES_LIST" ] ; then
     echo "Usage: $0 packages_list_file output_directory [device_table]"
@@ -134,7 +134,7 @@ if [ "${ARCH}" == "arm" ] ; then
 fi
 
 # Copy default root files
-cp -a ${ROOT}/root_files/* "${DEST}/"
+cp -a ${PACKAGE_BUILDER_BASE}/root_files/* "${DEST}/"
 # Remove any source control hang-over control files
 find "${DEST}" -depth -name ".svn" -exec rm -rf {} \;
 
