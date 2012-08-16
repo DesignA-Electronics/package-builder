@@ -2,7 +2,7 @@ NAME=xorg-xserver
 VERSION=1.9.3
 SOURCE=http://www.x.org/releases/X11R7.6/src/xserver/xorg-server-${VERSION}.tar.bz2
 CONFIGURE_PARAMS="--disable-dri --disable-dri2 --disable-glx --enable-tslib --enable-xfbdev --enable-kdrive"
-export PKG_CONFIG="${BASE}/pkg-config"
+export PKG_CONFIG="${PKG_CONFIG}"
 
 do_generic "$1"
 

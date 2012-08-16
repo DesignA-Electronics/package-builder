@@ -5,6 +5,7 @@ BUILD_DIR=${PACKAGE_BUILDER_BASE}/build
 SUPPORT_FILES=${PACKAGE_BUILDER_BASE}/support_files
 DOWNLOAD_CACHE_DIR=/work/internal/package_download_cache/
 SCRIPT_DIR=${PACKAGE_BUILDER_BASE}/scripts
+PKG_CONFIG=${PACKAGE_BUILDER_BASE}/pkg-config
 
 # Codesourcery 2010q1
 TOOLCHAIN_DIR=/tools/arm/arm-2010q1

@@ -2,7 +2,7 @@ NAME=libx11
 VERSION=1.4.0
 SOURCE=http://www.x.org/releases/X11R7.6/src/lib/libX11-${VERSION}.tar.bz2
 CFLAGS="${CFLAGS} -I${STAGING}/include/X11"
-export PKG_CONFIG="${BASE}/pkg-config"
+export PKG_CONFIG
 
 do_generic "$1"
 
