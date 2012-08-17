@@ -17,6 +17,10 @@ clear_config() {
 VERSION=1.20.2
 SOURCE=http://busybox.net/downloads/busybox-${VERSION}.tar.bz2
 
+post_unpack() {
+    patch -p1 < ${SUPPORT_FILES}/patches/busybox-resource.patch
+}
+
 download_unpack "$SOURCE"
 make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS="${CFLAGS}" defconfig
 # Turn on some options that we like
@@ -24,6 +28,7 @@ set_config .config CONFIG_FEATURE_EDITING_FANCY_PROMPT
 set_config .config CONFIG_ASH_EXPAND_PRMT
 # Saved history is annoying across multiple terminals
 clear_config .config CONFIG_FEATURE_EDITING_SAVEHISTORY
+clear_config .config CONFIG_FEATURE_INETD_RPC
 
 make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS="${CFLAGS}" oldconfig
 make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS="${CFLAGS}" -j4
