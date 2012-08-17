@@ -102,3 +102,4 @@ yajl
 fontconfig
 pixman-1
 dropbear
+valgrind
