@@ -4,4 +4,8 @@ SOURCE=http://www.valgrind.org/downloads/valgrind-${VERSION}.tar.bz2
 export ac_cv_host=armv7-none-linux-gnueabi
 #CONFIGURE_PARAMS="--host=arm7"
 
+post_unpack() {
+    patch -p1 < ${SUPPORT_FILES}/patches/valgrind-configure.patch
+}
+
 do_generic "$1"
