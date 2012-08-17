@@ -123,10 +123,16 @@ if [ "${ARCH}" == "arm" ] ; then
         # Copy toolchain libraries
         if [ "$USE_UCLIBC" == "1" ] ; then
             copy_lib lib libuClibc-*.so
-            copy_lib lib libstdc++.so*
         else
             copy_lib lib libc-*.so libnss_files-*.so libnss_dns-*.so libthread_db-*.so
+        fi
+        if [ -f "$TOOLCHAIN_LIBC_DIR"/lib/libstdc++.so ] ; then
+            copy_lib lib libstdc++.so*
+        elif [ -f "$TOOLCHAIN_LIBC_DIR"/usr/lib/libstdc++.so ] ; then
             copy_lib usr/lib libstdc++.so*
+        else
+            echo "Unable to find libstdc++" >&2
+            exit 1
         fi
         copy_lib lib ld-*.so libm-*.so libcrypt-*.so libresolv-*.so libgcc_s.so.* libpthread-*.so librt-*.so libdl-*.so libnsl-*.so libutil-*.so
         echo
