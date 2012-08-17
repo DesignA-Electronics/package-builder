@@ -6,6 +6,8 @@ post_unpack() {
     patch -p1 < ${SUPPORT_FILES}/patches/poppler-libs.patch
 }
 
+CONFIGURE_PARAMS="--disable-cairo-output --disable-poppler-glib"
+
 export CXXFLAGS="${CFLAGS}"
 export FONTCONFIG_LIBS="-lfontconfig -lfreetype -lpng"
 export ac_cv_path_PKG_CONFIG="${PKG_CONFIG}"
