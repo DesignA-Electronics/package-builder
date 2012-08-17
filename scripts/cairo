@@ -2,7 +2,7 @@ NAME=cairo
 VERSION=1.12.2
 SOURCE=http://www.cairographics.org/releases/cairo-${VERSION}.tar.xz
 
-CONFIGURE_PARAMS="--enable-xlib=no --without-x"
+CONFIGURE_PARAMS="--enable-xlib=no --without-x --enable-xcb=no --enable-gobject=no"
 
 do_generic "$1"
 
