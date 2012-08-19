@@ -6,5 +6,11 @@ export mono_cv_uscore=yes
 export CPPFLAGS="-DARM_FPU_VFP=1"
 CONFIGURE_PARAMS="--disable-mcs-build --with-tls=pthread --with-mcs-docs=no --with-sigaltstack=no"
 
-do_generic "$1"
+download_unpack "$SOURCE"
+do_configure
+do_make
+make -C support
+do_install "$1"
+make -C support install DESTDIR=$1
+build_generic_package "$1"
 
