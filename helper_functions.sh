@@ -260,11 +260,11 @@ do_simple() {
 
 # Build using CMake
 do_cmake() {
-	mkdir build
+	mkdir -p build
 	pushd build
 
 	cmake -DCMAKE_INSTALL_PREFIX='/' \
-	      -DCMAKE_TOOLCHAIN_FILE=${BASE}/codesourcery.cmake \
+	      -DCMAKE_TOOLCHAIN_FILE=${PACKAGE_BUILDER_BASE}/codesourcery.cmake \
 	      ..
 	make
 	make install DESTDIR="$1"
