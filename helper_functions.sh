@@ -264,7 +264,7 @@ do_cmake() {
 	pushd build
 
 	cmake -DCMAKE_INSTALL_PREFIX='/' \
-	      -DCMAKE_TOOLCHAIN_FILE=${PACKAGE_BUILDER_BASE}/codesourcery.cmake \
+	      -DCMAKE_TOOLCHAIN_FILE=${PACKAGE_BUILDER_BASE}/package_builder.cmake \
 	      ..
 	make
 	make install DESTDIR="$1"
