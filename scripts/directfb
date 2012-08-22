@@ -1,7 +1,7 @@
 NAME=directfb
-VERSION=1.4.17
-SOURCE=http://directfb.org/downloads/Core/DirectFB-1.4/DirectFB-${VERSION}.tar.gz
-CONFIGURE_PARAMS="--with-gfxdrivers=ep9x,gl,omap,pxa3xx --disable-x11"
+VERSION=1.6.1
+SOURCE=http://directfb.org/downloads/Core/DirectFB-1.6/DirectFB-${VERSION}.tar.gz
+CONFIGURE_PARAMS="--with-gfxdrivers=ep9x,gl,omap,pxa3xx,pvr2d --disable-x11"
 export FREETYPE_CFLAGS=-I${STAGING}/include/freetype2
 export LIBPNG_CFLAGS=-I${STAGING}/include
 do_generic "$1"
