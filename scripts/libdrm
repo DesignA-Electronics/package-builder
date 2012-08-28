@@ -1,5 +1,5 @@
 NAME=libdrm
-VERSION=2.4.38
+VERSION=2.4.39
 SOURCE=http://dri.freedesktop.org/libdrm/libdrm-${VERSION}.tar.bz2
 
 CONFIGURE_PARAMS="--enable-omap-experimental-api"
