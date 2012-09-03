@@ -1,5 +1,5 @@
 NAME=ecore
-VERSION=1.0.1
+VERSION=1.7.0
 SOURCE=http://download.enlightenment.org/releases/${NAME}-${VERSION}.tar.gz
 CONFIGURE_PARAMS="--disable-ecore-x"
 
