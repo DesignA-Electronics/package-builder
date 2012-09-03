@@ -5,5 +5,7 @@ SOURCE=http://www.lua.org/ftp/lua-${VERSION}.tar.gz
 download_unpack "$SOURCE"
 make PLAT=linux CC=${CROSS}gcc CFLAGS="${CFLAGS} -O2 -Wall" LIBS="${LDFLAGS} -lm"
 make install INSTALL_TOP="$1"
+mkdir -p "$1"/lib/pkgconfig
+cp etc/lua.pc "$1"/lib/pkgconfig
 build_generic_package "$1"
 
