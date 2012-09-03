@@ -7,7 +7,6 @@ if [ ! -d ${NAME} ] ; then
 fi
 pushd ${NAME}
 git checkout remotes/origin/rpmsg
-export ac_cv_path_PKG_CONFIG="${PKG_CONFIG}"
 CFLAGS="${CFLAGS}" ./autogen.sh --host=${HOST} --prefix="$1"
 make
 make install

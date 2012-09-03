@@ -4,8 +4,6 @@ SOURCE=http://dri.freedesktop.org/libdrm/libdrm-${VERSION}.tar.bz2
 
 CONFIGURE_PARAMS="--enable-omap-experimental-api"
 
-export ac_cv_path_PKG_CONFIG="${PKG_CONFIG}"
-
 # It's handy to have these utilities available
 post_install() {
     mkdir -p "$1/bin"

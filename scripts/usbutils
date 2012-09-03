@@ -1,7 +1,6 @@
 NAME=usbutils
 VERSION=006
 SOURCE=http://www.kernel.org/pub/linux/utils/usb/usbutils/usbutils-${VERSION}.tar.xz
-export ac_cv_path_PKG_CONFIG="${PKG_CONFIG}"
 
 do_generic "$1"
 

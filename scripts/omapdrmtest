@@ -6,7 +6,6 @@ if [ ! -d ${NAME} ] ; then
     git clone ${SOURCE} ${NAME}
 fi
 pushd ${NAME}
-export ac_cv_path_PKG_CONFIG="${PKG_CONFIG}"
 export DCE_LIBS="-L${STAGING}/lib -ldce -ldrm -ldrm_omap -lavformat -lavutil -lavcodec"
 CFLAGS="${CFLAGS}" ./autogen.sh --host=${HOST} --prefix="$1" --disable-x11
 make
