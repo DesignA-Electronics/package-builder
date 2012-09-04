@@ -1,0 +1,14 @@
+NAME=libdb
+VERSION=5.3.21
+SOURCE=http://download.oracle.com/berkeley-db/db-${VERSION}.tar.gz
+
+CONFIGURE_SCRIPT=../dist/configure
+CONFIGURE_PARAMS="--enable-compat185"
+
+download_unpack "$SOURCE"
+cd build_unix
+do_configure
+do_make
+do_install "$1"
+build_generic_package "$1"
+
