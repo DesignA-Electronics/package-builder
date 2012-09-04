@@ -1,0 +1,6 @@
+NAME=gdbm
+VERSION=1.10
+SOURCE=ftp://ftp.gnu.org/gnu/gdbm/gdbm-${VERSION}.tar.gz
+
+do_generic "$1"
+
