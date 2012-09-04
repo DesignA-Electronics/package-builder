@@ -1,6 +1,7 @@
 NAME=pixman-1
-VERSION=0.26.2
-SOURCE=http://cairographics.org/releases/pixman-${VERSION}.tar.gz
+VERSION=0.27.2
+# SOURCE=http://cairographics.org/releases/pixman-${VERSION}.tar.gz
+SOURCE=http://cgit.freedesktop.org/pixman/snapshot/pixman-${VERSION}.tar.gz
 
 do_generic "$1"
 
