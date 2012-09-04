@@ -1,0 +1,18 @@
+NAME=mono-mcs
+VERSION=2.10.9
+SOURCE=http://download.mono-project.com/sources/mono/mono-${VERSION}.tar.bz2
+
+# Build the native version of mono, so we can get the mcs stuff out of it
+# We need to be a bit careful, as this will clobber a bunch of stuff in
+# the staging directory with native versions, so normally we should
+# build the normal mono package immediately after doing this
+
+download_unpack "$SOURCE"
+if [ -f Makefile ] ; then
+    make distclean # In case we've already done an ARM build here
+fi
+./configure --prefix=/
+make
+make install DESTDIR=$1
+build_package "${NAME}"-lib "${VERSION}" "$1" ".*/lib/.*\.dll|.*/lib/.*\.exe"
+build_generic_package "$1"

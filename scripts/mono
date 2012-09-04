@@ -7,6 +7,11 @@ export CPPFLAGS="-DARM_FPU_VFP=1"
 CONFIGURE_PARAMS="--disable-mcs-build --with-tls=pthread --with-mcs-docs=no --with-sigaltstack=no"
 
 download_unpack "$SOURCE"
+if [ -f Makefile ] ; then
+    make distclean # In case we've already done an x86 build here
+    find . -depth -name ".libs" -exec rm -rf {} \;
+    find . -name Makefile -delete
+fi
 do_configure
 do_make
 make -C support
