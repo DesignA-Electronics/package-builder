@@ -1,0 +1,12 @@
+NAME=jemalloc
+VERSION=3.0.0
+SOURCE=http://www.canonware.com/download/jemalloc/jemalloc-${VERSION}.tar.bz2
+
+export je_cv_static_page_shift=12
+
+post_unpack() {
+    patch -p1 < ${SUPPORT_FILES}/patches/jemalloc-arm-atomic.patch
+}
+
+do_generic "$1"
+

@@ -103,3 +103,4 @@ fontconfig
 pixman-1
 dropbear
 valgrind
+jemalloc
