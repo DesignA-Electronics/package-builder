@@ -2,7 +2,7 @@
 # Helper functions to make building easier
 
 # Regex for matching files that should go into development packages
-DOC_FILES=".*/man/.*|.*/info/.*|.*/share/.*doc/.*"
+DOC_FILES=".*/man/.*|.*/info/.*|.*/share/.*doc/.*|.*/docs/.*"
 DEV_FILES=".*\.h|.*\.a|.*\.la|.*/pkgconfig/.*|.*/bin/.*-config|.*/share/aclocal/.*\.m4|.*/include/.*\.x|.*/include/.*\.hpp"
 # Regex for matching LOCALE files
 LOCALE_FILES=".*/share/locale/.*"
@@ -173,6 +173,10 @@ download_unpack_debian() {
 do_configure() {
     export PKG_CONFIG_PATH=${STAGING}/lib/pkgconfig
 
+    if [ -z "$CONFIGURE_SCRIPT" ] ; then
+        CONFIGURE_SCRIPT=./configure
+    fi
+
     # Some config.sub files don't understand the -linux-uclibcgnueabi os 
     # option, so fix them to think of it the same way as -linux-gnueabi
     if [ "$FIX_CONFIG_SUB" == "1" ] ; then
@@ -190,19 +194,18 @@ do_configure() {
         sed -i 's/ -linux-gnu\*/ -linux-uclibcgnu\* | -linux-gnu\*/g' $file
     fi
 
-    if [ ! -f configure ] ; then
+    if [ ! -f $CONFIGURE_SCRIPT ] ; then
         LDFLAGS=$LDFLAGS CFLAGS=$CFLAGS sh autogen.sh --host=$HOST --prefix=/ $CONFIGURE_PARAMS
     fi
 
-    LDFLAGS=$LDFLAGS CFLAGS=$CFLAGS ./configure --host=$HOST --prefix=/ $CONFIGURE_PARAMS
+    LDFLAGS=$LDFLAGS CFLAGS=$CFLAGS $CONFIGURE_SCRIPT --host=$HOST --prefix=/ $CONFIGURE_PARAMS
     if type post_configure > /dev/null 2>&1 ; then
         post_configure
     fi
 }
 
 do_make() {
-    J=4
-    if [ -f /proc/cpuinfo ] ; then
+    if [ -z "$J" -a -f /proc/cpuinfo ] ; then
         J=`grep -c "^processor" /proc/cpuinfo`
     fi
     make -j$J $MAKE_PARAMS
