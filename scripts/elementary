@@ -1,0 +1,11 @@
+NAME=elementary
+VERSION=1.7.0
+SOURCE=http://download.enlightenment.org/releases/${NAME}-${VERSION}.tar.gz
+
+CONFIGURE_PARAMS="--with-edje-cc=/usr/bin/edje_cc --with-eet-eet=/usr/bin/eet"
+
+executable_required /usr/bin/edje_cc
+executable_required /usr/bin/eet
+
+do_generic "$1"
+
