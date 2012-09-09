@@ -1,0 +1,6 @@
+NAME=eio
+VERSION=1.7.0
+SOURCE=http://download.enlightenment.org/releases/${NAME}-${VERSION}.tar.gz
+
+do_generic "$1"
+
