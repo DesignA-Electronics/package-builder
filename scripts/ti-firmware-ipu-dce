@@ -1,0 +1,12 @@
+NAME=ti-firmware-ipu-dce
+#VERSION=1.6+120829+191835+git53cf578
+#VERSION=1.6+120926+122834+git7169521
+VERSION=1.6+121009+114852+git5c3f2bc
+SOURCE=http://ppa.launchpad.net/tiomap-dev/omap-trunk/ubuntu/pool/main/t/ti-firmware-ipu-dce/ti-firmware-ipu-dce_${VERSION}.tar.gz
+FORCE_DIRNAME=$NAME-${VERSION}
+
+download_unpack $SOURCE "" "$FORCE_DIRNAME"
+mkdir -p "$1"/lib/firmware
+ln -s ti-firmware-ipu-dce.xem3 ducati-m3-core0.xem3
+cp -a *.xem3 "$1"/lib/firmware
+build_package "$NAME" "$VERSION" "$1"
