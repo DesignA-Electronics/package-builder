@@ -36,10 +36,11 @@ LDFLAGS="-L${STAGING}/lib -march=armv4t"
 # If you want to customise these settings, rather than editing this file
 # (which is tracked in source control), it is better to create a 'custom_config'
 # file, and edit that. Any settings in 'custom_config' will override settings
-# in this file
-CUSTOM_CONFIG=$(dirname $0)/custom_config
-if [ -f "$CUSTOM_CONFIG" ] ; then
-    . "$CUSTOM_CONFIG"
+# in this file. Alternatively, set the 'PACKAGE_BUILDER_CONFIG' environment
+# variable to point to the custom configuration settings file
+PACKAGE_BUILDER_CONFIG=${PACKAGE_BUILDER_CONFIG:-$(dirname $0)/custom_config}
+if [ -f "$PACKAGE_BUILDER_CONFIG" ] ; then
+    . "$PACKAGE_BUILDER_CONFIG"
 fi
 
 export PATH=${TOOLCHAIN_DIR}/bin:$PATH
