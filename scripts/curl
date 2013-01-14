@@ -1,5 +1,5 @@
 NAME=curl
-VERSION=7.26.0
+VERSION=7.28.1
 SOURCE=http://curl.haxx.se/download/curl-${VERSION}.tar.lzma
 
 do_generic "$1"
