@@ -1,5 +1,4 @@
-NAME=libxml2
-VERSION=2.8.0
+VERSION=2.9.0
 SOURCE=ftp://xmlsoft.org/libxml2/libxml2-${VERSION}.tar.gz
 
 CONFIGURE_PARAMS="--without-python"
