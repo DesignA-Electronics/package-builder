@@ -1,5 +1,4 @@
-NAME=iproute2
-VERSION=3.5.1
+VERSION=3.7.0
 SOURCE=http://kernel.org/pub/linux/utils/net/iproute2/iproute2-${VERSION}.tar.xz
 
 MAKE_PARAMS="CC=${CROSS}gcc ROOTDIR=${STAGING} DBM_INCLUDE=${STAGING}/include"
@@ -8,7 +7,7 @@ download_unpack "$SOURCE"
 cat > Config << EOF
 IPT_LIB_DIR:=/lib/xtables
 LDFLAGS:=${LDFLAGS}
-IP_CONFIG_SETNS:=y
+IP_CONFIG_SETNS:=n
 EOF
 do_make
 do_install "$1"
