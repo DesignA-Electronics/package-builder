@@ -62,10 +62,11 @@ download() {
         echo "Download cache dir ${DOWNLOAD_CACHE_DIR} doesn't exist - not using it" 2>&1
     fi
     if [ -n "${DOWNLOAD_CACHE_DIR}" -a \
-         -f "${DOWNLOAD_CACHE_DIR}/${FILENAME}" ] ; then
+         -f "${DOWNLOAD_CACHE_DIR}/${FILENAME}" -a \
+         ! -f "${FILENAME}" ] ; then
         echo "File ${FILENAME} exists in ${DOWNLOAD_CACHE_DIR} - copying from there"
         cp "${DOWNLOAD_CACHE_DIR}/${FILENAME}" "${FILENAME}"
-    elif [ -f $FILENAME ] ; then
+    elif [ -f "$FILENAME" ] ; then
         echo "Skipping download of ${FILENAME} - already present"
     else
         wget --no-check-certificate "$SOURCE" -O ${FILENAME}
