@@ -1,5 +1,5 @@
 NAME=sqlite3
-VERSION=3.7.13
-SOURCE=http://www.sqlite.org/sqlite-autoconf-3071300.tar.gz
+VERSION=3.7.15.2
+SOURCE=http://www.sqlite.org/sqlite-autoconf-3071502.tar.gz
 
 do_generic "${1}"
