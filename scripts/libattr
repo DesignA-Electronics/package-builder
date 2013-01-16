@@ -1,0 +1,7 @@
+VERSION=2.4.46
+SOURCE=http://download.savannah.gnu.org/releases/attr/attr-${VERSION}.src.tar.gz
+FORCE_DIRNAME=attr-${VERSION}
+INSTALL_PARAMS="prefix=$1"
+
+do_generic "$1"
+
