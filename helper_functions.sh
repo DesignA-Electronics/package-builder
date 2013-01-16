@@ -254,14 +254,6 @@ do_build_install() {
     do_install "$1"
 }
 
-# Builds a package, and puts all of its installation into
-# a single archive
-do_simple() {
-    do_build_install "$1"
-
-    build_package ${NAME} ${VERSION} "$1"
-}
-
 # Build using CMake
 do_cmake() {
 	mkdir -p build
