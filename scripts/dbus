@@ -1,5 +1,4 @@
-NAME=dbus
-VERSION=1.2.24
+VERSION=1.6.8
 SOURCE=http://dbus.freedesktop.org/releases/dbus/dbus-${VERSION}.tar.gz
 CONFIGURE_PARAMS="--without-x"
 
