@@ -12,12 +12,12 @@ valid_pdir() {
 }
 
 # Try and determine the package builder base directory
-BASEDIR=$(readlink -f $(dirname $0))
-if ! valid_pdir ${BASEDIR} ; then
-    BASEDIR=$(readlink -f ${HOME}/.package-builder)
-    if ! valid_pdir ${BASEDIR} ; then
-        BASEDIR=$(readlink -f ${HOME}/package-builder)
-        if ! valid_pdir ${BASEDIR} ; then
+PACKAGE_BUILDER_BASE=$(readlink -f $(dirname $0))
+if ! valid_pdir ${PACKAGE_BUILDER_BASE} ; then
+    PACKAGE_BUILDER_BASE=$(readlink -f ${HOME}/.package-builder)
+    if ! valid_pdir ${PACKAGE_BUILDER_BASE} ; then
+        PACKAGE_BUILDER_BASE=$(readlink -f ${HOME}/package-builder)
+        if ! valid_pdir ${PACKAGE_BUILDER_BASE} ; then
             echo "Cannot determine base package-builder directory" 2>&1
             exit 1
         fi
@@ -29,18 +29,19 @@ shift
 
 case "$command" in
     build)
-        cd "${BASEDIR}"
+        cd "${PACKAGE_BUILDER_BASE}"
+        export PACKAGE_BUILDER_BASE
         exec ./helpers/update_package $*
         ;;
 
     build-all)
         PACKAGE_NAME="$1"
         if [ -z "$PACKAGE_NAME" ] ; then
-                PACKAGE_NAME="${BASEDIR}/full_packages_list"
+                PACKAGE_NAME="${PACKAGE_BUILDER_BASE}/full_packages_list"
         fi
         PACKAGES=`cat $PACKAGE_NAME`
 
-        cd ${BASEDIR}
+        cd ${PACKAGE_BUILDER_BASE}
         for package in $PACKAGES ; do
             # Skip blank lines & comments
             if [ -z "$package" -o ${package:0:1} == "#" ] ; then
@@ -58,34 +59,34 @@ case "$command" in
         ;;
 
     view)
-        exec "${BASEDIR}/helpers/view_package_contents.sh" $*
+        exec "${PACKAGE_BUILDER_BASE}/helpers/view_package_contents.sh" $*
         ;;
 
     install)
-        exec "${BASEDIR}/helpers/install_package.sh" $*
+        exec "${PACKAGE_BUILDER_BASE}/helpers/install_package.sh" $*
         ;;
 
     rebuild-staging)
-        cd "${BASEDIR}"
+        cd "${PACKAGE_BUILDER_BASE}"
         exec ./helpers/rebuild_staging.sh $*
         ;;
 
     rebuild-contents)
-        cd "${BASEDIR}"
+        cd "${PACKAGE_BUILDER_BASE}"
         exec ./helpers/update_contents.sh $*
         ;;
 
     rebuild-packages-list)
-        cd "${BASEDIR}"
+        cd "${PACKAGE_BUILDER_BASE}"
         exec ./helpers/update_packages_list.sh $*
         ;;
 
     build-rootfs)
-        exec "${BASEDIR}/helpers/build_rootfs" $*
+        exec "${PACKAGE_BUILDER_BASE}/helpers/build_rootfs" $*
         ;;
 
     list)
-        ls ${BASEDIR}/scripts | sort
+        ls ${PACKAGE_BUILDER_BASE}/scripts | sort
         ;;
 
     *)
