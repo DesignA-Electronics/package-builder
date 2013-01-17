@@ -1,0 +1,98 @@
+#!/bin/bash
+# Main wrapper helper for all package builder functionality
+
+valid_pdir() {
+    if [ ! -d "${1}/scripts" -o ! -d "${1}/support_files" ] ; then
+        return 1
+    else
+        return 0
+    fi
+}
+
+# Try and determine the package builder base directory
+BASEDIR=$(readlink -f $(dirname $0))
+if ! valid_pdir ${BASEDIR} ; then
+    BASEDIR=$(readlink -f ${HOME}/.package-builder)
+    if ! valid_pdir ${BASEDIR} ; then
+        BASEDIR=$(readlink -f ${HOME}/package-builder)
+        if ! valid_pdir ${BASEDIR} ; then
+            echo "Cannot determine base package-builder directory" 2>&1
+            exit 1
+        fi
+    fi
+fi
+
+echo $BASEDIR
+
+command=$1
+shift
+
+case "$command" in
+    build)
+        exec "${BASEDIR}/update_package" $*
+        ;;
+
+    build-all)
+        exec "${BASEDIR}/update_all_packages" $*
+        ;;
+
+    view)
+        exec "${BASEDIR}/view_package_contents.sh" $*
+        ;;
+
+    install)
+        exec "${BASEDIR}/install_package.sh" $*
+        ;;
+
+    rebuild-staging)
+        exec "${BASEDIR}/rebuild_staging.sh" $*
+        ;;
+
+    rebuild-contents)
+        exec "${BASEDIR}/update_contents.sh" $*
+        ;;
+
+    rebuild-packages-list)
+        exec "${BASEDIR}/update_packages_list.sh" $*
+        ;;
+
+    build-rootfs)
+        exec "${BASEDIR}/build_rootfs" $*
+        ;;
+
+    list)
+        ls ${BASEDIR}/scripts | sort
+        ;;
+
+    *)
+        cat >&2 << EOF
+Usage: pbuild [command] [options]
+    Commands:
+        list
+            - List all packages that can be built
+        build (packagename)
+            - Build the given package
+        build-all [packages list file]
+            - Build a series of packages. Use the given list file,
+              or the 'full_packages_list' file if not specified
+        install (.ipk files...) (directory)
+            - Install a series of .ipk files into a given filesystem
+        view (.ipk file)
+            - View the contents of a given .ipk file
+        rebuild-staging
+            - Erase & recreate the staging directory from the current
+              packages directory
+        rebuild-contents
+            - Recreate the Contents.gz file from the current packages
+              directory
+        rebuild-packages-list
+            - Recreate the Packages.gz file from the current packages
+              directory
+        build-rootfs (packages list file) (output directory) [device table]
+            - Build a root filesystem given the list of packages,
+              and place it into the output directory
+EOF
+        exit 1
+        ;;
+esac
+
