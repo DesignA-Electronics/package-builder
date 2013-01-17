@@ -1,0 +1,12 @@
+NAME=omapconf
+VERSION=git
+SOURCE=https://github.com/omapconf/omapconf/archive/master.tar.gz
+FILENAME=omapconf-master.tar.gz
+FORCE_DIRNAME=omapconf-master
+
+download_unpack "$SOURCE" "$FILENAME"
+export CROSS_COMPILE=${CROSS}
+do_make
+do_install "$1"/bin
+build_generic_package "$1"
+
