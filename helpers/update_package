@@ -11,7 +11,7 @@ trap
 
 PACKAGE=$1
 . ./config
-. ./helper_functions.sh
+. ./helpers/helper_functions.sh
 TMPDIR=/tmp/$PACKAGE.$$
 
 cleanup() {

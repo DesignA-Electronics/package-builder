@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PACKAGE_BUILDER_BASE=$(readlink -f $(dirname $0))
+PACKAGE_BUILDER_BASE=$(readlink -f $(dirname $0)/..)
 
 set -e
 . ${PACKAGE_BUILDER_BASE}/config

@@ -28,7 +28,7 @@ shift
 case "$command" in
     build)
         cd "${BASEDIR}"
-        exec ./update_package $*
+        exec ./helpers/update_package $*
         ;;
 
     build-all)
@@ -50,36 +50,36 @@ case "$command" in
                 echo "Skipping $package - its already built"
             else
                 echo "Building $package..."
-                ./update_package $package
+                ./helpers/update_package $package
             fi
         done
         ;;
 
     view)
-        exec "${BASEDIR}/view_package_contents.sh" $*
+        exec "${BASEDIR}/helpers/view_package_contents.sh" $*
         ;;
 
     install)
-        exec "${BASEDIR}/install_package.sh" $*
+        exec "${BASEDIR}/helpers/install_package.sh" $*
         ;;
 
     rebuild-staging)
         cd "${BASEDIR}"
-        exec ./rebuild_staging.sh $*
+        exec ./helpers/rebuild_staging.sh $*
         ;;
 
     rebuild-contents)
         cd "${BASEDIR}"
-        exec ./update_contents.sh $*
+        exec ./helpers/update_contents.sh $*
         ;;
 
     rebuild-packages-list)
         cd "${BASEDIR}"
-        exec ./update_packages_list.sh $*
+        exec ./helpers/update_packages_list.sh $*
         ;;
 
     build-rootfs)
-        exec "${BASEDIR}/build_rootfs" $*
+        exec "${BASEDIR}/helpers/build_rootfs" $*
         ;;
 
     list)
