@@ -22,18 +22,37 @@ if ! valid_pdir ${BASEDIR} ; then
     fi
 fi
 
-echo $BASEDIR
-
 command=$1
 shift
 
 case "$command" in
     build)
-        exec "${BASEDIR}/update_package" $*
+        cd "${BASEDIR}"
+        exec ./update_package $*
         ;;
 
     build-all)
-        exec "${BASEDIR}/update_all_packages" $*
+        PACKAGE_NAME="$1"
+        if [ -z "$PACKAGE_NAME" ] ; then
+                PACKAGE_NAME="${BASEDIR}/full_packages_list"
+        fi
+        PACKAGES=`cat $PACKAGE_NAME`
+
+        cd ${BASEDIR}
+        for package in $PACKAGES ; do
+            # Skip blank lines & comments
+            if [ -z "$package" -o ${package:0:1} == "#" ] ; then
+                continue
+            fi
+            # FIXME: Not a perfect way of detecting if a package has
+            # been built or not
+            if [ "${SKIP_EXISTING}" == 1 -a -f packages/${package}_*.ipk ] ; then
+                echo "Skipping $package - its already built"
+            else
+                echo "Building $package..."
+                ./update_package $package
+            fi
+        done
         ;;
 
     view)
@@ -45,15 +64,18 @@ case "$command" in
         ;;
 
     rebuild-staging)
-        exec "${BASEDIR}/rebuild_staging.sh" $*
+        cd "${BASEDIR}"
+        exec ./rebuild_staging.sh $*
         ;;
 
     rebuild-contents)
-        exec "${BASEDIR}/update_contents.sh" $*
+        cd "${BASEDIR}"
+        exec ./update_contents.sh $*
         ;;
 
     rebuild-packages-list)
-        exec "${BASEDIR}/update_packages_list.sh" $*
+        cd "${BASEDIR}"
+        exec ./update_packages_list.sh $*
         ;;
 
     build-rootfs)
