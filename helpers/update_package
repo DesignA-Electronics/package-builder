@@ -10,6 +10,7 @@ set -e
 trap
 
 PACKAGE=$1
+PACKAGE_BUILDER_BASE=.
 . ./config
 . ./helpers/helper_functions.sh
 TMPDIR=/tmp/$PACKAGE.$$

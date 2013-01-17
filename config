@@ -38,7 +38,7 @@ LDFLAGS="-L${STAGING}/lib -march=armv4t"
 # file, and edit that. Any settings in 'custom_config' will override settings
 # in this file. Alternatively, set the 'PACKAGE_BUILDER_CONFIG' environment
 # variable to point to the custom configuration settings file
-PACKAGE_BUILDER_CONFIG=${PACKAGE_BUILDER_CONFIG:-$(dirname $0)/custom_config}
+PACKAGE_BUILDER_CONFIG=${PACKAGE_BUILDER_CONFIG:-${PACKAGE_BUILDER_BASE}/custom_config}
 if [ -f "$PACKAGE_BUILDER_CONFIG" ] ; then
     . "$PACKAGE_BUILDER_CONFIG"
 fi
