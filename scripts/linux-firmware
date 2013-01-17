@@ -13,3 +13,5 @@ cp -a * "$1/lib/firmware/"
 
 # This list should be updated as firmware we're interested in is required
 build_package firmware-ti-connectivity-wl127x ${VERSION} "$1" '.*/ti-connectivity/wl127.*'
+build_package sd8688-firmware ${VERSION} "$1" '.*/libertas/sd8688.*.bin'
+build_package sd8686-firmware ${VERSION} "$1" '.*/libertas/sd8686.*.bin'

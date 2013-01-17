@@ -1,3 +1,0 @@
-mkdir -p "$1"/lib/firmware/
-cp "${SUPPORT_FILES}"/firmware/sd8686* "$1"/lib/firmware
-build_package sd8686-firmware 1.0.0 "$1"
