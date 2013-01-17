@@ -1,6 +1,8 @@
 #!/bin/bash
 # Main wrapper helper for all package builder functionality
 
+set -e
+
 valid_pdir() {
     if [ ! -d "${1}/scripts" -o ! -d "${1}/support_files" ] ; then
         return 1
