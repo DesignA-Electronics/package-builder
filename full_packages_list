@@ -52,8 +52,6 @@ strace
 ffmpeg
 fsx
 bonnie
-sd8686-firmware
-sd8688-firmware
 ipw2200-firmware
 bluewater-dev
 net-snmp
@@ -104,3 +102,4 @@ pixman-1
 dropbear
 valgrind
 jemalloc
+linux-firmware
