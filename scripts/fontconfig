@@ -4,6 +4,10 @@ SOURCE=http://www.freedesktop.org/software/fontconfig/release/fontconfig-${VERSI
 export CFLAGS="-I${STAGING}/include"
 CONFIGURE_PARAMS="--with-arch=arm --enable-libxml2"
 
+# Work around a documentation building issue
+# see http://trac.macports.org/ticket/37131
+export HASDOCBOOK=no
+
 do_generic "$1"
 
 
