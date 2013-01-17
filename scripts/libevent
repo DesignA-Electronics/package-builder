@@ -1,5 +1,5 @@
 NAME=libevent
-VERSION=2.0.18
+VERSION=2.0.21
 SOURCE=http://github.com/downloads/libevent/libevent/libevent-${VERSION}-stable.tar.gz
 
 do_generic "$1"

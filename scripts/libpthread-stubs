@@ -1,4 +1,3 @@
-NAME=libpthread-stubs
 VERSION=0.3
 SOURCE=http://xcb.freedesktop.org/dist/libpthread-stubs-${VERSION}.tar.bz2
 

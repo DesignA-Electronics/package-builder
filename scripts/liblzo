@@ -1,5 +1,4 @@
-NAME=liblzo
-VERSION=2.05
+VERSION=2.06
 SOURCE=http://www.oberhumer.com/opensource/lzo/download/lzo-${VERSION}.tar.gz
 
 do_generic "$1"

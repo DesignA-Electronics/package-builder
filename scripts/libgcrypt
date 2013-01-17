@@ -1,0 +1,6 @@
+VERSION=1.5.0
+SOURCE=ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-${VERSION}.tar.bz2
+CONFIGURE_PARAMS="--with-gpg-error-prefix=${STAGING}"
+
+do_generic "$1"
+

@@ -45,6 +45,7 @@ fi
 # Make a temporary build directory, and do the build in there
 mkdir $TMPDIR
 pushd build
+export NAME=$PACKAGE
 . ../scripts/$PACKAGE $TMPDIR
 popd
 
