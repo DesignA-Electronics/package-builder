@@ -39,6 +39,9 @@ Version: $PKG_VERSION
 Architecture: $ARCH
 Arch: $ARCH
 EOF
+    if [ -n "$DESCRIPTION" ] ; then
+        echo "Description: $DESCRIPTION" >> control
+    fi
     tar cfz control.tar.gz control
     rm control
     echo 2.0 > debian-binary
