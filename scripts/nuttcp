@@ -1,14 +1,11 @@
-NAME=nuttcp
-VERSION=7.1.6
+VERSION=7.2.1
 SOURCE=http://lcp.nrl.navy.mil/nuttcp/beta/nuttcp-${VERSION}.c
 
 if [ ! -d nuttcp-${VERSION} ] ; then
     mkdir nuttcp-${VERSION}
 fi
 cd nuttcp-${VERSION}
-if [ ! -f nuttcp-${VERSION}.c ] ; then
-    wget ${SOURCE}
-fi
+download "${SOURCE}"
 
 ${CROSS}gcc nuttcp-${VERSION}.c -o nuttcp -g -Wall -pipe
 
@@ -16,4 +13,3 @@ mkdir "$1"/bin
 cp nuttcp "$1"/bin
 
 build_package "${NAME}" "${VERSION}" "$1"
-
