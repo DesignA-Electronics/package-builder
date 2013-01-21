@@ -1,6 +1,5 @@
-NAME=glib
-VERSION=2.24.2
-SOURCE=http://ftp.gnome.org/pub/gnome/sources/glib/2.24/glib-${VERSION}.tar.gz
+VERSION=2.34.3
+SOURCE=http://ftp.gnome.org/pub/gnome/sources/glib/2.34/glib-${VERSION}.tar.xz
 CONFIGURE_PARAMS="--prefix=$1"
 
 export glib_cv_stack_grows=yes
