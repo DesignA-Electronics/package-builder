@@ -1,0 +1,5 @@
+VERSION=1.2.0
+SOURCE=http://www.x.org/releases/X11R7.6/src/everything/libSM-1.2.0.tar.bz2
+
+do_generic "$1"
+

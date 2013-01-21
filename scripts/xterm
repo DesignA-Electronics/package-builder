@@ -1,0 +1,9 @@
+NAME=xterm
+VERSION=288
+SOURCE=http://invisible-island.net/datafiles/release/xterm.tar.gz
+DESCRIPTION='terminal emulator for the X Window System'
+FORCE_DIRNAME="xterm-288"
+CONFIGURE_PARAMS="--disable-regex"
+
+do_generic "$1"
+

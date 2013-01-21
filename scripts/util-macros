@@ -1,0 +1,5 @@
+VERSION=1.11.0
+SOURCE=http://www.x.org/releases/X11R7.6/src/everything/util-macros-1.11.0.tar.bz2
+
+do_generic "$1"
+

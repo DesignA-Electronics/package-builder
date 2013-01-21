@@ -1,0 +1,6 @@
+VERSION=1.0.9
+SOURCE=http://www.x.org/releases/X11R7.6/src/everything/libXt-${VERSION}.tar.bz2
+CONFIGURE_PARAMS="CFLAGS_FOR_BUILD="
+
+do_generic "$1"
+
