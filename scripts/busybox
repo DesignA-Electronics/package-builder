@@ -16,6 +16,10 @@ clear_config() {
 
 VERSION=1.20.2
 SOURCE=http://busybox.net/downloads/busybox-${VERSION}.tar.bz2
+DESCRIPTION='The Swiss Army Knife of Embedded Linux.
+ BusyBox combines tiny versions of many common UNIX utilities into a
+ single small executable. It provides replacements for most of the
+ utilities you usually find in GNU fileutils, shellutils, etc.'
 
 post_unpack() {
     patch -p1 < ${SUPPORT_FILES}/patches/busybox-resource.patch
