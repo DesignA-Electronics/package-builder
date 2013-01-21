@@ -89,12 +89,19 @@ case "$command" in
         ls ${PACKAGE_BUILDER_BASE}/scripts | sort
         ;;
 
+    list-built)
+        find ${PACKAGE_BUILDER_BASE}/packages/ -name *.ipk -printf "%f\n" | sed 's/_/ /'g | cut -d ' ' -f 1,2 | sort
+        ;;
+
+
     *)
         cat >&2 << EOF
 Usage: pbuild [command] [options]
     Commands:
         list
             - List all packages that can be built
+        list-built
+            - List all the packages that have already been built
         build (packagename)
             - Build the given package
         build-all [packages list file]
