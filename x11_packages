@@ -24,6 +24,7 @@ libxkbfile
 libfontenc
 libxfont
 libpciaccess
+tslib
 xorg-xserver
 libxext
 libice
