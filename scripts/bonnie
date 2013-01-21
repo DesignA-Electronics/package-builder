@@ -1,17 +1,10 @@
-NAME=bonnie
-VERSION=0.0
-SOURCE=http://www.textuality.com/bonnie/bonnie.tar.gz
+VERSION=1.5
+SOURCE=http://www.garloff.de/kurt/linux/bonnie/bonnie-${VERSION}.tar.bz2
 
-download "$SOURCE"
-if [ ! -d ${NAME} ] ; then
-    mkdir ${NAME}
-    pushd ${NAME}
-    tar xfz ../bonnie.tar.gz
-else
-    pushd ${NAME}
-fi
+download_unpack "$SOURCE" "" "bonnie"
 make CC=${CROSS}gcc SYSFLAGS="${CFLAGS}"
 
 mkdir -p ${1}/bin
 cp Bonnie ${1}/bin
+cp bonnie.1 ${1}/man/man1/
 build_package ${NAME} ${VERSION} ${1}
