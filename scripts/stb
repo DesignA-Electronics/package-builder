@@ -1,0 +1,21 @@
+VERSION=0.0
+
+mkdir -p stb
+pushd stb
+
+download http://www.nothings.org/stb_image.c
+download http://www.nothings.org/stb/stb_image_write.h
+download http://www.nothings.org/stb.h
+download http://www.nothings.org/stb/stb_truetype.h
+
+# Convert stb_image.c into stb_image.h
+sed 's/^#include .*$//g' stb_image.c | ${CROSS}gcc -E -DSTBI_HEADER_FILE_ONLY -  | sed 's/^#.*$//g' > stb_image.h
+# ${CROSS}gcc -E -DSTBI_HEADER_FILE_ONLY stb_image.c > stb_image.h
+${CROSS}gcc -c -o stb_image.o stb_image.c ${CFLAGS} -lm
+${CROSS}ar crv stb_image.a stb_image.o
+
+# install
+mkdir -p "$1/lib" "$1/include"
+cp stb_image.a "$1/lib"
+cp stb_image.h stb_image_write.h stb.h stb_truetype.h "$1/include"
+build_package "${NAME}"-dev "${VERSION}" "$1"
