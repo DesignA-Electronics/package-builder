@@ -335,8 +335,9 @@ build_generic_package() {
 }
 
 remove_cflags() {
-    remove=$1
-    CFLAGS=`echo $CFLAGS | sed "s/$1//g"`
+    for remove in $* ; do
+        CFLAGS=`echo $CFLAGS | sed "s#$remove##g"`
+    done
 }
 
 # Builds a package using the standard ./configure, make, make install
