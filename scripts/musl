@@ -18,6 +18,7 @@ DESTDIR=$1
 CC=${CROSS}gcc
 CROSS_COMPILE=${CROSS}
 CFLAGS=${CFLAGS}
+LIBCC=-lgcc -lgcc_eh
 EOF
 
 do_make
