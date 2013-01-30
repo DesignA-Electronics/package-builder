@@ -31,7 +31,9 @@ case "$command" in
     build)
         cd "${PACKAGE_BUILDER_BASE}"
         export PACKAGE_BUILDER_BASE
-        exec ./helpers/update_package $*
+        for package in $* ; do
+            bash -c "./helpers/update_package $package"
+        done
         ;;
 
     build-all)
