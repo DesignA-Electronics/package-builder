@@ -1,9 +1,39 @@
 NAME=qt-embedded
-VERSION=4.8.2
-SOURCE=http://origin.releases.qt-project.org/qt4/source/qt-everywhere-opensource-src-${VERSION}.tar.gz
+VERSION=5.0.0
+SOURCE=http://origin.releases.qt-project.org/qt5/5.0.0/single/qt-everywhere-opensource-src-${VERSION}.tar.xz
 download_unpack "${SOURCE}"
-./configure -opensource -embedded arm -confirm-license -xplatform qws/linux-arm-gnueabi-g++ -no-qt3support -prefix / -qt-mouse-tslib -qt-gfx-linuxfb -no-opengl -L ${STAGING}/lib -I ${STAGING}/include -R ${STAGING}/lib
-make -j4
+
+pushd qtbase
+patch -p1 -N < ${SUPPORT_FILES}/patches/qt5-kdgetmode.patch
+popd
+
+# Fix up arm-linux-gnueabi- to arm-none-linux-gnueabi-
+CONF=qtbase/mkspecs/linux-arm-gnueabi-g++/qmake.conf
+sed "s/arm-linux-gnueabi-/${CROSS}/g" $CONF | egrep -v "^QMAKE_CFLAGS|^QMAKE_LIBS|^QMAKE_CXXFLAGS" > $CONF.new
+mv $CONF.new $CONF
+
+cat >> $CONF << EOF
+QMAKE_CFLAGS+=${CFLAGS}
+QMAKE_CXXFLAGS = \$\$QMAKE_CFLAGS
+EOF
+
+# We move these directories out of the way, since we can't build opengl,
+# and they require it. This should be fixed in newer versions of qt
+# qtdeclarative depends on opengl
+# qtgraphicaleffects & qtdoc depend on qtdeclarative, so they're out too
+[ ! -e qtdeclarative ] || mv qtdeclarative qtdeclarative.NOTUSED
+[ ! -e qtgraphicaleffects ] || mv qtgraphicaleffects qtgraphicaleffects.NOTUSED
+[ ! -e qtdoc ] || mv qtdoc qtdoc.NOTUSED
+
+#./configure -opensource -embedded arm -confirm-license -xplatform qws/linux-arm-gnueabi-g++ -no-qt3support -prefix / -qt-mouse-tslib -qt-gfx-linuxfb -no-opengl -L ${STAGING}/lib -I ${STAGING}/include -R ${STAGING}/lib
+./configure -opensource -confirm-license -xplatform linux-arm-gnueabi-g++ -qpa linuxfb -prefix / -no-opengl -no-kms -no-directfb -no-eglfs -no-xcb -no-cups -no-nis -no-iconv -no-icu -no-dbus -L ${STAGING}/lib -I ${STAGING}/include -R ${STAGING}/lib -no-c++11 -no-pch -nomake examples
+#-debug
+do_make
+pushd qtbase/src/plugins/generic/tslib
+../../../../bin/qmake
+make
+make install INSTALL_ROOT="$1"
+popd
 make install INSTALL_ROOT="$1"
 build_package "${NAME}"-demos "${VERSION}" "$1" ".*/demos/.*"
 build_package "${NAME}"-examples "${VERSION}" "$1" ".*/examples/.*"
@@ -12,6 +42,8 @@ build_package "${NAME}"-fonts "${VERSION}" "$1" ".*/fonts/.*"
 build_package "${NAME}"-dev "${VERSION}" "$1" ".*/include/.*|.*/mkspecs/.*|${DEV_FILES}"
 build_package "${NAME}"-locale "${VERSION}" "$1" ".*/translations/.*"
 build_package "${NAME}"-bin "${VERSION}" "$1" ".*/bin/.*"
+build_package "${NAME}"-doc "${VERSION}" "$1" .*/doc/.*"
+build_package "${NAME}"-imports "${VERSION}" "$1" .*/imports/.*"
 build_package "${NAME}" "${VERSION}" "$1"
 
 
