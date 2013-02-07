@@ -32,7 +32,7 @@ case "$command" in
         cd "${PACKAGE_BUILDER_BASE}"
         export PACKAGE_BUILDER_BASE
         for package in $* ; do
-            bash -c "./helpers/update_package $package"
+            ./helpers/update_package $package
         done
         ;;
 
