@@ -1,20 +1,19 @@
 set_config() {
-    config=$1
-    option=$2
-    value=$3
+    option=$1
+    value=$2
     if [ -z "$value" ] ; then
         value="y"
     fi
-    sed -i "s/^# $option .*$/$option=$value/" $config
+    sed -i "s/^# CONFIG_$option .*$/CONFIG_$option=$value/" .config
 }
 
 clear_config() {
-    config=$1
-    option=$2
-    sed -i "s/^$option=.*$/# $option is not set/" $config
+    for option in $* ; do
+        sed -i "s/^CONFIG_$option=.*$/# CONFIG_$option is not set/" .config
+    done
 }
 
-VERSION=1.20.2
+VERSION=1.21.0
 SOURCE=http://busybox.net/downloads/busybox-${VERSION}.tar.bz2
 DESCRIPTION='The Swiss Army Knife of Embedded Linux.
  BusyBox combines tiny versions of many common UNIX utilities into a
@@ -28,11 +27,17 @@ post_unpack() {
 download_unpack "$SOURCE"
 make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS="${CFLAGS}" defconfig
 # Turn on some options that we like
-set_config .config CONFIG_FEATURE_EDITING_FANCY_PROMPT
-set_config .config CONFIG_ASH_EXPAND_PRMT
+set_config FEATURE_EDITING_FANCY_PROMPT
+set_config ASH_EXPAND_PRMT
 # Saved history is annoying across multiple terminals
-clear_config .config CONFIG_FEATURE_EDITING_SAVEHISTORY
-clear_config .config CONFIG_FEATURE_INETD_RPC
+clear_config FEATURE_EDITING_SAVEHISTORY
+clear_config FEATURE_INETD_RPC
+#clear_config KBD_MODE
+#clear_config LOADFONT SETFONT
+#clear_config OPENVT
+#clear_config SHOWKEY
+#clear_config FEATURE_EJECT_SCSI
+#clear_config EJECT
 
 make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS="${CFLAGS}" oldconfig
 make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS="${CFLAGS}" -j4
