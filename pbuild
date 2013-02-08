@@ -124,7 +124,9 @@ Usage: pbuild [command] [options]
               directory
         build-rootfs (packages list file) (output directory) [device table]
             - Build a root filesystem given the list of packages,
-              and place it into the output directory
+              and place it into the output directory.
+              set STRIP_ROOTFS=1 to force all binaries to be stripped of 
+              debugging symbols
 EOF
         exit 1
         ;;
