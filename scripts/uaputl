@@ -3,7 +3,7 @@ VERSION=1.2
 SOURCE=http://plugcomputer.org/plugwiki/images/a/ad/Uaputl.tar.gz
 
 download_unpack "${SOURCE}" "" "uaputl"
-make CC=${CROSS}gcc CFLAGS="${CFLAGS}" uaputl
+make CC=${CC} CFLAGS="${CFLAGS}" uaputl
 
 # Install the files
 mkdir -p "$1"/sbin/ "$1"/etc

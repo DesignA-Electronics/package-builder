@@ -1,7 +1,7 @@
 NAME=libelf
 VERSION=0.8.13
 SOURCE=http://www.mr511.de/software/libelf-${VERSION}.tar.gz
-export CC="${CROSS}gcc"
+export CC
 INSTALL_PARAMS=instroot="$1"
 
 do_generic "$1"

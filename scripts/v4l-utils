@@ -2,7 +2,7 @@ NAME=v4l-utils
 VERSION=0.8.6
 SOURCE=http://linuxtv.org/downloads/v4l-utils/v4l-utils-${VERSION}.tar.bz2
 
-MAKE_PARAMS="CC=${CROSS}gcc CXX=${CROSS}g++"
+MAKE_PARAMS="CC=${CC} CXX=${CXX}"
 export CPPFLAGS="${CFLAGS}"
 export LDFLAGS="${LDFLAGS} -Wl,-rpath=${STAGING}/lib"
 

@@ -3,7 +3,7 @@ VERSION=1.4
 SOURCE=http://plugcomputer.org/plugwiki/images/7/7f/Uapevent.tar.gz
 
 download_unpack "${SOURCE}" "" "uapevent"
-make CC=${CROSS}gcc uapevent
+make CC=${CC} uapevent
 
 # Install the files
 mkdir -p "$1"/sbin/ "$1"/etc

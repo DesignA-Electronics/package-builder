@@ -3,7 +3,7 @@ SOURCE=http://mirror.linux.org.au/linux/libs/security/linux-privs/libcap2/libcap
 
 INSTALL_PARAMS="RAISE_SETFCAP=no lib=lib prefix=/"
 download_unpack "$SOURCE"
-make CC=${CROSS}gcc CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" BUILD_CC=gcc BUILD_CFLAGS="-g -Wall" lib=lib prefix=/
+make CC=${CC} CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" BUILD_CC=gcc BUILD_CFLAGS="-g -Wall" lib=lib prefix=/
 do_install "$1"
 build_generic_package "$1"
 

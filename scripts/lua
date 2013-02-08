@@ -2,7 +2,7 @@ VERSION=5.2.1
 SOURCE=http://www.lua.org/ftp/lua-${VERSION}.tar.gz
 
 download_unpack "$SOURCE"
-make PLAT=linux CC=${CROSS}gcc CFLAGS="${CFLAGS} -O2 -Wall" LIBS="${LDFLAGS} -lm"
+make PLAT=linux CC=${CC} CFLAGS="${CFLAGS}" LIBS="${LDFLAGS} -lm"
 make pc INSTALL_TOP="${STAGING}" > lua.pc
 cat >> lua.pc << EOF
 
