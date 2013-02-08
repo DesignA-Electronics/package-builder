@@ -1,0 +1,10 @@
+VERSION=0.4.3
+SOURCE=http://www.landley.net/toybox/downloads/toybox-${VERSION}.tar.bz2
+
+download_unpack "$SOURCE"
+
+unset CC
+make CC=gcc CROSS_COMPILE=${CROSS} CFLAGS="${CFLAGS}" defconfig toybox V=1
+make install PREFIX=$1
+
+build_package "${NAME}" "${VERSION}" "$1"
