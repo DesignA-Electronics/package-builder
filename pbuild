@@ -126,7 +126,9 @@ Usage: pbuild [command] [options]
             - Build a root filesystem given the list of packages,
               and place it into the output directory.
               set STRIP_ROOTFS=1 to force all binaries to be stripped of 
-              debugging symbols
+              debugging symbols.
+              Note: This command requires sudo access to correctly create 
+              device node permissions
 EOF
         exit 1
         ;;
