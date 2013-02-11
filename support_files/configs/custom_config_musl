@@ -1,7 +1,5 @@
-CFLAGS="-march=armv5t -mthumb-interwork -mthumb -I${STAGING}/include -specs ${STAGING}/lib/musl-gcc.specs"
-#CFLAGS="${CFLAGS} -I${STAGING}/include/linux/include"
-#KDIR=/home/andre/work/linux-2.6.33.3
-#CFLAGS="${CFLAGS} -I${KDIR}/include"
+CFLAGS="-march=armv5t -I${STAGING}/include"
+#CFLAGS="${CFLAGS} -specs ${STAGING}/lib/musl-gcc.specs"
 LDFLAGS="-L${STAGING}/lib -march=armv5t"
 PACKAGE_ARCH=musl
 export PACKAGE_BUILDER_BASE
