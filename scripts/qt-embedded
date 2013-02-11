@@ -1,6 +1,5 @@
-NAME=qt-embedded
-VERSION=5.0.0
-SOURCE=http://origin.releases.qt-project.org/qt5/5.0.0/single/qt-everywhere-opensource-src-${VERSION}.tar.xz
+VERSION=5.0.1
+SOURCE=http://origin.releases.qt-project.org/qt5/${VERSION}/single/qt-everywhere-opensource-src-${VERSION}.tar.xz
 download_unpack "${SOURCE}"
 
 pushd qtbase
