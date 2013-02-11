@@ -19,7 +19,7 @@ cleanup() {
     rm -rf "$TMPDIR"
 }
 
-trap cleanup 1 2 3 6
+trap cleanup 1 2 3 6 15
 
 
 if [ ! -f "scripts/$PACKAGE" ] ; then
