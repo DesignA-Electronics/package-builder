@@ -3,7 +3,7 @@ VERSION=3.0.12
 SOURCE=http://www.daniel-baumann.ch/software/dosfstools/dosfstools-${VERSION}.tar.gz
 
 download_unpack "$SOURCE"
-export CC=${CROSS}gcc
+export CC=${CC}
 do_make
 make install PREFIX="$1"
 build_generic_package "$1"

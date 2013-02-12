@@ -2,7 +2,7 @@ NAME=libbsd
 VERSION=0.3.0
 SOURCE=http://libbsd.freedesktop.org/releases/${NAME}-${VERSION}.tar.gz
 
-MAKE_PARAMS="CC=${CROSS}gcc"
+MAKE_PARAMS="CC=${CC}"
 download_unpack "$SOURCE" "$FILENAME" "$FORCE_DIRNAME"
 # Set prefix to be empty
 sed -i 's/^prefix.*$/prefix =/g' Makefile

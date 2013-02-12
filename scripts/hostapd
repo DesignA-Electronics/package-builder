@@ -7,7 +7,7 @@ cd hostapd
 cp defconfig .config
 cat >> .config << EOF
 CONFIG_DRIVER_NL80211=y
-CC=${CROSS}gcc
+CC=${CC}
 CFLAGS+=-I${STAGING}/include
 LIBS+=-L${STAGING}/lib -ldl
 V=1

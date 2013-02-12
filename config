@@ -43,6 +43,9 @@ if [ -f "$PACKAGE_BUILDER_CONFIG" ] ; then
     . "$PACKAGE_BUILDER_CONFIG"
 fi
 
+CC=${CC:${CROSS}gcc}
+CXX=${CXX:${CROSS}g++}
+
 export PATH=${TOOLCHAIN_DIR}/bin:$PATH
 # Is there a better name here to make configure pick it up?
 export ac_cv_path_PKG_CONFIG="${PKG_CONFIG}"

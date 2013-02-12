@@ -2,6 +2,6 @@ NAME=uucp
 VERSION=1.07
 SOURCE=http://ftp.gnu.org/pub/gnu/uucp/uucp-${VERSION}.tar.gz
 
-export CC=${CROSS}gcc
+export CC
 do_generic "$1"
 

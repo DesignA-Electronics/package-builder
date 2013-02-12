@@ -1,20 +1,19 @@
 set_config() {
-    config=$1
-    option=$2
-    value=$3
+    option=$1
+    value=$2
     if [ -z "$value" ] ; then
         value="y"
     fi
-    sed -i "s/^# $option .*$/$option=$value/" $config
+    sed -i "s/^# CONFIG_$option .*$/CONFIG_$option=$value/" .config
 }
 
 clear_config() {
-    config=$1
-    option=$2
-    sed -i "s/^$option=.*$/# $option is not set/" $config
+    for option in $* ; do
+        sed -i "s/^CONFIG_$option=.*$/# CONFIG_$option is not set/" .config
+    done
 }
 
-VERSION=1.20.2
+VERSION=1.21.0
 SOURCE=http://busybox.net/downloads/busybox-${VERSION}.tar.bz2
 DESCRIPTION='The Swiss Army Knife of Embedded Linux.
  BusyBox combines tiny versions of many common UNIX utilities into a
@@ -28,14 +27,37 @@ post_unpack() {
 download_unpack "$SOURCE"
 make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS="${CFLAGS}" defconfig
 # Turn on some options that we like
-set_config .config CONFIG_FEATURE_EDITING_FANCY_PROMPT
-set_config .config CONFIG_ASH_EXPAND_PRMT
+set_config FEATURE_EDITING_FANCY_PROMPT
+set_config ASH_EXPAND_PRMT
 # Saved history is annoying across multiple terminals
-clear_config .config CONFIG_FEATURE_EDITING_SAVEHISTORY
-clear_config .config CONFIG_FEATURE_INETD_RPC
+clear_config FEATURE_EDITING_SAVEHISTORY
+clear_config FEATURE_INETD_RPC
+
+# Musl doesn't support a bunch of networking headers at this stage
+if [ "$USE_MUSL" == "y" ] ; then
+    clear_config ARP
+    clear_config ARPING
+    clear_config ZCIP
+    clear_config IPLINK
+    clear_config FEATURE_IP_LINK
+    clear_config IFUPDOWN
+    clear_config ETHER_WAKE
+    clear_config NAMEIF
+    clear_config FEATURE_IFCONFIG_SLIP
+    clear_config SETARCH
+    clear_config KBD_MODE
+    clear_config LOADFONT SETFONT
+    clear_config OPENVT
+    clear_config SHOWKEY
+    clear_config FEATURE_EJECT_SCSI
+    clear_config EJECT
+    clear_config FEATURE_MOUT_LOOP
+    clear_config FEATURE_MOUT_LOOP_CREATE
+    clear_config UDHCPD
+fi
 
 make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS="${CFLAGS}" oldconfig
-make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS="${CFLAGS}" -j4
+make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS="${CFLAGS}" -j4 V=1
 make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS="${CFLAGS}" busybox.links
 ./applets/install.sh "$1" --symlinks
 

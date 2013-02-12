@@ -7,8 +7,8 @@ cp defconfig .config
 echo "CFLAGS+=-I${STAGING}/include" >> .config
 echo "LIBS+=-L${STAGING}/lib" >> .config
 echo "LIBS_p+=-L${STAGING}/lib -ldl" >> .config
-make CC=${CROSS}gcc
-make CC=${CROSS}gcc install DESTDIR=${1} BINDIR=/usr/bin LIBDIR=/usr/lib
+make CC=${CC}
+make CC=${CC} install DESTDIR=${1} BINDIR=/usr/bin LIBDIR=/usr/lib
 
 build_generic_package "$1"
 

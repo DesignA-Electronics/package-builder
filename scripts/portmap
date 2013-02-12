@@ -12,7 +12,7 @@ export CPPFLAGS="-DFACILITY=LOG_DAEMON -DENABLE_DNS"
 export CC_FOR_BUILD=${CROSS}gcc
 
 download_unpack "$SOURCE" "$FILENAME" "$FORCE_DIRNAME"
-make CC=${CROSS}gcc NO_TCP_WRAPPER=y
+make CC=${CC} NO_TCP_WRAPPER=y
 
 # Manual install
 echo "Install dir = $1"

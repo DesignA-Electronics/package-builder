@@ -31,7 +31,9 @@ case "$command" in
     build)
         cd "${PACKAGE_BUILDER_BASE}"
         export PACKAGE_BUILDER_BASE
-        exec ./helpers/update_package $*
+        for package in $* ; do
+            ./helpers/update_package $package
+        done
         ;;
 
     build-all)
@@ -102,8 +104,8 @@ Usage: pbuild [command] [options]
             - List all packages that can be built
         list-built
             - List all the packages that have already been built
-        build (packagename)
-            - Build the given package
+        build (packagenames...)
+            - Build the given package(s)
         build-all [packages list file]
             - Build a series of packages. Use the given list file,
               or the 'full_packages_list' file if not specified
@@ -122,7 +124,11 @@ Usage: pbuild [command] [options]
               directory
         build-rootfs (packages list file) (output directory) [device table]
             - Build a root filesystem given the list of packages,
-              and place it into the output directory
+              and place it into the output directory.
+              set STRIP_ROOTFS=1 to force all binaries to be stripped of 
+              debugging symbols.
+              Note: This command requires sudo access to correctly create 
+              device node permissions
 EOF
         exit 1
         ;;

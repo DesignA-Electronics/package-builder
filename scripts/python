@@ -20,7 +20,7 @@ make distclean
 
 patch --forward -p1 < ${SUPPORT_FILES}/patches/Python-${VERSION}-xcompile.patch
 
-CC=${CROSS}gcc CXX=${CROSS}g++ AR=${CROSS}ar RANLIB=${CROSS}ranlib ./configure --host=arm-linux
+CC=${CC} CXX=${CXX} AR=${CROSS}ar RANLIB=${CROSS}ranlib ./configure --host=arm-linux
 make HOSTPYTHON=./hostpython HOSTPGEN=./Parser/hostpgen BLDSHARED="${CROSS}gcc -shared" CROSS_COMPILE=rm-none-linux-gnueabi- CROSS_COMPILE_TARGET=yes -j4
 make install HOSTPYTHON=./hostpython BLDSHARED="${CROSS}gcc -shared" CROSS_COMPILE=${CROSS} CROSS_COMPILE_TARGET=yes prefix="$1"
 

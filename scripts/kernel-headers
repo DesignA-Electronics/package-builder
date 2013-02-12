@@ -1,0 +1,8 @@
+VERSION=3.7.6
+SOURCE=https://www.kernel.org/pub/linux/kernel/v3.x/linux-${VERSION}.tar.xz
+
+download_unpack "$SOURCE"
+make headers_install INSTALL_HDR_PATH=$1
+popd
+
+build_package "${NAME}" "${VERSION}" "$1"

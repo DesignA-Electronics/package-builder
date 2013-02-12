@@ -7,7 +7,7 @@ hostname snapper
 telnetd
 
 echo "Starting mdev..."
-/etc/init.d/mdev.sh
+/etc/init.d/mdev
 
 CONSOLE=`sed 's/.*console=\([^, ]*\).*/\1/' /proc/cmdline`
 if [ -z "$CONSOLE" ] ; then

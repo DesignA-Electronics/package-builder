@@ -1,22 +1,32 @@
 NAME=musl
-VERSION=0.9.2
-SOURCE=http://www.etalabs.net/musl/releases/musl-${VERSION}.tar.gz
+VERSION=0.9.9
+SOURCE=http://www.musl-libc.org/releases/musl-${VERSION}.tar.gz
+
+INSTALL_PARAMS="prefix=/"
 
 download_unpack "${SOURCE}"
 
-cat >> config.mak << EOF
-prefix=/
+# Musl doesn't support thumb & we don't want to be using some gcc spec file
+# as we're probably building that now
+remove_cflags "-mthumb-interwork" "-mthumb" "-specs ${STAGING}/lib/musl-gcc.specs"
+
+cat > config.mak << EOF
+prefix=${STAGING}
 exec_prefix=/
 ARCH=${ARCH}
 DESTDIR=$1
 CC=${CROSS}gcc
 CROSS_COMPILE=${CROSS}
+CFLAGS=${CFLAGS}
+LIBCC=-lgcc -lgcc_eh
 EOF
-# Should be adding cflags, but they don't support armv4t
-# CFLAGS+=${CFLAGS}
 
 do_make
 do_install "$1"
+# Fix up the ld-musl-arm.so.1 symlink
+ln -sf libc.so "$1"/lib/ld-musl-arm.so.1
+ln -sf libc.so "$1"/lib/libc.so.6
 
+DEV_FILES=${DEV_FILES}"|.*/bin/musl-gcc|.*/lib/.*\.o|.*/lib/musl-gcc.specs"
 build_generic_package "$1"
 

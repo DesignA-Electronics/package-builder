@@ -3,7 +3,7 @@ VERSION=29
 SOURCE=http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/wireless_tools.${VERSION}.tar.gz
 
 download_unpack ${SOURCE}
-make CC=${CROSS}gcc CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"
-make CC=${CROSS} PREFIX=$1 install
+make CC=${CC} CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"
+make CC=${CC} PREFIX=$1 install
 
 build_generic_package "$1"

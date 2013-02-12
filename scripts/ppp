@@ -1,7 +1,7 @@
 NAME=ppp
 VERSION=2.4.5
 SOURCE=ftp://ftp.samba.org/pub/ppp/ppp-${VERSION}.tar.gz
-export CC=${CROSS}gcc
+export CC=${CC}
 post_unpack() {
     sed -i "s/INSTALL[ \t]*=[ \t]*install/INSTALL=install --strip-program=${CROSS}strip/" chat/Makefile.linux pppd/plugins/radius/Makefile.linux pppd/Makefile.linux pppstats/Makefile.linux pppdump/Makefile.linux
 }

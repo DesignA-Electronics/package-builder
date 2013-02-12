@@ -80,12 +80,12 @@ make_device () {
         mkdir "$device"
     elif [ "$type" == "c" -o "$type" == "b" ] ; then
         if [ "$count" == "-" -o -z "$count" ] ; then
-            sudo mknod "$device" $type $major $minor
+            sudo mknod "$device" $type $major $minor &
         else
             i=$start
             pos=$(( $minor ))
             while [ "$i" -le "$count" ] ; do
-                sudo mknod "$device$i" $type $major $pos
+                sudo mknod "$device$i" $type $major $pos &
                 pos=$(( $pos + $inc ))
                 i=$(( $i + 1 ))
         done
@@ -101,11 +101,13 @@ make_device () {
 ##
 make_devices () {
     FILE=$1
+    sudo ls > /dev/null # Just to cache the sudo credentials
     cat $1 | while read line ; do
         if [ "${line:0:1}" != "#" ] ; then
             make_device $line
         fi
     done
+    wait
 }
 
 
@@ -116,7 +118,10 @@ mkdir -p "$DEST/lib" "$DEST/dev" "$DEST/proc" "$DEST/sys" "$DEST/etc/init.d" "$D
 # New projects should include the toolchain-libs into their packages listing, this is just
 # for compatability with older projects
 if [ "${ARCH}" == "arm" ] ; then
-    if ! grep -q toolchain-libs $PACKAGES_LIST ; then
+    if grep -q toolchain-libs $PACKAGES_LIST ; then
+        SKIP_TOOLCHAIN_LIBS=y
+    fi
+    if [ "${SKIP_TOOLCHAIN_LIBS}" != "y" ] ; then
         echo -n "  Copying Libraries "
         ln -s /var/tmp "$DEST/tmp"
 
@@ -169,7 +174,7 @@ echo
 wait
 
 if [ "$STRIP_ROOTFS" == "1" ] ; then
-    echo -n "  Stripping binaries..."
+    echo -n "  Stripping binaries "
     FILES="${DEST}/lib/* ${DEST}/bin/* ${DEST}/usr/lib/* ${DEST}/usr/bin/*"
     for f in $FILES ; do
         if [ -f $f ] ; then
