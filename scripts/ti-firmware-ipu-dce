@@ -1,9 +1,11 @@
 NAME=ti-firmware-ipu-dce
 #VERSION=1.6+120829+191835+git53cf578
 #VERSION=1.6+120926+122834+git7169521
-VERSION=1.6+121009+114852+git5c3f2bc
+#VERSION=1.6+121009+114852+git5c3f2bc
+VERSION=1.6+121207+151913+git17438c0
 SOURCE=http://ppa.launchpad.net/tiomap-dev/omap-trunk/ubuntu/pool/main/t/ti-firmware-ipu-dce/ti-firmware-ipu-dce_${VERSION}.tar.gz
-FORCE_DIRNAME=$NAME-${VERSION}
+#FORCE_DIRNAME=$NAME-${VERSION}
+FORCE_DIRNAME=ducati-dce-ee4f5fd145de23fb00ee61a4f98dc4f8ae7d812e/
 
 download_unpack $SOURCE "" "$FORCE_DIRNAME"
 mkdir -p "$1"/lib/firmware
