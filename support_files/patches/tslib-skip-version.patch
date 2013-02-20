@@ -1,0 +1,19 @@
+--- a/plugins/input-raw.c	2013-02-21 10:58:44.078291507 +1300
++++ b/plugins/input-raw.c	2013-02-21 11:15:43.986308190 +1300
+@@ -83,7 +83,15 @@
+ 		return -1;
+ 	}
+ 
+-	if (version < EV_VERSION) {
++	/* EV_VERSION 0x10000 -> 0x10001 was a change relating only to
++	 * keycodes, not touchscreens, so we'll accept that version
++	 * discrepency
++	 */
++#define VERSION_ACCEPTABLE(k,u)				\
++		((k >= u) ||				\
++		 (k == 0x10000 && u == 0x10001) ||	\
++		 (k == 0x10001 && u == 0x10000))
++	if (!VERSION_ACCEPTABLE(version, EV_VERSION)) {
+ 		fprintf(stderr, "tslib: Selected device uses a different version of the event protocol than tslib was compiled for\n");
+ 		return -1;
+ 	}
