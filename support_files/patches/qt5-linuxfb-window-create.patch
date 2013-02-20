@@ -1,0 +1,9 @@
+--- a/src/plugins/platforms/linuxfb/qlinuxfbintegration.cpp
++++ a/src/plugins/platforms/linuxfb/qlinuxfbintegration.cpp
+@@ -84,6 +84,7 @@
+
+ QPlatformBackingStore *QLinuxFbIntegration::createPlatformBackingStore(QWindow *window) const
+ {
++    window->create();
+     return new QFbBackingStore(window);
+ }
