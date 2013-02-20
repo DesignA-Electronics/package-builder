@@ -1,0 +1,14 @@
+VERSION=4.8.4
+SOURCE=http://releases.qt-project.org/qt4/source/qt-everywhere-opensource-src-${VERSION}.tar.gz
+download_unpack "${SOURCE}"
+./configure -opensource -embedded arm -confirm-license -xplatform qws/linux-arm-gnueabi-g++ -no-qt3support -prefix / -qt-mouse-tslib -qt-gfx-linuxfb -no-opengl -L ${STAGING}/lib -I ${STAGING}/include -R ${STAGING}/lib -no-pch
+make -j4
+make install INSTALL_ROOT="$1"
+build_package "${NAME}"-demos "${VERSION}" "$1" ".*/demos/.*"
+build_package "${NAME}"-examples "${VERSION}" "$1" ".*/examples/.*"
+build_package "${NAME}"-plugins "${VERSION}" "$1" ".*/plugins/.*"
+build_package "${NAME}"-fonts "${VERSION}" "$1" ".*/fonts/.*"
+build_package "${NAME}"-dev "${VERSION}" "$1" ".*/include/.*|.*/mkspecs/.*|${DEV_FILES}"
+build_package "${NAME}"-locale "${VERSION}" "$1" ".*/translations/.*"
+build_package "${NAME}"-bin "${VERSION}" "$1" ".*/bin/.*"
+build_package "${NAME}" "${VERSION}" "$1"
