@@ -35,6 +35,10 @@ clear_config FEATURE_INETD_RPC
 
 # Musl doesn't support a bunch of networking headers at this stage
 if [ "$USE_MUSL" == "y" ] ; then
+    clear_config INETD
+    clear_config FEATURE_VI_USE_SIGNALS
+    clear_config NSLOOKUP
+    clear_config IFPLUGD
     clear_config ARP
     clear_config ARPING
     clear_config ZCIP

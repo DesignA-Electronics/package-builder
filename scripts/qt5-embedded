@@ -4,6 +4,7 @@ download_unpack "${SOURCE}"
 
 pushd qtbase
 patch -p1 -N < ${SUPPORT_FILES}/patches/qt5-kdgetmode.patch
+patch -p1 -N < ${SUPPORT_FILES}/patches/qt5-linuxfb-window-create.patch
 popd
 
 # Fix up arm-linux-gnueabi- to arm-none-linux-gnueabi-
