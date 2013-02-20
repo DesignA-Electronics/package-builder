@@ -1,15 +1,11 @@
-NAME=libdce
 VERSION=git
 #SOURCE=git://github.com/robclark/libdce.git
 #BRANCH=remotes/origin/rpmsg
 SOURCE=git://gitorious.org/gstreamer-omap/libdce.git
 BRANCH=remotes/origin/master
 
-if [ ! -d ${NAME} ] ; then
-    git clone ${SOURCE} ${NAME}
-fi
-pushd ${NAME}
-git checkout ${BRANCH}
+git_download "$SOURCE" "$BRANCH"
+
 CFLAGS="${CFLAGS}" ./autogen.sh --host=${HOST} --prefix="$1"
 make
 make install

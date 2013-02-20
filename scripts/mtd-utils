@@ -1,12 +1,8 @@
-NAME=mtd-utils
 VERSION=git
 SOURCE=git://git.infradead.org/mtd-utils
 
-if [ ! -d mtd-utils ] ; then
-    git clone ${SOURCE} mtd-utils
-fi
-pushd mtd-utils
-git pull
+git_download "$SOURCE"
+
 CROSS=${CROSS} DESTDIR="$1" LDFLAGS="${LDFLAGS}" WITHOUT_XATTR=1 WITHOUT_LZO=1 CFLAGS="${CFLAGS}" V=1 make
 CROSS=${CROSS} DESTDIR="$1" LDFLAGS="${LDFLAGS}" WITHOUT_XATTR=1 WITHOUT_LZO=1 CFLAGS="${CFLAGS}" V=1 make install
 build_generic_package "$1"
