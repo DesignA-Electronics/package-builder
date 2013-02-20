@@ -52,6 +52,7 @@ EOF
 
 git_download() {
     SOURCE=$1
+    RELEASE=${2:-HEAD}
     FILENAME=`basename $SOURCE`
     DIRNAME=${FILENAME%%.git}
 
@@ -61,6 +62,7 @@ git_download() {
 
     pushd ${DIRNAME}
     git pull
+    git checkout -f ${RELEASE}
 }
 
 download() {
