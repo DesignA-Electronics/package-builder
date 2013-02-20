@@ -1,0 +1,11 @@
+VERSION=5.4.7
+SOURCE=http://sourceforge.net/projects/vtwm/files/vtwm-${VERSION}.tar.gz
+DESCRIPTION='The Virtual tab Window Manager
+ VTWM, one of many TWM descendants, implements a Virtual Desktop (VD), 
+ meaning that what is currently on screen is just a portion of a larger 
+ workspace. What portion of the virtual desktop that is displayed, and 
+ whatever windows might be visible within it, are simple point-and-click 
+ operations within a scaled representation of the workspace.'
+
+do_generic "$1"
+

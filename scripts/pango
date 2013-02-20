@@ -1,0 +1,5 @@
+VERSION=1.32.6
+SOURCE=http://ftp.gnome.org/pub/gnome/sources/pango/1.32/pango-${VERSION}.tar.xz
+
+do_generic "$1"
+
