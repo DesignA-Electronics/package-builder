@@ -26,6 +26,7 @@ do_install "$1"
 # Fix up the ld-musl-arm.so.1 symlink
 ln -sf libc.so "$1"/lib/ld-musl-arm.so.1
 ln -sf libc.so "$1"/lib/libc.so.6
+sed -i "s/REALGCC:-gcc/REALGCC:-${CROSS}gcc/g" "$1/bin/musl-gcc"
 
 DEV_FILES=${DEV_FILES}"|.*/bin/musl-gcc|.*/lib/.*\.o|.*/lib/musl-gcc.specs"
 build_generic_package "$1"

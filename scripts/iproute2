@@ -7,7 +7,7 @@ download_unpack "$SOURCE"
 cat > Config << EOF
 IPT_LIB_DIR:=/lib/xtables
 LDFLAGS:=${LDFLAGS}
-IP_CONFIG_SETNS:=n
+IP_CONFIG_SETNS:=y
 EOF
 do_make
 do_install "$1"

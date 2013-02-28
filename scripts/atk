@@ -1,0 +1,5 @@
+VERSION=2.6.0
+SOURCE=http://ftp.gnome.org/pub/gnome/sources/atk/2.6/atk-${VERSION}.tar.xz
+
+do_generic "$1"
+

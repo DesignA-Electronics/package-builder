@@ -50,6 +50,21 @@ EOF
     rm -rf $TMPIPKG
 }
 
+git_download() {
+    SOURCE=$1
+    RELEASE=${2:-HEAD}
+    FILENAME=`basename $SOURCE`
+    DIRNAME=${FILENAME%%.git}
+
+    if [ ! -d "${DIRNAME}" ] ; then
+        git clone $SOURCE
+    fi
+
+    pushd ${DIRNAME}
+    git pull
+    git checkout -f ${RELEASE}
+}
+
 download() {
     SOURCE="$1"
     FILENAME="$2"

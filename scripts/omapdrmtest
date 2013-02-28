@@ -1,11 +1,7 @@
-NAME=omapdrmtest
 VERSION=git
 SOURCE=git://github.com/robclark/omapdrmtest.git
 
-if [ ! -d ${NAME} ] ; then
-    git clone ${SOURCE} ${NAME}
-fi
-pushd ${NAME}
+git_download "$SOURCE"
 export DCE_LIBS="-L${STAGING}/lib -ldce -ldrm -ldrm_omap -lavformat -lavutil -lavcodec"
 CFLAGS="${CFLAGS}" ./autogen.sh --host=${HOST} --prefix="$1" --disable-x11
 make

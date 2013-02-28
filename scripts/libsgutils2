@@ -1,5 +1,5 @@
 NAME=libsgutils2
-VERSION=1.33
+VERSION=1.35
 SOURCE=http://sg.danny.cz/sg/p/sg3_utils-${VERSION}.tgz
 
 do_generic "$1"

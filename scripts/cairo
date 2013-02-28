@@ -1,5 +1,5 @@
 NAME=cairo
-VERSION=1.12.2
+VERSION=1.12.10
 SOURCE=http://www.cairographics.org/releases/cairo-${VERSION}.tar.xz
 
 CONFIGURE_PARAMS="--enable-xlib=no --without-x --enable-xcb=no --enable-gobject=no"
