@@ -4,7 +4,7 @@ LDFLAGS="-L${STAGING}/lib -march=armv5t"
 PACKAGE_ARCH=musl
 export PACKAGE_BUILDER_BASE
 export REALGCC=${CROSS}gcc
-export CC=${PACKAGE_BUILDER_BASE}/bin/musl-gcc
+export CC=${PACKAGE_BUILDER_BASE}/staging/bin/musl-gcc
 
 # Musl has it's own libs, so don't use the toolchain ones
 SKIP_TOOLCHAIN_LIBS=y
