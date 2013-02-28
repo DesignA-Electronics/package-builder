@@ -3,6 +3,8 @@ SOURCE=https://www.kernel.org/pub/linux/kernel/v3.x/linux-${VERSION}.tar.xz
 
 download_unpack "$SOURCE"
 make headers_install INSTALL_HDR_PATH=$1
+mkdir -p "$1/include/asm/"
+cp -a arch/arm/include/uapi/asm/* "$1/include/asm/"
 popd
 
 build_package "${NAME}" "${VERSION}" "$1"
