@@ -60,9 +60,9 @@ if [ "$USE_MUSL" == "y" ] ; then
     clear_config UDHCPD
 fi
 
-make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS="${CFLAGS}" oldconfig
-make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS="${CFLAGS}" -j4 V=1
-make CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS="${CFLAGS}" busybox.links
+make CC=${CC} CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS="${CFLAGS}" oldconfig
+make CC=${CC} CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS="${CFLAGS}" -j4 V=1
+make CC=${CC} CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS="${CFLAGS}" busybox.links
 ./applets/install.sh "$1" --symlinks
 
 build_package busybox ${VERSION} $1

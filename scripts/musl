@@ -1,10 +1,14 @@
 NAME=musl
-VERSION=0.9.9
-SOURCE=http://www.musl-libc.org/releases/musl-${VERSION}.tar.gz
+#VERSION=0.9.9
+#SOURCE=http://www.musl-libc.org/releases/musl-${VERSION}.tar.gz
+
+VERSION=git
+SOURCE=git://git.musl-libc.org/musl
 
 INSTALL_PARAMS="prefix=/"
 
-download_unpack "${SOURCE}"
+#download_unpack "${SOURCE}"
+git_download "${SOURCE}"
 
 # Musl doesn't support thumb & we don't want to be using some gcc spec file
 # as we're probably building that now
