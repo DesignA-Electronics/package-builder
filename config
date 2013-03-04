@@ -8,6 +8,9 @@ DOWNLOAD_CACHE_DIR=/work/internal/package_download_cache/
 SCRIPT_DIR=${PACKAGE_BUILDER_BASE}/scripts/
 PKG_CONFIG=${PACKAGE_BUILDER_BASE}/pkg-config
 
+unset CC
+unset CXX
+
 # Codesourcery 2010q1
 TOOLCHAIN_DIR=/tools/arm/arm-2010q1
 TOOLCHAIN_LIBC_DIR=${TOOLCHAIN_DIR}/arm-none-linux-gnueabi/libc/armv4t
@@ -44,8 +47,8 @@ if [ -f "$PACKAGE_BUILDER_CONFIG" ] ; then
     . "$PACKAGE_BUILDER_CONFIG"
 fi
 
-CC=${CC:${CROSS}gcc}
-CXX=${CXX:${CROSS}g++}
+CC=${CC:-${CROSS}gcc}
+CXX=${CXX:-${CROSS}g++}
 
 export PATH=${TOOLCHAIN_DIR}/bin:$PATH
 # Is there a better name here to make configure pick it up?
