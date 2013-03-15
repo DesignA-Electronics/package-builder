@@ -80,15 +80,15 @@ make_device () {
         mkdir "$device"
     elif [ "$type" == "c" -o "$type" == "b" ] ; then
         if [ "$count" == "-" -o -z "$count" ] ; then
-            sudo mknod "$device" $type $major $minor &
+            sudo mknod "$device" $type $major $minor
         else
             i=$start
             pos=$(( $minor ))
             while [ "$i" -le "$count" ] ; do
-                sudo mknod "$device$i" $type $major $pos &
+                sudo mknod "$device$i" $type $major $pos
                 pos=$(( $pos + $inc ))
                 i=$(( $i + 1 ))
-        done
+            done
         fi
     elif [ "$type" == "l" ] ; then
         ln -s "$mode" "$device"
@@ -107,7 +107,6 @@ make_devices () {
             make_device $line
         fi
     done
-    wait
 }
 
 
