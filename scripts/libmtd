@@ -1,0 +1,13 @@
+VERSION=git
+SOURCE=git://github.com/BluewaterSystems/libmtd.git
+
+git_download "$SOURCE"
+
+make clean
+make CC=${CC} AR=${CROSS}ar
+mkdir -p $1/include $1/lib $1/bin
+cp build/mtdtest build/mtdtool $1/bin/
+cp build/libmtd.a $1/lib
+cp mtdlib.h $1/include
+
+build_generic_package "$1"
