@@ -1,0 +1,8 @@
+VERSION=1.3.0
+SOURCE=http://dl.matroska.org/downloads/libebml/libebml-${VERSION}.tar.bz2
+
+download_unpack "$SOURCE"
+pushd make/linux
+make CROSS=${CROSS}
+make install prefix=$1
+build_generic_package "$1"
