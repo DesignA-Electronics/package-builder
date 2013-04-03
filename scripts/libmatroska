@@ -2,6 +2,7 @@ VERSION=1.4.0
 SOURCE=http://dl.matroska.org/downloads/libmatroska/libmatroska-${VERSION}.tar.bz2
 
 download_unpack "$SOURCE"
+patch -p1 -N < ${SUPPORT_FILES}/patches/libmatroska-ebml-path.diff
 pushd make/linux
 make CROSS=${CROSS} LIBEBML_INCLUDE_DIR=${STAGING}/include LIBEBML_LIB_DIR=${STAGING}/lib
 make install prefix=$1

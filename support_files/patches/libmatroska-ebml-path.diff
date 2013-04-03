@@ -1,0 +1,11 @@
+--- a/make/linux/Makefile	2013-04-03 16:28:13.833952262 +1300
++++ b/make/linux/Makefile	2013-04-03 16:29:53.825935454 +1300
+@@ -99,7 +99,7 @@
+ 	$(RANLIB) $@
+ 
+ $(LIBRARY_SO): $(objects_so)
+-	$(CXX) -shared -Wl,-soname,$(LIBRARY_SO_VER) -o $(LIBRARY_SO_VER) $(objects_so) -lebml
++	$(CXX) -shared -Wl,-soname,$(LIBRARY_SO_VER) -o $(LIBRARY_SO_VER) $(objects_so) -lebml -L$(LIBEBML_LIB_DIR)
+ 	rm -f $(LIBRARY_SO)
+ 	ln -s $(LIBRARY_SO_VER) $(LIBRARY_SO)
+ 
