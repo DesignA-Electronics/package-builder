@@ -130,7 +130,11 @@ if [ "${ARCH}" == "arm" ] ; then
         else
             copy_lib lib libc-*.so libnss_files-*.so libnss_dns-*.so libthread_db-*.so
         fi
-        if [ -f "$TOOLCHAIN_LIBC_DIR"/lib/libstdc++.so ] ; then
+
+        # Copy libstdc++
+        if [ "$SKIP_CXX" == "1" ] ; then
+            true
+        elif [ -f "$TOOLCHAIN_LIBC_DIR"/lib/libstdc++.so ] ; then
             copy_lib lib libstdc++.so*
         elif [ -f "$TOOLCHAIN_LIBC_DIR"/usr/lib/libstdc++.so ] ; then
             copy_lib usr/lib libstdc++.so*
