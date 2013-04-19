@@ -65,6 +65,19 @@ git_download() {
     git checkout -f ${RELEASE}
 }
 
+svn_download() {
+    SOURCE=$1
+    DIRNAME=$2
+
+    if [ ! -d "$DIRNAME" ] ; then
+        svn co $SOURCE $DIRNAME
+        cd $DIRNAME
+    else
+        cd $DIRNAME
+        svn up
+    fi
+}
+
 download() {
     SOURCE="$1"
     FILENAME="$2"
