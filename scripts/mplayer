@@ -2,14 +2,7 @@ NAME=mplayer
 VERSION=svn
 SOURCE=svn://svn.mplayerhq.hu/mplayer/trunk
 
-# Make sure we're up to date
-if [ ! -d mplayer ] ; then
-    svn co "$SOURCE" mplayer
-    cd mplayer
-else
-    cd mplayer
-    svn up
-fi
+svn_download "$SOURCE" mplayer
 
 ./configure --prefix=/ --enable-cross-compile --enable-armv5te --yasm='' --target=${HOST} --host-cc=gcc --cc=${CC} --enable-fbdev --enable-alsa --with-install="install --strip-program ${CROSS}strip"
 do_make
