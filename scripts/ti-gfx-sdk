@@ -1,0 +1,30 @@
+VERSION=4.09.00.01
+FILE=Graphics_SDK_setuplinux_4_09_00_01_minimal_demos.bin
+SOURCE=http://downloads.ti.com/dsps/dsps_public_sw/sdo_sb/targetcontent/gfxsdk/latest//exports/${FILE}
+DIR=Graphics_SDK_4_09_00_01
+
+download "${SOURCE}"
+
+if [ ! -d "${DIR}" ] ; then
+    chmod +x ${FILE}
+    cat > $NAME.response << EOF
+CreateDesktopShortcut: Yes
+CreateQuickLaunchShortcut: Yes
+InstallDir: $DIR
+InstallMode: Console
+InstallType: Typical
+LaunchApplication: Yes
+ProgramFolderName: Graphics SDK
+SelectedComponents: Base Install,es3.x,sdk
+ViewReadme: Yes
+EOF
+    ./${FILE} --response-file $NAME.response
+fi
+cd ${DIR}/${DIR}
+
+mkdir "$1/include" "$1/lib"
+cp -a include/OGLES2/* $1/include
+cp -a gfx_rel_es3.x/lib*.so $1/lib/
+
+build_generic_package "$1"
+
