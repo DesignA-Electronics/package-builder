@@ -46,7 +46,7 @@ fi
 mkdir $TMPDIR
 pushd build
 export NAME=$PACKAGE
-. ../scripts/$PACKAGE $TMPDIR
+. ../scripts/$PACKAGE $TMPDIR 2>&1 | tee $PACKAGE.build-log
 popd
 
 cleanup
