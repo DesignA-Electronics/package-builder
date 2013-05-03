@@ -1,0 +1,13 @@
+VERSION=git
+SOURCE=git://github.com/dankar/pnglite.git
+
+git_download "${SOURCE}"
+
+${CC} -c -o pnglite.o pnglite.c ${CFLAGS}
+${CROSS}ar crs libpnglite.a pnglite.o
+
+mkdir -p "$1/lib" "$1/include"
+cp libpnglite.a "$1/lib/"
+cp pnglite.h "$1/include"
+
+build_generic_package "$1"
