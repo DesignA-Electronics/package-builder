@@ -1,0 +1,16 @@
+VERSION=1.4.9
+SOURCE=http://downloads.sourceforge.net/project/axtls/${VERSION}/axTLS-${VERSION}.tar.gz
+FORCE_DIRNAME=axTLS
+
+download_unpack "$SOURCE" "" "$FORCE_DIRNAME"
+patch -p1 -N < ${SUPPORT_FILES}/patches/axtls-config.patch
+cp config/linuxconfig config/.config
+sed -i 's/CONFIG_AXHTTPD=y/# CONFIG_AXHTTPD is not set/g' config/.config
+sed -i 's/CONFIG_SAMPLES=y/# CONFIG_SAMPLES is not set/g' config/.config
+make oldconfig
+export CC=${CROSS}gcc
+make
+mkdir -p "$1/lib"
+make install PREFIX="$1"
+build_generic_package "$1"
+

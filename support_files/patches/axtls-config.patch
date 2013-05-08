@@ -1,0 +1,10 @@
+--- a/ssl/os_port.h	2012-06-08 22:43:25.000000000 +1200
++++ b/ssl/os_port.h	2013-05-09 09:57:18.356804935 +1200
+@@ -41,6 +41,7 @@
+ extern "C" {
+ #endif
+ 
++#include "config.h"
+ #include "os_int.h"
+ #include <stdio.h>
+ 
