@@ -1,6 +1,9 @@
 VERSION=1.0.26
 SOURCE=ftp://ftp.alsa-project.org/pub/lib/alsa-lib-${VERSION}.tar.bz2
-CONFIGURE_PARAMS="--disable-python"
+CONFIGURE_PARAMS="--disable-python --disable-alisp"
+# Extra small?
+#CONFIGURE_PARAMS="${CONFIGURE_PARAMS} --disable-old-symbols --disable-aload --disable-rawmidi --disable-seq --disable-ucm --disable-hwdep"
+#--disable-mixer --disable-pcm"
 
 # alsa-lib fails to build on thumb mode, so just can it for now
 remove_cflags "-mthumb "
