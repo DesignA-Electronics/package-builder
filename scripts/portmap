@@ -4,12 +4,12 @@ SOURCE=http://www.sourcefiles.org/Networking/Tools/Miscellanenous/portmap-6.0.tg
 FORCE_DIRNAME=portmap_6.0
 
 post_unpack() {
-    patch -p1 < ${SUPPORT_FILES}/patches/portmap/destdir-no-strip.patch 
+    patch -p1 < ${SUPPORT_FILES}/patches/portmap/destdir-no-strip.patch
     patch < ${SUPPORT_FILES}/patches/portmap/make.patch
 }
 
 export CPPFLAGS="-DFACILITY=LOG_DAEMON -DENABLE_DNS"
-export CC_FOR_BUILD=${CROSS}gcc
+export CC_FOR_BUILD=${CC}
 
 download_unpack "$SOURCE" "$FILENAME" "$FORCE_DIRNAME"
 make CC=${CC} NO_TCP_WRAPPER=y
@@ -18,7 +18,7 @@ make CC=${CC} NO_TCP_WRAPPER=y
 echo "Install dir = $1"
 if [ ! -d "$1"/sbin ]; then
 	mkdir -p "$1"/sbin
-fi	
+fi
 cp portmap "$1"/sbin/
 
 build_generic_package "$1"

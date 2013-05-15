@@ -9,7 +9,7 @@ CONFIGURE_PARAMS="--with-statduser=nobody \
 		  --disable-uuid \
 		  --with-statedir=/var/lib/nfs \
                   --disable-tirpc"
-export CC_FOR_BUILD=${CROSS}gcc
+export CC_FOR_BUILD=${CC}
 do_generic "$1"
 
 

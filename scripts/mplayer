@@ -11,7 +11,7 @@ else
     svn up
 fi
 
-./configure --prefix=/ --enable-cross-compile --enable-armv5te --yasm='' --target=${HOST} --host-cc=gcc --cc=${CROSS}gcc --enable-fbdev --enable-alsa --with-install="install --strip-program ${CROSS}strip"
+./configure --prefix=/ --enable-cross-compile --enable-armv5te --yasm='' --target=${HOST} --host-cc=gcc --cc=${CC} --enable-fbdev --enable-alsa --with-install="install --strip-program ${CROSS}strip"
 do_make
 do_install "$1"
 build_generic_package "$1"

@@ -9,9 +9,9 @@ download http://www.nothings.org/stb.h
 download http://www.nothings.org/stb/stb_truetype.h
 
 # Convert stb_image.c into stb_image.h
-sed 's/^#include .*$//g' stb_image.c | ${CROSS}gcc -E -DSTBI_HEADER_FILE_ONLY -  | sed 's/^#.*$//g' > stb_image.h
-# ${CROSS}gcc -E -DSTBI_HEADER_FILE_ONLY stb_image.c > stb_image.h
-${CROSS}gcc -c -o stb_image.o stb_image.c ${CFLAGS} -lm
+sed 's/^#include .*$//g' stb_image.c | ${CC} -E -DSTBI_HEADER_FILE_ONLY -  | sed 's/^#.*$//g' > stb_image.h
+# ${CC} -E -DSTBI_HEADER_FILE_ONLY stb_image.c > stb_image.h
+${CC} -c -o stb_image.o stb_image.c ${CFLAGS} -lm
 ${CROSS}ar crv stb_image.a stb_image.o
 
 # install

@@ -3,8 +3,8 @@ VERSION=4.3.0
 SOURCE=http://pyropus.ca/software/memtester/old-versions/memtester-${VERSION}.tar.gz
 
 download_unpack "$SOURCE"
-echo ${CROSS}gcc ${CFLAGS} > conf-cc
-echo ${CROSS}gcc ${LDFLAGS} -s > conf-ld
+echo ${CC} ${CFLAGS} > conf-cc
+echo ${CC} ${LDFLAGS} -s > conf-ld
 # memtester has a broken install, so fix that
 mkdir -p "$1"/bin "$1"/man/man8
 make install INSTALLPATH="$1"/
