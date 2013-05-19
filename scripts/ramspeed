@@ -1,0 +1,12 @@
+VERSION=2.6.0
+SOURCE=http://www.alasir.com/software/ramspeed/ramspeed-${VERSION}.tar.gz
+
+download_unpack "$SOURCE"
+for f in ramspeed intmark intmem fltmark fltmem ; do
+    ${CC} ${CFLAGS} -O3 -c -o $f.o $f.c
+done
+${CC} ${LFLAGS} -o ramspeed ramspeed.o intmark.o intmem.o fltmark.o fltmem.o
+
+mkdir -p "$1/bin"
+cp ramspeed "$1/bin/"
+build_package "${NAME}" "${VERSION}" "$1"
