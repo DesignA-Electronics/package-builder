@@ -2,9 +2,14 @@ NAME=sdl-framebuffer
 VERSION=1.2.15
 SOURCE=http://www.libsdl.org/release/SDL-$VERSION.tar.gz
 CONFIGURE_PARAMS="--disable-video-x11 --enable-video-fbcon \
-        --enable-pthreads --enable-alsa --enable-input-tslib \
+        --enable-pthreads --enable-alsa \
         --disable-pulseaudio --disable-esd --disable-video-directfb \
         --disable-dga"
+if [ "${USE_TSLIB}" == "y" ] ; then
+    CONFIGURE_PARAMS="$CONFIGURE_PARAMS --enable-input-tslib"
+else
+    CONFIGURE_PARAMS="$CONFIGURE_PARAMS --disable-input-tslib"
+fi
 export ac_cv_lib_iconv_libiconv_open=no
 export ac_cv_header_iconv_h=no
 export ac_cv_func_iconv=no

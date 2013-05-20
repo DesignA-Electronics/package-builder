@@ -54,3 +54,10 @@ export PATH=${TOOLCHAIN_DIR}/bin:$PATH
 # Is there a better name here to make configure pick it up?
 export ac_cv_path_PKG_CONFIG="${PKG_CONFIG}"
 
+# Some packages can optionally use additional features from external
+# packages. If you're going to use the packages below, you should
+# enable them here to make sure that any other packages are aware of their
+# presence and use their features appropriately.
+# USE_MUSL=y
+# USE_TSLIB=y
+
