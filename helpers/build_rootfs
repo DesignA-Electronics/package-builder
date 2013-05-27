@@ -170,7 +170,8 @@ echo
 
 # Build device files
 echo -n "  Building Device Files "
-make_devices ${DEVICE_TABLE}
+#make_devices ${DEVICE_TABLE}
+sudo ${PACKAGE_BUILDER_BASE}/helpers/make_devices.py ${DEVICE_TABLE} ${DEST}
 echo
 
 # Wait for any background stuff to finish
