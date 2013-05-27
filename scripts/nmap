@@ -1,0 +1,8 @@
+VERSION=6.25
+SOURCE=http://nmap.org/dist/nmap-${VERSION}.tar.bz2
+
+CONFIGURE_PARAMS="--with-libpcap=${STAGING} --without-zenmap --without-ndiff"
+J=1
+
+do_generic "$1"
+
