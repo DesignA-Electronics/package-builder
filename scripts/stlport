@@ -1,0 +1,10 @@
+VERSION=5.2.1
+SOURCE=http://downloads.sourceforge.net/project/stlport/STLport/STLport-${VERSION}/STLport-${VERSION}.tar.bz2
+
+download_unpack "$SOURCE"
+./configure --prefix="/" --target=arm-none-linux-gnueabi
+make
+make install DESTDIR="$1" BASE_INSTALL_LIB_DIR="$1" BASE_INSTALL_BIN_DIR="$1" BASE_INSTALL_HDR_DIR="$1" TARGET_NAME=""
+build_package "${NAME}-dev" ${VERSION} "$1" ".*\.h|.*/include/.*"
+build_package "${NAME}" ${VERSION} "$1"
+
