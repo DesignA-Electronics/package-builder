@@ -1,4 +1,4 @@
-VERSION=1.4.30
+VERSION=1.4.31
 SOURCE=http://sourceforge.net/projects/msmtp/files/msmtp/${VERSION}/msmtp-${VERSION}.tar.bz2
 LDFLAGS="${LDFLAGS} -ldl"
 DESCRIPTION='SMTP client
