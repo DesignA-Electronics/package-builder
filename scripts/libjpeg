@@ -1,11 +1,6 @@
 NAME=libjpeg
-VERSION=8d
-SOURCE=http://www.ijg.org/files/jpegsr8d.zip
-FORCE_DIRNAME=jpeg-8d
-
-post_unpack() { 
-    fromdos *
-    chmod +x configure
-}
+VERSION=9
+SOURCE=http://www.ijg.org/files/jpegsrc.v9.tar.gz
+FORCE_DIRNAME=jpeg-9
 
 do_generic "$1"
