@@ -54,62 +54,6 @@ install_package() {
     echo -n "."
 }
 
-##
-# Turn the one-line entry from the device_table file into an actual
-# device/directory/list of devices
-##
-make_device () {
-    device="$DEST"/$1
-    type=$2
-    mode=$3
-    uid=$4
-    gid=$5
-    major=$6
-    minor=$7
-    start=$8
-    inc=$9
-    count=${10}
-
-    dir=`dirname $device`
-
-    if [ -n "$dir" -a ! -d "$dir" ] ; then
-        mkdir -p "$dir"
-    fi
-
-    if [ "$type" == "d" ] ; then
-        mkdir "$device"
-    elif [ "$type" == "c" -o "$type" == "b" ] ; then
-        if [ "$count" == "-" -o -z "$count" ] ; then
-            sudo mknod "$device" $type $major $minor
-        else
-            i=$start
-            pos=$(( $minor ))
-            while [ "$i" -le "$count" ] ; do
-                sudo mknod "$device$i" $type $major $pos
-                pos=$(( $pos + $inc ))
-                i=$(( $i + 1 ))
-            done
-        fi
-    elif [ "$type" == "l" ] ; then
-        ln -s "$mode" "$device"
-    fi
-    echo -n "."
-}
-
-##
-# Make all of the devices in device_table into actual files in $DEST/dev
-##
-make_devices () {
-    FILE=$1
-    sudo ls > /dev/null # Just to cache the sudo credentials
-    cat $1 | while read line ; do
-        if [ "${line:0:1}" != "#" ] ; then
-            make_device $line
-        fi
-    done
-}
-
-
 # Build directory structure
 mkdir -p "$DEST/lib" "$DEST/dev" "$DEST/proc" "$DEST/sys" "$DEST/etc/init.d" "$DEST/var/tmp" "$DEST/home" "$DEST/mnt" "$DEST/var/run" "$DEST/usr/local/bin" "$DEST/usr/lib" "$DEST/lib/modules"
 
@@ -170,7 +114,6 @@ echo
 
 # Build device files
 echo -n "  Building Device Files "
-#make_devices ${DEVICE_TABLE}
 sudo ${PACKAGE_BUILDER_BASE}/helpers/make_devices.py ${DEVICE_TABLE} ${DEST}
 echo
 
