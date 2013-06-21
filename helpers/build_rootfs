@@ -114,7 +114,11 @@ echo
 
 # Build device files
 echo -n "  Building Device Files "
+if [ -z "$SKIP_SUDO" -o "$SKIP_SUDO" == "0" ] ; then
 sudo ${PACKAGE_BUILDER_BASE}/helpers/make_devices.py ${DEVICE_TABLE} ${DEST}
+else
+${PACKAGE_BUILDER_BASE}/helpers/make_devices.py ${DEVICE_TABLE} ${DEST}
+fi
 echo
 
 # Wait for any background stuff to finish
