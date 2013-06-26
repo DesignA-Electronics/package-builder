@@ -8,6 +8,7 @@ export PATH=$1:$PATH
 
 do_build_install "$1"
 rm "$1"/ncurses5-config
+build_package "${NAME}-alsamixer" "${VERSION}" "$1" ".*/bin/alsamixer"
 build_package "${NAME}"-wav "${VERSION}" "$1" ".*/sounds/.*wav"
 build_generic_package "$1"
 
