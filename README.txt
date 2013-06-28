@@ -50,3 +50,17 @@ To go back to a complete clean setup, erase the following directories:
 To build a root fs, use the "pbuild build-rootfs" script.
 Set STRIP_ROOTFS=1 if you want all of the binary files to be stripped of
 debugging symbols in the output
+
+By default "pbuild build-rootfs" assumes that a fully intact /dev filesystem
+is desired, and as such uses 'sudo' to ensure that the device nodes
+are created with the correct permissions. This is useful if the filesystem
+is going to be used as an NFS root or similar, however if the resultant
+filesystem is going to be packaged up in an image (such as a .tar, squashfs, 
+cramfs etc...), then sudo may not be desired, and a system such as fakeroot
+can be used. In this case, set SKIP_SUDO=1 prior to running pbuild, ie:
+
+SKIP_SUDO=1 fakeroot -s rootfs.fakeroot ./pbuild build-rootfs packages_list rootfs
+fakeroot -i rootfs.fakeroot mksquashfs rootfs rootfs.squashfs -noappend
+
+This will create the rootfs.squashfs image without the need to ever have
+permissions to use the sudo command, and as such is the preferred solution.
