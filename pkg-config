@@ -1,10 +1,11 @@
 #!/bin/bash
 BASEDIR=$(dirname $(readlink -f $0))
-PKG_CONFIG_LIBDIR=${PKG_CONFIG_LIBDIR:-$BASEDIR/staging/lib/pkgconfig}
+PKG_CONFIG_PREFIX=${PKG_CONFIG_PREFIX:-$BASEDIR/staging}
+PKG_CONFIG_LIBDIR=${PKG_CONFIG_LIBDIR:-$PKG_CONFIG_PREFIX/lib/pkgconfig}
 export PKG_CONFIG_LIBDIR
 if [ "$1" == "--atleast-pkgconfig-version" ] ; then
     /usr/bin/pkg-config $@
 else
-    /usr/bin/pkg-config --define-variable=prefix=$BASEDIR/staging $@
+    /usr/bin/pkg-config --define-variable=prefix=${PKG_CONFIG_PREFIX} $@
 fi
 
