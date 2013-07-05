@@ -1,0 +1,5 @@
+VERSION=3.0.9
+SOURCE=http://rsync.samba.org/ftp/rsync/rsync-${VERSION}.tar.gz
+
+do_generic "$1"
+
