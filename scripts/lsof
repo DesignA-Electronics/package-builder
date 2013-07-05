@@ -1,0 +1,17 @@
+VERSION=4.87
+SOURCE=ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/lsof_${VERSION}.tar.bz2
+
+post_unpack() {
+    tar xf lsof_${VERSION}_src.tar
+}
+
+download_unpack "$SOURCE"
+pushd lsof_${VERSION}_src
+yes | ./Configure linux
+make CC="${CC}" CDEF="${CFLAGS}"
+mkdir "$1"/sbin
+cp -a lsof "$1"/sbin
+popd ..
+
+build_package "${NAME}" "${VERSION}" "$1"
+
