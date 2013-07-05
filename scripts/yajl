@@ -1,13 +1,8 @@
-NAME=yajl
 VERSION=2.0.1
 SOURCE=http://github.com/lloyd/yajl/tarball/${VERSION}
 FILENAME=yajl-${VERSION}.tar.gz
 # The format appears to be <github user>-<project>-<commit id>
 FORCE_DIRNAME=lloyd-yajl-f4b2b1a
 
-#do_generic "$1"
-
-download_unpack "$SOURCE" "$FILENAME" "$FORCE_DIRNAME"
-do_cmake "$1"
-build_generic_package "$1"
+do_generic "$1"
 
