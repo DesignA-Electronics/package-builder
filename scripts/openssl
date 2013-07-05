@@ -1,4 +1,4 @@
-VERSION=1.0.1c
+VERSION=1.0.1e
 SOURCE=http://www.openssl.org/source/openssl-${VERSION}.tar.gz
 
 download_unpack "${SOURCE}"
