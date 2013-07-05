@@ -1,0 +1,5 @@
+VERSION=unknown
+SOURCE=http://mirror.aarnet.edu.au/pub/MariaDB/mariadb-native-client/Source/mariadb-native-client.tar.gz
+
+do_generic "$1"
+
