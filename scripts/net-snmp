@@ -1,5 +1,5 @@
 NAME=net-snmp
-VERSION=5.6.2
+VERSION=5.7.2
 SOURCE=http://downloads.sourceforge.net/project/net-snmp/net-snmp/${VERSION}/net-snmp-${VERSION}.tar.gz
 
 CONFIGURE_PARAMS="--with-defaults --with-sys-contact=info@bluewatersys.com --with-sys-location=Bluewater --with-out-mib-modules=ip-forward-mib,ip-forward-mib/ipCidrRouteTable"
