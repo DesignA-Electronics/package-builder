@@ -1,0 +1,5 @@
+VERSION=4.0.6
+SOURCE=http://www.pengutronix.de/software/socket-can/download/canutils/v4.0/canutils-${VERSION}.tar.bz2
+
+do_generic "$1"
+

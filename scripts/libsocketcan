@@ -1,0 +1,5 @@
+VERSION=0.0.9
+SOURCE=http://www.pengutronix.de/software/libsocketcan/download/libsocketcan-${VERSION}.tar.bz2
+
+do_generic "$1"
+
