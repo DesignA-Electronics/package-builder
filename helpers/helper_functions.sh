@@ -267,9 +267,13 @@ do_install() {
 # Performs a standard configure, make, make install build
 do_build_install() {
     download_unpack "$SOURCE" "$FILENAME" "$FORCE_DIRNAME"
-    do_configure
-    do_make
-    do_install "$1"
+    if [ -f "CMakeLists.txt" ] ; then
+        do_cmake "$1"
+    elif [ -f "configure" -o -f "autogen.sh" ] ; then
+        do_configure
+        do_make
+        do_install "$1"
+    fi
 }
 
 # Build using CMake
@@ -279,9 +283,11 @@ do_cmake() {
 
 	cmake -DCMAKE_INSTALL_PREFIX='/' \
 	      -DCMAKE_TOOLCHAIN_FILE=${PACKAGE_BUILDER_BASE}/package_builder.cmake \
+              -DCMAKE_SYSTEM_INCLUDE_PATH=${STAGING}/include \
+              -DCMAKE_FIND_ROOT_PATH=${STAGING} \
 	      ..
 	make
-	make install DESTDIR="$1"
+	DESTDIR="$1" make install
 
 	popd
 }
