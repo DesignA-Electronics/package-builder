@@ -267,7 +267,7 @@ do_install() {
 # Performs a standard configure, make, make install build
 do_build_install() {
     download_unpack "$SOURCE" "$FILENAME" "$FORCE_DIRNAME"
-    if [ -f "CMakeLists.txt" ] ; then
+    if [ -f "CMakeLists.txt" -a -z "$SKIP_CMAKE" ] ; then
         do_cmake "$1"
     elif [ -f "configure" -o -f "autogen.sh" ] ; then
         do_configure
