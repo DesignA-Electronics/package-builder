@@ -10,9 +10,10 @@ export ac_cv_func_malloc_0_nonnull=yes
 git_download ${SOURCE}
 
 patch -p1 -N < ${SUPPORT_FILES}/patches/tslib-skip-version.patch
+patch -p1 -N < ${SUPPORT_FILES}/patches/tslib-fcntl.patch
 
 # Make sure that debug mode is disabled
-sed -i 's/#define DEBUG//g' src/tslib-private.h 
+sed -i 's/#define DEBUG//g' src/tslib-private.h
 do_configure
 do_make
 do_install "$1"

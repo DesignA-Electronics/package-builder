@@ -1,0 +1,11 @@
+--- a/src/ts_open.c	2013-07-09 18:19:40.925158660 +1200
++++ b/src/ts_open.c	2013-07-09 18:19:48.416557394 +1200
+@@ -16,7 +16,7 @@
+ #ifdef HAVE_UNISTD_H
+ #include <unistd.h>
+ #endif
+-#include <sys/fcntl.h>
++#include <fcntl.h>
+ 
+ #include "tslib-private.h"
+ 
