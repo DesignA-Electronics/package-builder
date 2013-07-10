@@ -6,7 +6,7 @@ CONFIGURE_PARAMS="--enable-static"
 
 if [ "$USE_STATIC" == "y" ] ; then
     CONFIGURE_PARAMS="${CONFIGURE_PARAMS} --enable-linear=static \
-        --enable-dejitter=static --enable-linear-h2200=no --enable-variance=no \
+        --enable-dejitter=static --enable-linear-h2200=no --enable-variance=static \
         --enable-pthres=static --enable-ucb1x00=no --enable-cy8mrln-palmpre=no \
         --enable-corgi=no --enable-collie=no --enable-h3600=no \
         --enable-mk712=no --enable-arctic2=no --enable-tatung=no \
