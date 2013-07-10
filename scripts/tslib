@@ -17,5 +17,6 @@ sed -i 's/#define DEBUG//g' src/tslib-private.h
 do_configure
 do_make
 do_install "$1"
+build_package "${NAME}"-bin "${VERSION}" "$1" ".*/bin/.*"
 build_generic_package "$1"
 
