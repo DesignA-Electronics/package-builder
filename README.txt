@@ -64,3 +64,25 @@ fakeroot -i rootfs.fakeroot mksquashfs rootfs rootfs.squashfs -noappend
 
 This will create the rootfs.squashfs image without the need to ever have
 permissions to use the sudo command, and as such is the preferred solution.
+
+Configuration
+=============
+The 'config' file defines most of the settings that are used in package-builder. 
+To make changes, the easiest thing to do is create a new file called 
+'custom_config', which contains alternative settings. The following settings
+are often edited:
+CFLAGS - contains an optimisation flags desired
+LDFLAGS
+PACKAGE_ARCH - sets the name that will be placed in/on the .ipk files 
+    designating which architecture these packages are for
+TOOLCHAIN_DIR - the base directory containing the toolchain (should 
+    contain bin/arm-none-linux-gnueabi-gcc or similar)
+TOOLCHAIN_LIBC_DIR - the directory containing libc.so from the toolchain
+SKIP_TOOLCHAIN_LIBS - if set to 'y', don't use the libc from the toolchain.
+    This should be set if using an out-of-toolchain libc, like musl/uclibc.
+USE_MUSL - set to 'y' if building MUSL (as musl needs to override gcc)
+USE_TSLIB - set to 'y' if using tslib, so that other packages can be built
+    appropriately
+USE_STATIC - set to 'y' if attempting to build a predominantly statically
+    linked system. Some packages can use loadable modules or static modules,
+    and will look at this variable to determine how to be build
