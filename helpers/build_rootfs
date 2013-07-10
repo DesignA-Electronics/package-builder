@@ -56,6 +56,7 @@ install_package() {
 
 # Build directory structure
 mkdir -p "$DEST/lib" "$DEST/dev" "$DEST/proc" "$DEST/sys" "$DEST/etc/init.d" "$DEST/var/tmp" "$DEST/home" "$DEST/mnt" "$DEST/var/run" "$DEST/usr/local/bin" "$DEST/usr/lib" "$DEST/lib/modules"
+ln -s /var/tmp "$DEST/tmp"
 
 # Copy libraries (ARM only), and only if there is no mention of 'toolchain-libs' in the packages file
 # New projects should include the toolchain-libs into their packages listing, this is just
@@ -66,7 +67,6 @@ if [ "${ARCH}" == "arm" ] ; then
     fi
     if [ "${SKIP_TOOLCHAIN_LIBS}" != "y" ] ; then
         echo -n "  Copying Libraries "
-        ln -s /var/tmp "$DEST/tmp"
 
         # Copy toolchain libraries
         if [ "$USE_UCLIBC" == "1" ] ; then
