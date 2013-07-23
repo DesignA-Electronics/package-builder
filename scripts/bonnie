@@ -4,7 +4,7 @@ SOURCE=http://www.garloff.de/kurt/linux/bonnie/bonnie-${VERSION}.tar.bz2
 download_unpack "$SOURCE" "" "bonnie"
 make CC=${CC} SYSFLAGS="${CFLAGS}"
 
-mkdir -p ${1}/bin
+mkdir -p ${1}/bin ${1}/man/man1/
 cp Bonnie ${1}/bin
 cp bonnie.1 ${1}/man/man1/
 build_package ${NAME} ${VERSION} ${1}
