@@ -1,7 +1,7 @@
 NAME=libusb0
 VERSION=0.1.12
 SOURCE="http://downloads.sourceforge.net/project/libusb/libusb-0.1 (LEGACY)/${VERSION}/libusb-${VERSION}.tar.gz"
-CONFIGURE_PARAMS="--prefix=$1"
+CONFIGURE_PARAMS="--prefix=$1 --disable-build-docs"
 FIX_CONFIG_SUB=1
 
 # Almost the same as the generic version except that libusb0 takes no arguments
