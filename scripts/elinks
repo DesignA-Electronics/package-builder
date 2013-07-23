@@ -1,0 +1,11 @@
+VERSION=0.12pre6
+SOURCE=http://elinks.or.cz/download/elinks-${VERSION}.tar.bz2
+
+post_configure() {
+    cat >> Makefile.config << EOF
+LD=${CROSS}ld
+EOF
+}
+
+do_generic "$1"
+
