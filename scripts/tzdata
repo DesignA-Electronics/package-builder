@@ -1,0 +1,27 @@
+VERSION=2013d
+CODE_SOURCE=http://www.iana.org/time-zones/repository/releases/tzcode${VERSION}.tar.gz
+DATA_SOURCE=http://www.iana.org/time-zones/repository/releases/tzdata${VERSION}.tar.gz
+
+download $CODE_SOURCE
+download $DATA_SOURCE
+
+mkdir -p ${NAME}-${VERSION}
+pushd ${NAME}-${VERSION}
+tar xfz ../`basename $CODE_SOURCE`
+tar xfz ../`basename $DATA_SOURCE`
+
+make clean
+# Build it native first
+make TOPDIR=$1
+make install TOPDIR=$1
+
+# Build the cross-compiled binaries we want & put them in place
+rm tzselect zic zdump *.o
+make TOPDIR=$1 cc=${CC}
+cp zdump zic "$1/etc/"
+
+build_package "${NAME}"-doc "${VERSION}" "$1" "${DOC_FILES}"
+build_package "${NAME}"-dev "${VERSION}" "$1" "${DEV_FILES}"
+build_package "${NAME}"-bin "${VERSION}" "$1" ".*/etc/zic|.*/etc/zdump|.*/etc/tzselect"
+build_package "${NAME}" "${VERSION}" "$1"
+
