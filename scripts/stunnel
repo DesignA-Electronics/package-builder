@@ -1,0 +1,7 @@
+VERSION=2.56
+SOURCE=https://www.stunnel.org/downloads/stunnel-4.56.tar.gz
+
+CONFIGURE_PARAMS="--with-ssl=${STAGING}"
+
+do_generic "$1"
+
