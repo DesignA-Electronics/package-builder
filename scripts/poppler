@@ -11,5 +11,7 @@ CONFIGURE_PARAMS="--disable-cairo-output --disable-poppler-glib --enable-xpdf-he
 export CXXFLAGS="${CFLAGS}"
 export FONTCONFIG_LIBS="-lfontconfig -lfreetype -lpng"
 
+SKIP_CMAKE=1
+
 do_generic "$1"
 
