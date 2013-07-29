@@ -1,4 +1,4 @@
-VERSION=2.4.11
+VERSION=2.4.12
 SOURCE=http://download.savannah.gnu.org/releases/freetype/freetype-${VERSION}.tar.bz2
 
 do_generic "$1"
