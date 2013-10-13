@@ -1,0 +1,10 @@
+VERSION=2.2.3
+SOURCE=http://www.tux.org/~mayer/linux/nbench-byte-${VERSION}.tar.gz
+
+download_unpack "$SOURCE"
+make CC=${CROSS}gcc CFLAGS="${CFLAGS}"
+mkdir -p ${1}/bin
+cp nbench ${1}/bin/
+
+build_generic_package "$1"
+
