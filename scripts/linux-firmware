@@ -1,5 +1,5 @@
 VERSION=git
-SOURCE=git://git.kernel.org/pub/scm/linux/kernel/git/dwmw2/linux-firmware.git
+SOURCE=git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
 
 git_download "$SOURCE"
 
