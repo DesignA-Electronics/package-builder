@@ -1,0 +1,5 @@
+VERSION=3.2.22
+SOURCE=http://www.carisma.slowglass.com/~tgr/libnl/files/libnl-${VERSION}.tar.gz
+
+do_generic "$1"
+
