@@ -1,0 +1,8 @@
+TOOLCHAIN_DIR=/tools/arm/arm-2013.05
+TOOLCHAIN_LIBC_DIR=${TOOLCHAIN_DIR}/arm-none-linux-gnueabi/libc
+CROSS=arm-none-linux-gnueabi-
+
+CFLAGS="-march=armv7 -I${STAGING}/include -O3"
+LDFLAGS="-L${STAGING}/lib -march=armv7"
+PACKAGE_ARCH=armv7
+
