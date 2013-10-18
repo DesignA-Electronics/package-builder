@@ -1,6 +1,6 @@
 NAME=zlib
-VERSION=1.2.7
-SOURCE=http://zlib.net/zlib-${VERSION}.tar.bz2
+VERSION=1.2.8
+SOURCE=http://zlib.net/zlib-${VERSION}.tar.gz
 INSTALL_PARAMS=prefix=/
 
 download_unpack "${SOURCE}"

@@ -1,5 +1,5 @@
 NAME=evtest
-VERSION=1.30
+VERSION=1.31
 SOURCE=http://cgit.freedesktop.org/evtest/snapshot/evtest-${VERSION}.tar.gz
 
 export XML_CFLAGS=-I${STAGING}/include/libxml2
