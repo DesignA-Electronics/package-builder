@@ -129,7 +129,7 @@ if [ "$STRIP_ROOTFS" == "1" ] ; then
     FILES="${DEST}/lib/* ${DEST}/bin/* ${DEST}/usr/lib/* ${DEST}/usr/bin/*"
     for f in $FILES ; do
         if [ -f $f ] ; then
-            ${CROSS}-strip $f >/dev/null 2>&1 || true
+            ${CROSS}strip $f >/dev/null 2>&1 || true
             echo -n "."
         fi
     done
