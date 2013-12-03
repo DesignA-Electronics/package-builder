@@ -1,9 +1,11 @@
 VERSION=2.22
-SOURCE=http://mirror.linux.org.au/linux/libs/security/linux-privs/libcap2/libcap-${VERSION}.tar.bz2
+SOURCE=ftp://ftp.de.debian.org/debian/pool/main/libc/libcap2/libcap2_2.22.orig.tar.gz
+FORCE_DIRNAME=libcap-2.22
+MAKE_PARAMS="CC=${CROSS}gcc BUILD_CC=gcc LIBATTR=no prefix=/ lib=lib"
+INSTALL_PARAMS="LIBATTR=no prefix=/ lib=lib"
 
-INSTALL_PARAMS="RAISE_SETFCAP=no lib=lib prefix=/"
-download_unpack "$SOURCE"
-make CC=${CC} CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" BUILD_CC=gcc BUILD_CFLAGS="-g -Wall" lib=lib prefix=/
+download_unpack "$SOURCE" "" "$FORCE_DIRNAME"
+do_make
 do_install "$1"
 build_generic_package "$1"
 
