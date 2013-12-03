@@ -1,4 +1,4 @@
-VERSION=5.2.1
+VERSION=5.2.2
 SOURCE=http://www.lua.org/ftp/lua-${VERSION}.tar.gz
 
 download_unpack "$SOURCE"
@@ -8,9 +8,9 @@ cat >> lua.pc << EOF
 
 Name: Lua
 Description: Lua language engine
-Version: ${version}
-Libs: -L${libdir} -llua
-Cflags: -I${includedir}
+Version: \${version}
+Libs: -L\${libdir} -llua -lm
+Cflags: -I\${includedir}
 EOF
 
 make install INSTALL_TOP="$1"
