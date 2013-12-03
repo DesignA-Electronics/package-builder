@@ -1,0 +1,13 @@
+VERSION=git
+SOURCE=https://github.com/tinyalsa/tinyalsa.git
+
+git_download "$SOURCE"
+make CROSS_COMPILE=${CROSS}
+
+mkdir -p "$1"/lib "$1"/bin "$1"/include
+cp libtinyalsa.so "$1"/lib/
+cp -a include/* "$1"/include/
+cp tinyplay tinycap tinymix tinypcminfo "$1"/bin/
+
+build_generic_package "$1"
+
