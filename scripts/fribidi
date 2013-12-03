@@ -1,0 +1,5 @@
+VERSION=0.19.5
+SOURCE=http://fribidi.org/download/fribidi-${VERSION}.tar.bz2
+
+do_generic "$1"
+
