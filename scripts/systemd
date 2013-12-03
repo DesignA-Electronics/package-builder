@@ -1,0 +1,7 @@
+VERSION=208
+SOURCE=http://www.freedesktop.org/software/systemd/systemd-${VERSION}.tar.xz
+
+CONFIGURE_PARAMS="--disable-gcrypt --disable-tests ac_cv_func_malloc_0_nonnull=yes"
+
+do_generic "$1"
+
