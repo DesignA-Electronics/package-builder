@@ -1,4 +1,4 @@
-VERSION=0.30.0
+VERSION=0.32.4
 SOURCE=http://cairographics.org/releases/pixman-${VERSION}.tar.gz
 
 do_generic "$1"
