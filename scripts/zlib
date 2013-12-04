@@ -5,7 +5,7 @@ INSTALL_PARAMS=prefix=/
 
 download_unpack "${SOURCE}"
 
-CC=${CC} CFLAGS="$CFLAGS" ./configure
+CC=${CC} CFLAGS="$CFLAGS" ./configure --prefix=/
 do_make
 do_install "$1"
 
