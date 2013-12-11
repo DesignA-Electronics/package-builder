@@ -65,5 +65,9 @@ make CC=${CC} CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS="${CFLAGS}" -j4 V=1
 make CC=${CC} CROSS_COMPILE=${CROSS} ARCH=${ARCH} CFLAGS="${CFLAGS}" busybox.links
 ./applets/install.sh "$1" --symlinks
 
+mkdir -p "$1"/usr/share/udhcpc
+cp ${SUPPORT_FILES}/extra_files/busybox-udhcpc-default.script "$1"/usr/share/udhcpc/default.script
+chmod +x "$1"/usr/share/udhcpc/default.script
+
 build_package busybox ${VERSION} $1
 

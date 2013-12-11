@@ -1,0 +1,17 @@
+VERSION=unknown
+SOURCE=http://icl.cs.utk.edu/projects/llcbench/llcbench.tar.gz
+
+download_unpack "$SOURCE"
+cat > sys.def << EOF
+CB_CC           = ${CROSS}gcc
+CB_CFLAGS       = -O -Wall
+CB_LDFLAGS      = \$(CB_CFLAGS)
+CB_LIBS         = -lrt
+EOF
+make cache-bench
+mkdir -p "$1"/bin
+cp cachebench/cachebench "$1"/bin
+build_generic_package "$1"
+
+
+
