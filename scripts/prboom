@@ -1,0 +1,10 @@
+VERSION=2.5.0
+SOURCE="http://sourceforge.net/projects/prboom/files/prboom stable/${VERSION}/prboom-${VERSION}.tar.gz"
+
+export ac_cv_header_unistd_h=yes
+export ac_cv_type_uid_t=yes
+
+CONFIGURE_PARAMS="--disable-gl --with-sdl-exec-prefix=${STAGING}"
+
+do_generic "$1"
+
