@@ -1,0 +1,9 @@
+VERSION=20140107-2245
+SOURCE=ftp://ftp.videolan.org/pub/x264/snapshots/x264-snapshot-${VERSION}.tar.bz2
+
+CONFIGURE_PARAMS="--cross-prefix=${CROSS}"
+
+INSTALL_PARAMS="install-lib-dev install-lib-shared install-lib-static"
+
+do_generic "$1"
+
