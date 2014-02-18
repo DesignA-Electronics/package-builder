@@ -1,0 +1,7 @@
+VERSION=0.10
+SOURCE=http://sourceforge.net/projects/zbar/files/zbar/${VERSION}/zbar-${VERSION}.tar.bz2
+
+CONFIGURE_PARAMS="--disable-video --without-imagemagick --without-gtk --without-python --without-qt"
+
+do_generic "$1"
+
