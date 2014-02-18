@@ -1,4 +1,3 @@
-NAME=xauth
 VERSION=1.0.5
 SOURCE=http://www.x.org/releases/X11R7.6/src/everything/${NAME}-${VERSION}.tar.bz2
 DESCRIPTION='Brief description
