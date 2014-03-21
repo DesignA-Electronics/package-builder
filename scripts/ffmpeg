@@ -1,5 +1,7 @@
 NAME=ffmpeg
-VERSION=2.0
+#VERSION=2.0
+VERSION=2.1.1
+#VERSION=1.2.4
 SOURCE=http://www.ffmpeg.org/releases/ffmpeg-${VERSION}.tar.bz2
 
 download_unpack "$SOURCE"
@@ -14,7 +16,7 @@ build_package "libavcodec-dev" "${VERSION}" "$1" ".*avcodec.*"
 build_package "libavdevice-dev" "${VERSION}" "$1" ".*avdevice.*"
 build_package "libavformat-dev" "${VERSION}" "$1" ".*avformat.*"
 build_package "libswscale-dev" "${VERSION}" "$1" ".*swscale.*"
-build_package "ffmpeg-doc" "${VERSION}" "$1" ".*share/man/.*|.*examples.*"
+build_package "ffmpeg-doc" "${VERSION}" "$1" ".*share/man/.*|.*examples.*|.*share/doc/.*"
 build_package "ffmpeg-ffprobe" "${VERSION}" "$1" ".*bin/ffprobe"
 build_package "ffmpeg-ffserver" "${VERSION}" "$1" ".*bin/ffserver"
 build_package "ffmpeg" "${VERSION}" "$1"
