@@ -7,7 +7,7 @@ fi
 cd nuttcp-${VERSION}
 download "${SOURCE}"
 
-${CROSS}gcc nuttcp-${VERSION}.c -o nuttcp -g -Wall -pipe
+${CROSS}gcc ${CFLAGS} nuttcp-${VERSION}.c -o nuttcp
 
 mkdir "$1"/bin
 cp nuttcp "$1"/bin
