@@ -1,0 +1,9 @@
+VERSION=0.98
+SOURCE=ftp://ftp.gnu.org/gnu/classpath/classpath-${VERSION}.tar.gz
+
+CONFIGURE_PARAMS="--without-x --disable-gtk-peer --disable-gconf-peer --enable-default-preferences-peer=file --disable-plugin --disable-Werror"
+
+executable_required "runantlr" "java"
+
+do_generic "$1"
+

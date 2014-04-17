@@ -1,0 +1,9 @@
+VERSION=1.6.1
+SOURCE=http://www.complang.tuwien.ac.at/cacaojvm/download/cacao-${VERSION}/cacao-${VERSION}.tar.xz
+
+CLASSPATH=${STAGING}/../classpath
+
+CONFIGURE_PARAMS="--with-java-runtime-library-prefix=${STAGING} --with-jasmin-jar=${CLASSPATH}/jasmin.jar --with-junit-jar=${CLASSPATH}/junit-4.11.jar"
+
+do_generic "$1"
+
