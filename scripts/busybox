@@ -13,7 +13,7 @@ clear_config() {
     done
 }
 
-VERSION=1.21.0
+VERSION=1.22.1
 SOURCE=http://busybox.net/downloads/busybox-${VERSION}.tar.bz2
 DESCRIPTION='The Swiss Army Knife of Embedded Linux.
  BusyBox combines tiny versions of many common UNIX utilities into a
