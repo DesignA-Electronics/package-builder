@@ -1,0 +1,15 @@
+VERSION=3.5.0
+SOURCE=http://www.alasir.com/software/ramspeed/ramsmp-${VERSION}.tar.gz
+
+export CC
+export CFLAGS
+export AS=${CROSS}as
+export LD=${CC}
+export TARGET=GENERIC
+
+download_unpack "$SOURCE"
+./build.sh LinuxCROSS
+mkdir -p "$1/bin"
+cp ramsmp "$1/bin/"
+build_generic_package "$1"
+
