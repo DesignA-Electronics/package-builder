@@ -1,0 +1,6 @@
+NAME=dri3proto
+VERSION=1.0
+SOURCE=http://ftp.x.org/pub/individual/proto/dri3proto-${VERSION}.tar.bz2
+
+do_generic "$1"
+
