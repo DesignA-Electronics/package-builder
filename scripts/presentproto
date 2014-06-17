@@ -1,0 +1,6 @@
+NAME=presentproto
+VERSION=1.0
+SOURCE=http://ftp.x.org/pub/individual/proto/presentproto-${VERSION}.tar.bz2
+
+do_generic "$1"
+
