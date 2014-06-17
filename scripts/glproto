@@ -1,6 +1,6 @@
 NAME=glproto
-VERSION=1.4.12
-SOURCE=http://www.x.org/releases/X11R7.6/src/proto/glproto-${VERSION}.tar.bz2
+VERSION=1.4.17
+SOURCE=http://ftp.x.org/pub/individual/proto/glproto-${VERSION}.tar.bz2
 
 do_generic "$1"
 
