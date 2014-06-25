@@ -1,0 +1,11 @@
+VERSION=unknown
+SOURCE=http://www.roylongbottom.org.uk/classic_benchmarks.tar.gz
+
+download_unpack "$SOURCE" "$FILENAME" "$FORCE_DIRNAME"
+patch -p1 -N < ${SUPPORT_FILES}/patches/Classic_benchmarks.patch
+cd source_code
+make CC=${CC} CFLAGS="${CFLAGS} -Icommon_32bit -lrt -lm -mfpu=neon -funroll-loops"
+mkdir -p "$1/bin/"
+cp dhry1 dhry2 whets lloops lpack "$1/bin/"
+build_generic_package "$1"
+
