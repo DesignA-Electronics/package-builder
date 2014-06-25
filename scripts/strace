@@ -1,5 +1,5 @@
 NAME=strace
-VERSION=4.7
+VERSION=4.8
 SOURCE=http://downloads.sourceforge.net/project/strace/strace/${VERSION}/strace-${VERSION}.tar.xz
 
 do_generic "$1"
