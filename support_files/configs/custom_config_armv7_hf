@@ -1,0 +1,9 @@
+TOOLCHAIN_DIR=/tools/arm/gcc-linaro-arm-linux-gnueabihf-4.9-2014.05_linux
+TOOLCHAIN_LIBC_DIR=${TOOLCHAIN_DIR}/arm-linux-gnueabihf/libc
+CROSS=arm-linux-gnueabihf-
+HOST=arm-linux-gnueabihf
+
+CFLAGS="-march=armv7-a -I${STAGING}/include -O3 -mfpu=neon -funroll-loops"
+LDFLAGS="-L${STAGING}/lib -march=armv7-a"
+PACKAGE_ARCH=armv7
+
