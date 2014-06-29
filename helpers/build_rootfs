@@ -27,6 +27,7 @@ fi
 ## Helper functions
 copy_lib () {
     base=$1
+    mkdir -p "$DEST"/$base
     shift
     for f in $* ; do
         echo -n "."
@@ -72,7 +73,7 @@ if [ "${ARCH}" == "arm" ] ; then
         if [ "$USE_UCLIBC" == "1" ] ; then
             copy_lib lib libuClibc-*.so
         else
-            copy_lib lib libc-*.so libnss_files-*.so libnss_dns-*.so libthread_db-*.so
+            copy_lib ${ROOT_LIBDIR} libc-*.so libnss_files-*.so libnss_dns-*.so libthread_db-*.so
         fi
 
         # Copy libstdc++
@@ -82,11 +83,13 @@ if [ "${ARCH}" == "arm" ] ; then
             copy_lib lib libstdc++.so*
         elif [ -f "$TOOLCHAIN_LIBC_DIR"/usr/lib/libstdc++.so ] ; then
             copy_lib usr/lib libstdc++.so*
+        elif [ -f "$TOOLCHAIN_LIBC_DIR"/../lib/libstdc++.so ] ; then
+            copy_lib lib ../../lib/libstdc++.so*
         else
             echo "Unable to find libstdc++" >&2
             exit 1
         fi
-        copy_lib lib ld-*.so libm-*.so libcrypt-*.so libresolv-*.so libgcc_s.so.* libpthread-*.so librt-*.so libdl-*.so libnsl-*.so libutil-*.so
+        copy_lib "$ROOT_LIBDIR" ld-*.so libm-*.so libcrypt-*.so libresolv-*.so libgcc_s.so.* libpthread-*.so librt-*.so libdl-*.so libnsl-*.so libutil-*.so
         echo
     fi
 fi
@@ -136,8 +139,14 @@ if [ "$STRIP_ROOTFS" == "1" ] ; then
     echo
 fi
 
+# Create ld.so.conf
+cat > ${DEST}/etc/ld.so.conf << EOF
+/${ROOT_LIBDIR}
+/usr/lib
+/usr/local/lib
+EOF
 
-# Newer ldconfigs require a cache file. 
+# Newer ldconfigs require a cache file.
 # We create the directory so that it doesn't complain
 mkdir -p "${DEST}/var/cache/ldconfig"
 
