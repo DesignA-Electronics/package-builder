@@ -1,0 +1,81 @@
+diff -urN classic_benchmarks/source_code/Makefile classic_benchmarks/source_code/Makefile
+--- classic_benchmarks/source_code/Makefile	1970-01-01 01:00:00.000000000 +0100
++++ classic_benchmarks/source_code/Makefile	2013-01-23 12:03:16.258016247 +0000
+@@ -0,0 +1,21 @@
++CFLAGS+=-Icommon_32bit -lrt -lm
++
++all: dhry1 dhry2 whets lloops lpack
++
++clean:
++	rm -f dhry1 dhry2 whets lloops lpack
++
++dhry1: dhrystone1/dhry1.c common_32bit/cpuidc.c
++	$(CC) $^ $(CFLAGS) -o $@
++
++dhry2: dhrystone2/dhry_1.c dhrystone2/dhry_2.c common_32bit/cpuidc.c
++	$(CC) $^ $(CFLAGS) -o $@
++
++whets: whetstone/whets.c common_32bit/cpuidc.c
++	$(CC) $^ $(CFLAGS) -o $@
++
++lloops: livermore_loops/lloops.c common_32bit/cpuidc.c
++	$(CC) $^ $(CFLAGS) -o $@
++
++lpack: linpack/linpack.c common_32bit/cpuidc.c
++	$(CC) $^ $(CFLAGS) -o $@
+diff -urN classic_benchmarks/source_code/common_32bit/cpuidc.c classic_benchmarks/source_code/common_32bit/cpuidc.c
+--- classic_benchmarks/source_code/common_32bit/cpuidc.c	2010-11-30 12:21:30.000000000 +0000
++++ classic_benchmarks/source_code/common_32bit/cpuidc.c	2013-01-23 11:42:45.788657378 +0000
+@@ -103,7 +103,11 @@
+      struct sysinfo sysdata;
+      struct utsname udetails; 
+  
++#if 0
+       _cpuida();
++#else
++     strcpy(idString1, "Cortex A8");
++#endif
+      sprintf(configdata[1], "  Assembler CPUID and RDTSC      ");  
+      sprintf(configdata[2], "  CPU %s, Features Code %8.8X, Model Code %8.8X",
+                            idString1, edxCode1, eaxCode1);
+@@ -112,12 +116,16 @@
+      max = 0;
+      for (i=0; i<10; i++)
+      {
++#if 0
+         startCount = 0;
+         endCount   = 0;
+         start_time();
+         _calculateMHz();
+         end_time();      
+         megaHz = (int)((double)cycleCount / 1000000.0 / secs + 0.5);
++#else
++	megaHz = 1000;
++#endif
+         if (megaHz > max) max = megaHz;
+         if (megaHz < min) min = megaHz;
+      }
+diff -urN classic_benchmarks/source_code/dhrystone2/dhry_1.c classic_benchmarks/source_code/dhrystone2/dhry_1.c
+--- classic_benchmarks/source_code/dhrystone2/dhry_1.c	2010-11-29 21:59:13.000000000 +0000
++++ classic_benchmarks/source_code/dhrystone2/dhry_1.c	2013-01-23 11:48:53.428465807 +0000
+@@ -206,7 +206,7 @@
+                                                  Number_Of_Runs);
+  */
+ 
+-   Number_Of_Runs = 5000;
++   Number_Of_Runs = 20000;
+ 
+    do
+    {
+diff -urN classic_benchmarks/source_code/whetstone/whets.c classic_benchmarks/source_code/whetstone/whets.c
+--- classic_benchmarks/source_code/whetstone/whets.c	2010-11-29 22:00:40.000000000 +0000
++++ classic_benchmarks/source_code/whetstone/whets.c	2013-01-23 11:42:45.828657358 +0000
+@@ -158,7 +158,7 @@
+  *  Note different numeric results to single precision. Slight variations
+  *  are normal with different compilers and sometimes optimisation levels. 
+  *
+- **************************************************************************
++ **************************************************************************/
+   
+  #include <math.h>       /* for sin, exp etc.           */
+  #include <stdio.h>      /* standard I/O                */ 
