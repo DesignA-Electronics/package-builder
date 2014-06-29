@@ -8,6 +8,7 @@ export LD=${CC}
 export TARGET=GENERIC
 
 download_unpack "$SOURCE"
+patch -p1 -N < ${SUPPORT_FILES}/patches/ramsmp-build.patch
 ./build.sh LinuxCROSS
 mkdir -p "$1/bin"
 cp ramsmp "$1/bin/"
