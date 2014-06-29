@@ -4,7 +4,7 @@ SOURCE=https://www.kernel.org/pub/software/network/iw/iw-${VERSION}.tar.xz
 #MAKE_PARAMS="CC=$CC V=1"
 
 export CC=${CC}
-# export CFLAGS=${CFLAGS}
+export CFLAGS=${CFLAGS}
 export V=1
 export PKG_CONFIG
 
