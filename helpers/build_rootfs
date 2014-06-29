@@ -129,7 +129,7 @@ wait
 
 if [ "$STRIP_ROOTFS" == "1" ] ; then
     echo -n "  Stripping binaries "
-    FILES="${DEST}/lib/* ${DEST}/bin/* ${DEST}/usr/lib/* ${DEST}/usr/bin/*"
+    FILES="${DEST}/lib/* ${DEST}/${ROOT_LIBDIR}/* ${DEST}/bin/* ${DEST}/usr/lib/* ${DEST}/usr/bin/*"
     for f in $FILES ; do
         if [ -f $f ] ; then
             ${CROSS}strip $f >/dev/null 2>&1 || true
