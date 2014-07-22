@@ -151,7 +151,11 @@ EOF
 mkdir -p "${DEST}/var/cache/ldconfig"
 
 # Finalise .so symlinks
-/sbin/ldconfig -r `readlink -f "$DEST"`
+LDCONFIG=`which ${CROSS}ldconfig`
+if [ -z "$LDCONFIG" ] ; then
+	LDCONFIG=/sbin/ldconfig
+fi
+$LDCONFIG -r `readlink -f "$DEST"`
 
 # Ensure that we have linuxrc in the root
 if [ ! -f ${DEST}/linuxrc ]; then
