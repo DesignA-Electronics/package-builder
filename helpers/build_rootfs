@@ -151,7 +151,7 @@ EOF
 mkdir -p "${DEST}/var/cache/ldconfig"
 
 # Finalise .so symlinks
-LDCONFIG=`which ${CROSS}ldconfig`
+LDCONFIG=`which ${CROSS}ldconfig || true`
 if [ -z "$LDCONFIG" ] ; then
 	LDCONFIG=/sbin/ldconfig
 fi
