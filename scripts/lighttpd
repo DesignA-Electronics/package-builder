@@ -1,6 +1,11 @@
 VERSION=1.4.35
 SOURCE=http://download.lighttpd.net/lighttpd/releases-1.4.x/lighttpd-${VERSION}.tar.bz2
 
+post_configure() {
+	echo "#undef HAVE_SENDFILE_BROKEN" >> config.h
+	echo "#define HAVE_SEND_FILE 1" >> config.h
+}
+
 CONFIGURE_PARAMS="--without-pcre --without-bzip2"
 do_build_install "$1"
 # Turn all the individidual modules into separate packages
