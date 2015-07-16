@@ -1,0 +1,12 @@
+VERSION=1.0.0
+
+SOURCE=git://git.ti.com/ti-bt/uim.git
+BRANCH=c73894456df5def97111cb33d2106b684b8b7959
+
+git_download "$SOURCE" "$BRANCH"
+
+make CC=${CC}
+mkdir -p "$1"/usr/sbin
+cp uim "$1"/usr/sbin/
+
+build_generic_package "$1"

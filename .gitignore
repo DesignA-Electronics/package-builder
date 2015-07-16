@@ -4,3 +4,6 @@ custom_config
 packages
 staging
 build
+*.swp
+*.swo
+*.swn
