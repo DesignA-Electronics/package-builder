@@ -1,0 +1,4 @@
+mkdir -p "$1"/lib/firmware/
+cp -r "${SUPPORT_FILES}"/firmware/ti-connectivity "$1"/lib/firmware
+cp "${SUPPORT_FILES}"/firmware/TIInit_* "$1"/lib/firmware
+build_package libti-cs-firmware 1.0.0 "$1"
