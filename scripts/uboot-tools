@@ -1,0 +1,14 @@
+NAME=uboot-tools
+VERSION=2014.04
+SOURCE=ftp://ftp.denx.de/pub/u-boot/u-boot-${VERSION}.tar.bz2
+
+download_unpack ${SOURCE}
+make snapper9260_config
+make CC=${CC} CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" CROSS_COMPILE="${CROSS}" env no-dot-config-targets=env
+
+# Install the files
+mkdir -p "$1"/usr/sbin/
+cp tools/env/fw_printenv "$1"/usr/sbin/
+ln -sf fw_printenv "$1"/usr/sbin/fw_setenv
+
+build_package "${NAME}" "${VERSION}" "$1"
