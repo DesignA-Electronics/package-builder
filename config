@@ -12,7 +12,7 @@ unset CC
 unset CXX
 
 # Codesourcery 2010q1
-TOOLCHAIN_DIR=/tools/arm/arm-2010q1
+TOOLCHAIN_DIR=${PACKAGE_BUILDER_BASE}/../../tools/arm/arm-2010q1
 TOOLCHAIN_LIBC_DIR=${TOOLCHAIN_DIR}/arm-none-linux-gnueabi/libc/armv4t
 CROSS=arm-none-linux-gnueabi-
 
