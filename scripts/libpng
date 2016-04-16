@@ -1,8 +1,8 @@
 NAME=libpng
-VERSION=1.5.17
+VERSION=1.5.26
 SOURCE=ftp://ftp.simplesystems.org/pub/libpng/png/src/libpng15/libpng-${VERSION}.tar.xz
 SKIP_CMAKE=1
 
-CONFIGURE_PARAMS="--enable-arm-neon"
+CONFIGURE_PARAMS="--enable-arm-neon=no"
 
 do_generic "$1"
