@@ -30,7 +30,7 @@ copy_lib () {
     mkdir -p "$DEST"/$base
     shift
     for f in $* ; do
-        echo -n "."
+        #echo -n "."
         cp -a "$TOOLCHAIN_LIBC_DIR"/$base/$f "$DEST"/$base
     done
 }
@@ -52,7 +52,7 @@ install_package() {
         exit 1
     fi
     sh -c "ar p ${FILE} data.tar.gz | tar -xmzC ${DEST} --no-overwrite-dir --delay-directory-restore"
-    echo -n "."
+    #echo -n "."
 }
 
 # Build directory structure
@@ -132,8 +132,8 @@ if [ "$STRIP_ROOTFS" == "1" ] ; then
     FILES="${DEST}/lib/* ${DEST}/${ROOT_LIBDIR}/* ${DEST}/bin/* ${DEST}/usr/lib/* ${DEST}/usr/bin/*"
     for f in $FILES ; do
         if [ -f $f ] ; then
-            ${CROSS}strip $f >/dev/null 2>&1 || true
-            echo -n "."
+            (${CROSS}strip $f >/dev/null 2>&1 || true)&
+            #echo -n "."
         fi
     done
     echo
