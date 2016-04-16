@@ -67,13 +67,15 @@ if [ "${ARCH}" == "arm" ] ; then
         SKIP_TOOLCHAIN_LIBS=y
     fi
     if [ "${SKIP_TOOLCHAIN_LIBS}" != "y" ] ; then
-        echo -n "  Copying Libraries "
+        echo -n "  Copying Libraries from ${ROOT_LIBDIR} "
 
         # Copy toolchain libraries
         if [ "$USE_UCLIBC" == "1" ] ; then
             copy_lib lib libuClibc-*.so
         else
             copy_lib ${ROOT_LIBDIR} libc-*.so libnss_files-*.so libnss_dns-*.so libthread_db-*.so
+            copy_lib ${ROOT_LIBDIR} libc.so* libnss_files.so* libnss_dns.so* libthread_db.so*
+            copy_lib ${ROOT_LIBDIR}
         fi
 
         # Copy libstdc++
@@ -90,6 +92,7 @@ if [ "${ARCH}" == "arm" ] ; then
             exit 1
         fi
         copy_lib "$ROOT_LIBDIR" ld-*.so libm-*.so libcrypt-*.so libresolv-*.so libgcc_s.so.* libpthread-*.so librt-*.so libdl-*.so libnsl-*.so libutil-*.so
+        copy_lib "$ROOT_LIBDIR" ld-*.so* libm.so* libcrypt.so* libresolv.so* libgcc_s.so.* libpthread.so* librt.so* libdl.so* libnsl.so* libutil.so*
         echo
     fi
 fi
