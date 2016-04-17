@@ -76,7 +76,6 @@ uaputl
 sd8688-uap-firmware
 python
 picocom
-nuttcp
 liblzo
 libxml2
 evtest

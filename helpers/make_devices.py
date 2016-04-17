@@ -74,8 +74,8 @@ class DeviceList:
             else:
                 raise SystemError, "Unhandled device type '%s' for %s" % (devtype, name)
 
-            sys.stdout.write(".")
-            sys.stdout.flush()
+            #sys.stdout.write(".")
+            #sys.stdout.flush()
 
 
 if __name__ == '__main__':

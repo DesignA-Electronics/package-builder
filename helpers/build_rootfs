@@ -30,7 +30,7 @@ copy_lib () {
     mkdir -p "$DEST"/$base
     shift
     for f in $* ; do
-        echo -n "."
+        #echo -n "."
         cp -a "$TOOLCHAIN_LIBC_DIR"/$base/$f "$DEST"/$base
     done
 }
@@ -52,7 +52,7 @@ install_package() {
         exit 1
     fi
     sh -c "ar p ${FILE} data.tar.gz | tar -xmzC ${DEST} --no-overwrite-dir --delay-directory-restore"
-    echo -n "."
+    #echo -n "."
 }
 
 # Build directory structure
@@ -67,13 +67,15 @@ if [ "${ARCH}" == "arm" ] ; then
         SKIP_TOOLCHAIN_LIBS=y
     fi
     if [ "${SKIP_TOOLCHAIN_LIBS}" != "y" ] ; then
-        echo -n "  Copying Libraries "
+        echo -n "  Copying Libraries from ${ROOT_LIBDIR} "
 
         # Copy toolchain libraries
         if [ "$USE_UCLIBC" == "1" ] ; then
             copy_lib lib libuClibc-*.so
         else
             copy_lib ${ROOT_LIBDIR} libc-*.so libnss_files-*.so libnss_dns-*.so libthread_db-*.so
+            copy_lib ${ROOT_LIBDIR} libc.so* libnss_files.so* libnss_dns.so* libthread_db.so*
+            copy_lib ${ROOT_LIBDIR}
         fi
 
         # Copy libstdc++
@@ -90,6 +92,7 @@ if [ "${ARCH}" == "arm" ] ; then
             exit 1
         fi
         copy_lib "$ROOT_LIBDIR" ld-*.so libm-*.so libcrypt-*.so libresolv-*.so libgcc_s.so.* libpthread-*.so librt-*.so libdl-*.so libnsl-*.so libutil-*.so
+        copy_lib "$ROOT_LIBDIR" ld-*.so* libm.so* libcrypt.so* libresolv.so* libgcc_s.so.* libpthread.so* librt.so* libdl.so* libnsl.so* libutil.so*
         echo
     fi
 fi
@@ -132,8 +135,8 @@ if [ "$STRIP_ROOTFS" == "1" ] ; then
     FILES="${DEST}/lib/* ${DEST}/${ROOT_LIBDIR}/* ${DEST}/bin/* ${DEST}/usr/lib/* ${DEST}/usr/bin/*"
     for f in $FILES ; do
         if [ -f $f ] ; then
-            ${CROSS}strip $f >/dev/null 2>&1 || true
-            echo -n "."
+            (${CROSS}strip $f >/dev/null 2>&1 || true)&
+            #echo -n "."
         fi
     done
     echo
