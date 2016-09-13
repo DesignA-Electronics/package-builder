@@ -3,8 +3,8 @@ node {
 	checkout scm
 
 	stage 'Build'
-	./pbuild build-all minimal_packages_list
+	sh './pbuild build-all minimal_packages_list'
 
 	stage 'Archive'
-	archiveArtifacts artifacts: 'packages/*'
+	archiveArtifacts('packages/*')
 }
