@@ -1,9 +1,5 @@
 #!/bin/bash
-# Overall package builder script. This is the one to run when you're
-# doing a build
-
-# Should be ensuring we have the following tools installed: 
-# libtoolize autoconf m4 fromdos xmlto flex bison
+# Build a given package script.
 
 set -e
 
@@ -27,7 +23,7 @@ if [ ! -f "scripts/$PACKAGE" ] ; then
     exit 1
 fi
 
-executable_required "flex" "bison" "fromdos" "git" "svn" "autoconf" "libtool" "shtool" "xmlto" "pmake"
+executable_required "git" "autoconf" "libtool" "shtool"
 
 # Ensure all of the directories are in place
 if [ ! -d "${PACKAGE_DIR}" ] ; then
