@@ -2,6 +2,7 @@ try {
 	node {
 		stage 'SCM'
 		checkout scm
+		sh 'git clean -fdx'
 
 		stage 'Build'
 		sh './pbuild build-all minimal_packages_list'
