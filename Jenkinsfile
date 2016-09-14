@@ -11,11 +11,14 @@ try {
 		archiveArtifacts('packages/*')
 	}
 } catch (err) {
+	echo "Caught: ${err}"
+
 	currentBuild.result = "FAILURE"
-	mail body: "Full logs available here: ${env.BUILD_URL}",
-            from: 'logbot@designa-electroics.com',
-            subject: 'Autobuild of ${env.JOB_NAME} failed',
-            to: 'developers@designa-electronics.com'
+	mail	subject: 'Build ${env.BUILD_NUMBER} of ${env.JOB_NAME} failed',
+		body: "Full logs available here: ${env.BUILD_URL}",
+		from: 'logbot@designa-electroics.com',
+		to: 'developers@designa-electronics.com',
+		replyTo: 'developers@designa-electronics.com'
 
 	throw err
 }
