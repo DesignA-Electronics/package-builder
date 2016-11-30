@@ -9,6 +9,10 @@ try {
 
 		stage 'Archive'
 		archiveArtifacts('packages/*')
+		archiveArtifacts('scripts/*')
+		archiveArtifacts('support_files/*')
+		archiveArtifacts('helpers/*')
+		archiveArtifacts('pbuild')
 	}
 } catch (err) {
 	echo "Caught: ${err}"
