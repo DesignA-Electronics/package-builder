@@ -9,11 +9,6 @@ node {
 	}
 
 	stage('Archive') {
-                archiveArtifacts artifacts: 'packages/*', fingerprint: true
-                archiveArtifacts artifacts: 'scripts/*', fingerprint: true
-                archiveArtifacts artifacts: 'support_files/*', fingerprint: true
-                archiveArtifacts artifacts: 'helpers/*', fingerprint: true
-                archiveArtifacts artifacts: 'pbuild', fingerprint: true
-                archiveArtifacts artifacts: 'config', fingerprint: true
+                archiveArtifacts artifacts: '*', excludes: 'build/*', fingerprint: true
 	}
 }
