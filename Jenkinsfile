@@ -1,28 +1,19 @@
-try {
-	node {
-		stage 'SCM'
+node {
+	stage('SCM') {
 		checkout scm
 		sh 'git clean -fdx'
-
-		stage 'Build'
-		sh './pbuild build-all minimal_packages_list'
-
-		stage 'Archive'
-		archiveArtifacts('packages/*')
-		archiveArtifacts('scripts/*')
-		archiveArtifacts('support_files/*')
-		archiveArtifacts('helpers/*')
-		archiveArtifacts('pbuild')
 	}
-} catch (err) {
-	echo "Caught: ${err}"
 
-	currentBuild.result = "FAILURE"
-	mail	subject: 'Build ${env.BUILD_NUMBER} of ${env.JOB_NAME} failed',
-		body: "Full logs available here: ${env.BUILD_URL}",
-		from: 'logbot@designa-electroics.com',
-		to: 'developers@designa-electronics.com',
-		replyTo: 'developers@designa-electronics.com'
+	stage('Build') {
+		sh './pbuild build-all minimal_packages_list'
+	}
 
-	throw err
+	stage('Archive') {
+                archiveArtifacts artifacts: 'packages/*', fingerprint: true
+                archiveArtifacts artifacts: 'scripts/*', fingerprint: true
+                archiveArtifacts artifacts: 'support_files/*', fingerprint: true
+                archiveArtifacts artifacts: 'helpers/*', fingerprint: true
+                archiveArtifacts artifacts: 'pbuild', fingerprint: true
+                archiveArtifacts artifacts: 'config', fingerprint: true
+	}
 }
