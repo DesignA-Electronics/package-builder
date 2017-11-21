@@ -1,6 +1,6 @@
 NAME=ipkg
 VERSION=0.99.163
-SOURCE=http://downloads.openmoko.org/developer/sources/ipkg-${VERSION}.tar.gz
+SOURCE=ftp://ftp.slackware.com/.2/nslu2/sources/ipkg-${VERSION}.tar.gz
 
 download_unpack "${SOURCE}"
 
