@@ -9,7 +9,7 @@ jobs:
           command: |
             set -x
             apt-get update
-            apt-get install -y make gcc wget bzip2 git
+            apt-get install -y make gcc wget bzip2 git autoconf libtool-bin shtool
             mkdir -p /tools/arm-2013.05
             wget -nv https://sourcery.mentor.com/GNUToolchain/package11447/public/arm-none-linux-gnueabi/arm-2013.05-24-arm-none-linux-gnueabi-i686-pc-linux-gnu.tar.bz2 -O - | tar -C /tools/arm-2013.05 -xj
       - checkout
