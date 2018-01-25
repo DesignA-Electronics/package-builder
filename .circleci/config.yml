@@ -1,0 +1,19 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: debian:stretch
+    steps:
+      - run:
+          name: Install build requirements
+          command: |
+            set -x
+            apt-get update
+            apt-get install -y make gcc
+            wget https://sourcery.mentor.com/GNUToolchain/package11447/public/arm-none-linux-gnueabi/arm-2013.05-24-arm-none-linux-gnueabi-i686-pc-linux-gnu.tar.bz2
+            mkdir -p /tools/arm-2013.05
+            tar -C /tools/arm-2013.05 -x -f arm-2013.05-24-arm-none-linux-gnueabi-i686-pc-linux-gnu.tar.bz2
+      - checkout
+      - run:
+          name: Build
+          command: ./pbuild build-all minimal_packages_list
