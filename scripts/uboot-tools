@@ -1,10 +1,10 @@
 NAME=uboot-tools
-VERSION=2014.04
+VERSION=2020.04
 SOURCE=ftp://ftp.denx.de/pub/u-boot/u-boot-${VERSION}.tar.bz2
 
 download_unpack ${SOURCE}
 make snapper9260_config
-make CC=${CC} CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" CROSS_COMPILE="${CROSS}" env no-dot-config-targets=env
+make CC=${CC} CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" CROSS_COMPILE="${CROSS}" CSTD_FLAG= envtools
 
 # Install the files
 mkdir -p "$1"/usr/sbin/
